@@ -1,0 +1,216 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+img {
+	max-width: 100%;
+}
+
+body {
+	background-color: #1a1a1a;
+}
+
+#title {
+	font-family: 'Rock Salt', cursive;
+	font-size: 2em;
+	padding: .75em;
+	color: #ddd;
+	a {
+		text-decoration: none;
+		color: #aaa;
+		font-size: 1.0em;
+		&:hover {
+			color: #fff;
+		}
+	}
+}
+
+.active {
+			color: #fff;
+}
+
+a {
+	text-decoration: none;
+	color: #aaa;
+	font-size: 1.0em;
+	&:hover {
+		color: #fff;
+	}
+}
+nav {
+	float: right;
+	margin: 10px;
+	font-family: 'Varela Round', sans-serif;
+	ul {
+		list-style: none;
+		position: relative;
+		display: inline;
+		padding: .5em;
+		ul {
+			display: none;
+			position: absolute; 
+			top: 20px; left: 10px;
+			
+			li {
+				float: none;
+				margin-top: 5px; 
+				padding: 3px;
+				position: relative;
+				text-align: center;
+				background-color: rgba(50,50,50,.9);
+				box-shadow: 3px 3px 5px rgba(0,0,0,.8);
+				& + li:before {
+					content: "";
+					padding: 0;
+				}
+			}
+		}
+		li:hover > ul {
+			display: block;
+			li {
+				display: block;	
+				a {
+					display: block;
+					width: 100%;
+				}
+			}
+		}
+		li {
+			margin: 2px;
+			padding: 2px;
+			display: inline;
+		}
+		li + li:before {
+			color: #aaa;
+			content: "\2022 ";
+			padding: 0 5px;
+			padding-right: 10px;
+		}
+	}
+	ul:after {
+		content: ""; clear: both; display: block;
+	}
+}
+
+#main {
+	clear: both;
+}
+
+#orderGallery {
+	width: 90%;
+	margin: 0 auto;	
+}
+
+.productThumb {
+	float: left;
+	margin: 10px;
+	height: 150px;
+	text-align: center;
+	img {
+		margin: 5px;
+		border: 1px solid black;
+		box-shadow: 3px 3px 4px rgba(0,0,0,.8);
+	}
+}
+
+.productLarge {
+	clear: both;
+	margin: 0 auto;
+	text-align: center;
+	width: 90%;
+	margin: 20px;
+	position: relative;
+	img {
+		margin: 5px;
+		padding: 10px;
+		background-color: #dedede;
+		border: 1px solid black;
+		box-shadow: 3px 3px 4px rgba(0,0,0,.8);
+	}
+	.productName {
+		margin: 5px;
+		color: #aaa;
+		font-size: 1.5em;
+		font-family: 'Varela Round', sans-serif;
+	}
+	select, button {
+		margin: 5px;
+		font-size: 1.2em;
+	}
+	.added, .errorSelect {
+	display: none;
+	position: absolute;
+	color: #dedede;
+	font-family: 'Varela Round', sans-serif;
+	font-size: 1.2em;
+	margin: 10px;
+	}
+}
+
+.cart {
+	display: none;
+	z-index: 1;
+	position: absolute;
+	border: 1px solid black;
+	box-shadow: 3px 3px 4px rgba(0,0,0,.8);
+	top: 2em;
+	right: 0;
+	background-color: rgba(50,50,50,.9);
+	color: #dedede;
+	font-family: 'Varela Round', sans-serif;
+	h1 {
+		font-size: 1.2em;
+		padding: 5px;
+	}
+	span {
+		padding: 5px;
+	}
+	button {
+		margin: 5px;
+		font-size: 1em;
+	}
+}
+
+.cartItems {
+	text-align: right;
+}
+
+.paypalSubmit {
+	margin: 5px;
+	font-size: 1.2em;
+}
+
+.right {
+	float: right;
+}
+
+.itemTitle {
+	color: #dedede;
+	font-family: 'Varela Round', sans-serif;
+	font-size: 1.2em;
+}
+
+#printDetails {
+	color: #dedede;
+	font-family: 'Varela Round', sans-serif;
+	h1, h2, p {
+		margin: 5px;
+		padding: 5px;
+	}
+	h1 {
+		font-size: 1.5em;
+	}
+	h2 {
+		font-size: 1.2em;
+		margin-left: 10px;
+	}
+	p {
+		font-size: 1em;
+		margin-left: 20px;
+	}
+	
+}
+

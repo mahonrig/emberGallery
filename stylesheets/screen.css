@@ -1,0 +1,320 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, ../../../../Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 8, ../sass/screen.scss */
+img {
+  max-width: 100%;
+}
+
+/* line 12, ../sass/screen.scss */
+body {
+  background-color: #1a1a1a;
+}
+
+/* line 16, ../sass/screen.scss */
+#title {
+  font-family: 'Rock Salt', cursive;
+  font-size: 2em;
+  padding: .75em;
+  color: #ddd;
+}
+/* line 21, ../sass/screen.scss */
+#title a {
+  text-decoration: none;
+  color: #aaa;
+  font-size: 1.0em;
+}
+/* line 25, ../sass/screen.scss */
+#title a:hover {
+  color: #fff;
+}
+
+/* line 31, ../sass/screen.scss */
+.active {
+  color: #fff;
+}
+
+/* line 35, ../sass/screen.scss */
+a {
+  text-decoration: none;
+  color: #aaa;
+  font-size: 1.0em;
+}
+/* line 39, ../sass/screen.scss */
+a:hover {
+  color: #fff;
+}
+
+/* line 43, ../sass/screen.scss */
+nav {
+  float: right;
+  margin: 10px;
+  font-family: 'Varela Round', sans-serif;
+}
+/* line 47, ../sass/screen.scss */
+nav ul {
+  list-style: none;
+  position: relative;
+  display: inline;
+  padding: .5em;
+}
+/* line 52, ../sass/screen.scss */
+nav ul ul {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+/* line 57, ../sass/screen.scss */
+nav ul ul li {
+  float: none;
+  margin-top: 5px;
+  padding: 3px;
+  position: relative;
+  text-align: center;
+  background-color: rgba(50, 50, 50, 0.9);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+}
+/* line 65, ../sass/screen.scss */
+nav ul ul li + li:before {
+  content: "";
+  padding: 0;
+}
+/* line 71, ../sass/screen.scss */
+nav ul li:hover > ul {
+  display: block;
+}
+/* line 73, ../sass/screen.scss */
+nav ul li:hover > ul li {
+  display: block;
+}
+/* line 75, ../sass/screen.scss */
+nav ul li:hover > ul li a {
+  display: block;
+  width: 100%;
+}
+/* line 81, ../sass/screen.scss */
+nav ul li {
+  margin: 2px;
+  padding: 2px;
+  display: inline;
+}
+/* line 86, ../sass/screen.scss */
+nav ul li + li:before {
+  color: #aaa;
+  content: "\2022 ";
+  padding: 0 5px;
+  padding-right: 10px;
+}
+/* line 93, ../sass/screen.scss */
+nav ul:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+/* line 98, ../sass/screen.scss */
+#main {
+  clear: both;
+}
+
+/* line 102, ../sass/screen.scss */
+#orderGallery {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* line 107, ../sass/screen.scss */
+.productThumb {
+  float: left;
+  margin: 10px;
+  height: 150px;
+  text-align: center;
+}
+/* line 112, ../sass/screen.scss */
+.productThumb img {
+  margin: 5px;
+  border: 1px solid black;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* line 119, ../sass/screen.scss */
+.productLarge {
+  clear: both;
+  margin: 0 auto;
+  text-align: center;
+  width: 90%;
+  margin: 20px;
+  position: relative;
+}
+/* line 126, ../sass/screen.scss */
+.productLarge img {
+  margin: 5px;
+  padding: 10px;
+  background-color: #dedede;
+  border: 1px solid black;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.8);
+}
+/* line 133, ../sass/screen.scss */
+.productLarge .productName {
+  margin: 5px;
+  color: #aaa;
+  font-size: 1.5em;
+  font-family: 'Varela Round', sans-serif;
+}
+/* line 139, ../sass/screen.scss */
+.productLarge select, .productLarge button {
+  margin: 5px;
+  font-size: 1.2em;
+}
+/* line 143, ../sass/screen.scss */
+.productLarge .added, .productLarge .errorSelect {
+  display: none;
+  position: absolute;
+  color: #dedede;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.2em;
+  margin: 10px;
+}
+
+/* line 153, ../sass/screen.scss */
+.cart {
+  display: none;
+  z-index: 1;
+  position: absolute;
+  border: 1px solid black;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.8);
+  top: 2em;
+  right: 0;
+  background-color: rgba(50, 50, 50, 0.9);
+  color: #dedede;
+  font-family: 'Varela Round', sans-serif;
+}
+/* line 164, ../sass/screen.scss */
+.cart h1 {
+  font-size: 1.2em;
+  padding: 5px;
+}
+/* line 168, ../sass/screen.scss */
+.cart span {
+  padding: 5px;
+}
+/* line 171, ../sass/screen.scss */
+.cart button {
+  margin: 5px;
+  font-size: 1em;
+}
+
+/* line 177, ../sass/screen.scss */
+.cartItems {
+  text-align: right;
+}
+
+/* line 181, ../sass/screen.scss */
+.paypalSubmit {
+  margin: 5px;
+  font-size: 1.2em;
+}
+
+/* line 186, ../sass/screen.scss */
+.right {
+  float: right;
+}
+
+/* line 190, ../sass/screen.scss */
+.itemTitle {
+  color: #dedede;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.2em;
+}
+
+/* line 196, ../sass/screen.scss */
+#printDetails {
+  color: #dedede;
+  font-family: 'Varela Round', sans-serif;
+}
+/* line 199, ../sass/screen.scss */
+#printDetails h1, #printDetails h2, #printDetails p {
+  margin: 5px;
+  padding: 5px;
+}
+/* line 203, ../sass/screen.scss */
+#printDetails h1 {
+  font-size: 1.5em;
+}
+/* line 206, ../sass/screen.scss */
+#printDetails h2 {
+  font-size: 1.2em;
+  margin-left: 10px;
+}
+/* line 210, ../sass/screen.scss */
+#printDetails p {
+  font-size: 1em;
+  margin-left: 20px;
+}
