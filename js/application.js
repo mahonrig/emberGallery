@@ -2,14 +2,15 @@
 ToDo:
 	-Implement photo gallery
 	-About me page
-
+	-RESTful API
 */
+
 /* Create the ember application registered to a global variable */
 window.Photoworks = Ember.Application.create();
 
 /* Using local storage fixture adapter for now, change to RESTful */
-Photoworks.PhotosAdapter = DS.FixtureAdapter.extend();
-Photoworks.OptionsAdapter = DS.FixtureAdapter.extend();
+Photoworks.ApplicationAdapter = DS.FixtureAdapter.extend();
+//Photoworks.OptionsAdapter = DS.FixtureAdapter.extend();
 Photoworks.CartItemSerializer = DS.LSSerializer.extend();
 Photoworks.CartItemAdapter = DS.LSAdapter.extend({
 	namespace: 'photoworks'

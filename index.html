@@ -30,6 +30,9 @@
 								<input type="hidden" name="upload" value="1">
 								<input type="hidden" name="business" value="mahonrig@gmail.com">
 								<div class='cartItems'>
+									{{#unless totalItems}}
+									<h1>Empty Cart</h1>
+									{{/unless}}
 									{{#each itemController='cartItem'}}
 										<span class='cartItemTitle'>{{title}}</span>
 										<span class='cartItemType'>{{type}}</span>
@@ -44,8 +47,10 @@
 								<hr />
 								<span>Total Items: {{totalItems}}</span>
 								<span>Total Price: ${{totalPrice}}</span><br />
+								{{#if totalItems}}
 								<button {{ action 'clearCart' }}>Clear the Cart</button>
 								<input class='paypalSubmit' type="submit" value="Pay with PayPal">
+								{{/if}}
 								<button class='right' {{ action 'hideCart' }}>Hide</button>
 							</form>
 						</div>
