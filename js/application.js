@@ -1,6 +1,7 @@
 /*
 ToDo:
-	
+	-Implement photo gallery
+	-About me page
 
 */
 /* Create the ember application registered to a global variable */
@@ -286,62 +287,218 @@ Photoworks.Options.FIXTURES = [
 	{
 		id: 1,
 		type: 'Print',
-		size: '8"x10"',
+		size: '8x12',
 		price: 50
 	},
 	{
 		id: 2,
 		type: 'Print',
-		size: '8x12',
-		price: 50
+		size: '12x18',
+		price: 75
 	},
 	{
 		id: 3,
+		type: 'Print',
+		size: '16x24',
+		price: 100
+	},
+	{
+		id: 4,
+		type: 'Print',
+		size: '20x30',
+		price: 125
+	},
+	{
+		id: 5,
+		type: 'Print',
+		size: '8"x10"',
+		price: 50
+	},
+	{
+		id: 6,
 		type: 'Print',
 		size: '11x14',
 		price: 75
 	},
 	{
-		id: 4,
-		type: 'Print',
-		size: '12x18',
-		price: 90
-	},
-	{
-		id: 5,
+		id: 7,
 		type: 'Print',
 		size: '16x20',
 		price: 100
 	},
 	{
-		id: 6,
+		id: 8,
+		type: 'Print',
+		size: '20x24',
+		price: 125
+	},
+	{
+		id: 9,
+		type: 'Matted',
+		size: '8x12 on 11x14',
+		price: 75
+	},
+	{
+		id: 10,
+		type: 'Matted',
+		size: '11x16 on 16x20',
+		price: 100
+	},
+	{
+		id: 11,
+		type: 'Matted',
+		size: '12x18 on 24x30',
+		price: 125
+	},
+	{
+		id: 12,
+		type: 'Matted',
+		size: '8x10 on 11x14',
+		price: 75
+	},
+	{
+		id: 13,
+		type: 'Matted',
+		size: '11x14 on 16x20',
+		price: 100
+	},
+	{
+		id: 14,
+		type: 'Matted',
+		size: '16x20 on 20x24',
+		price: 125
+	},
+	{
+		id: 15,
+		type: 'Framed',
+		size: '8x12 in 11x14',
+		price: 125
+	},
+	{
+		id: 16,
+		type: 'Framed',
+		size: '11x16 in 16x20',
+		price: 175
+	},
+	{
+		id: 17,
+		type: 'Framed',
+		size: '14x20 in 24x30',
+		price: 225
+	},
+	{
+		id: 18,
+		type: 'Metal',
+		size: '8x12',
+		price: 100
+	},
+	{
+		id: 19,
+		type: 'Metal',
+		size: '12x18',
+		price: 150
+	},
+	{
+		id: 20,
+		type: 'Metal',
+		size: '16x24',
+		price: 200
+	},
+	{
+		id: 21,
+		type: 'Metal',
+		size: '20x30',
+		price: 250
+	},
+	{
+		id: 22,
 		type: 'Print',
 		size: '10x10',
 		price: 50
 	},
 	{
-		id: 7,
+		id: 23,
+		type: 'Print',
+		size: '16x16',
+		price: 75
+	},
+	{
+		id: 24,
 		type: 'Print',
 		size: '20x20',
-		price: 50
+		price: 100
 	},
 	{
-		id: 8,
+		id: 25,
 		type: 'Matted',
-		size: '8x10 in 11x14',
-		price: 50
+		size: '10x10 on 12x12',
+		price: 75
 	},
 	{
-		id: 9,
-		type: 'Matted',
-		size: '11x14 in 16x20',
-		price: 50
+		id: 26,
+		type: 'Framed',
+		size: '10x10 in 12x12',
+		price: 125
 	},
 	{
-		id: 10,
-		type: 'Matted',
-		size: '16x20 in 20x24',
-		price: 50
+		id: 27,
+		type: 'Framed',
+		size: '16x16 in 20x20',
+		price: 200
+	},
+	{
+		id: 28,
+		type: 'Metal',
+		size: '10x10',
+		price: 100
+	},
+	{
+		id: 29,
+		type: 'Metal',
+		size: '16x16',
+		price: 150
+	},
+	{
+		id: 30,
+		type: 'Metal',
+		size: '24x24',
+		price: 250
+	},
+	{
+		id: 31,
+		type: 'Metal',
+		size: '12x36',
+		price: 250
+	},
+	{
+		id: 32,
+		type: 'Metal',
+		size: '20x60',
+		price: 500
+	},
+	{
+		id: 33,
+		type: 'Framed',
+		size: '12x36',
+		price: 200
+	},
+	{
+		id: 34,
+		type: 'Print',
+		size: '12x36',
+		price: 100
+	},
+	{
+		id: 35,
+		type: 'Print',
+		size: '16x48',
+		price: 150
+	},
+	{
+		id: 36,
+		type: 'Print',
+		size: '20x60',
+		price: 200
 	},
 ];
 
@@ -351,19 +508,19 @@ Photoworks.Photos.FIXTURES = [
  	id: 1,
  	title: 'Pacific Northwest Rainforest',
  	img: 'IMG_1124%20-%20IMG_1125.jpg',
- 	printSizes: [1, 3],
- 	mattSizes: [8,9,10],
- 	frameSizes: [2,3],
- 	metalSizes: [3] 
+ 	printSizes: [22, 23, 24],
+ 	mattSizes: [25],
+ 	frameSizes: [26, 27],
+ 	metalSizes: [28, 29, 30] 
  	},
  	{
  	id: 2,
  	title: 'Mt Shuksan',
  	img: 'IMG_0908%20-%20IMG_0910-Edit.jpg',
- 	printSizes: [1, 3],
- 	mattSizes: [1,2],
- 	frameSizes: [2,3],
- 	metalSizes: [3]
+ 	printSizes: [34, 35, 36],
+ 	mattSizes: [],
+ 	frameSizes: [33],
+ 	metalSizes: [31, 32]
  	},
  	{
  	id: 3,
