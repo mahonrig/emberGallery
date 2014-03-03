@@ -501,6 +501,67 @@ Photoworks.Options.FIXTURES = [
 		size: '20x60',
 		price: 200
 	},
+	{
+		id: 37,
+		type: 'Print',
+		size: '12x20',
+		price: 75
+	},
+	{
+		id: 38,
+		type: 'Matted',
+		size: '18x30 on 24x36',
+		price: 150
+	},
+	{
+		id: 39,
+		type: 'Framed',
+		size: '18x30 in 24x36',
+		price: 300
+	},
+	{
+		id: 40,
+		type: 'Metal',
+		size: '16x30',
+		price: 200
+	},
+	{
+		id: 41,
+		type: 'Metal',
+		size: '10x20',
+		price: 100
+	},
+	{
+		id: 42,
+		type: 'Metal',
+		size: '12x24',
+		price: 150
+	},
+	{
+		id: 43,
+		type: 'Print',
+		size: '12x24',
+		price: 75
+	},
+	{
+		id: 44,
+		type: 'Print',
+		size: '20x40',
+		price: 150
+	},
+	{
+		id: 45,
+		type: 'Matt',
+		size: '12x24 on 24x36',
+		price: 150
+	},
+	{
+		id: 46,
+		type: 'Framed',
+		size: '12x24',
+		price: 200
+	},
+	
 ];
 
 /* Current photos in gallery */ 
@@ -527,37 +588,235 @@ Photoworks.Photos.FIXTURES = [
  	id: 3,
  	title: 'Above the snowline',
  	img: 'IMG_1106%20-%20IMG_1111.jpg',
- 	printSizes: [1, 3],
- 	mattSizes: [1,2],
- 	frameSizes: [2,3],
- 	metalSizes: [3]
+ 	printSizes: [34, 35, 36],
+ 	mattSizes: [],
+ 	frameSizes: [33],
+ 	metalSizes: [31, 32]
  	},
  	{
  	id: 4,
  	title: 'Mt Index and Lake Serene',
  	img: 'IMG_1082%20-%20IMG_1093-Edit.jpg',
- 	printSizes: [1, 3],
- 	mattSizes: [1,2],
- 	frameSizes: [2,3],
- 	metalSizes: [3]
+ 	printSizes: [37],
+ 	mattSizes: [38],
+ 	frameSizes: [39],
+ 	metalSizes: [40]
  	},
  	{
  	id: 5,
  	title: 'Nooksack Falls',
  	img: 'IMG_0994%20-%20IMG_0997.jpg',
- 	printSizes: [1, 3],
- 	mattSizes: [1,2],
- 	frameSizes: [2,3],
- 	metalSizes: [3]
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
  	},
  	{
  	id: 6,
  	title: 'Snowfields at Mount Baker',
  	img: 'IMG_0926.jpg',
- 	printSizes: [1, 3],
- 	mattSizes: [1,2],
- 	frameSizes: [2,3],
- 	metalSizes: [3]
- 	}
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 7,
+ 	title: 'Barbed Stars',
+ 	img: 'IMG_7045.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 8,
+ 	title: 'Sunrise over the Hindu Kush',
+ 	img: 'IMG_8662.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 9,
+ 	title: 'Afghani Terraces',
+ 	img: 'IMG_8761.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 10,
+ 	title: 'Afghani Village',
+ 	img: 'IMG_8996.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 11,
+ 	title: 'Welsh Surfers',
+ 	img: 'IMG_1066.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 12,
+ 	title: 'Edinburgh Castle',
+ 	img: 'IMG_4062.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 13,
+ 	title: 'Sedona Sky',
+ 	img: 'IMG_4386-2.jpg',
+ 	printSizes: [43, 44],
+ 	mattSizes: [45],
+ 	frameSizes: [46],
+ 	metalSizes: [41, 42]
+ 	},
+ 	{
+ 	id: 14,
+ 	title: 'Crater Lake',
+ 	img: 'IMG_9941-IMG_9945.jpg',
+ 	printSizes: [34, 35, 36],
+ 	mattSizes: [],
+ 	frameSizes: [33],
+ 	metalSizes: [31, 32]
+ 	},
+ 	{
+ 	id: 15,
+ 	title: 'McKenzie River Falls',
+ 	img: 'IMG_0374.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 16,
+ 	title: 'After the Storm',
+ 	img: 'IMG_0612.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 17,
+ 	title: 'Mogollon Rim',
+ 	img: 'IMG_3451.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 18,
+ 	title: 'Firelit Trees and Stars',
+ 	img: 'IMG_3176.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 19,
+ 	title: 'Moonlit Mt. Hood',
+ 	img: 'IMG_3884.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 20,
+ 	title: 'Crashing Surf',
+ 	img: 'IMG_5634.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 21,
+ 	title: 'Big and Small',
+ 	img: 'IMG_7470.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 22,
+ 	title: 'Gaff-Rigged Sky',
+ 	img: 'IMG_7471.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 23,
+ 	title: 'Olympic Tugboat',
+ 	img: 'IMG_0135.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 24,
+ 	title: 'Mossy Path',
+ 	img: 'IMG_0208%20-%20IMG_0211.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 25,
+ 	title: 'Snowed in Bus',
+ 	img: 'IMG_0425-Edit.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 26,
+ 	title: 'Stream from Baker Hot Springs',
+ 	img: 'IMG_0584%20-%20IMG_0588.jpg',
+ 	printSizes: [43, 44],
+ 	mattSizes: [45],
+ 	frameSizes: [46],
+ 	metalSizes: [41, 42]
+ 	},
+ 	{
+ 	id: 27,
+ 	title: 'Edinburgh Castle and Fountain',
+ 	img: 'IMG_3990.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
+ 	{
+ 	id: 28,
+ 	title: 'Glowing Tent',
+ 	img: 'IMG_9895.jpg',
+ 	printSizes: [1, 2, 3, 4],
+ 	mattSizes: [9, 10, 11],
+ 	frameSizes: [15, 16, 17],
+ 	metalSizes: [18, 19, 20, 21]
+ 	},
  ];
  	
