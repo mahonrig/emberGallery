@@ -1,5 +1,7 @@
 /*
 ToDo:
+	-Filter order drop down by option type
+		- not firing on page load -> promise?
 	-Implement photo gallery
 	-About me page
 	-RESTful API
@@ -164,9 +166,7 @@ Photoworks.OrderController = Ember.ObjectController.extend({
 	],
 	
 	/* Store id of current print type selected */
-	currentType: {
-		id: 1
-	},
+	currentType: 1,
 	
 	/* Store id of current size selected */
 	currentSize: {
@@ -179,27 +179,24 @@ Photoworks.OrderController = Ember.ObjectController.extend({
 		return "http://mgibsonphotoworks.com/uploads/large/" + img ;
 	}.property('img'),
 	
-	/* The following are needed to keep logic out of the template, annoying */
-	printSelected: function(){
-		if (this.get('currentType.id') == 1) return true;
-		else return false;
-	}.property('currentType.id'),
-	
-	mattSelected: function(){
-		if (this.get('currentType.id') == 2) return true;
-		else return false;
-	}.property('currentType.id'),
-	
-	frameSelected: function(){
-		if (this.get('currentType.id') == 3) return true;
-		else return false;
-	}.property('currentType.id'),
-	
-	metalSelected: function(){
-		if (this.get('currentType.id') == 4) return true;
-		else return false;
-	}.property('currentType.id'),
-	/* End annoying replacements for a simple switch statement */
+	/* filter options depending on type selected */
+	currentOptions: function(){
+		var type = this.get('currentType');
+		switch (type){
+			case 1:
+				return this.get('options').filterProperty('type', 'Print');
+				break;
+			case 2: 
+				return this.get('options').filterProperty('type', 'Matted');
+				break;
+			case 3:
+				return this.get('options').filterProperty('type', 'Framed');
+				break;
+			case 4:
+				return this.get('options').filterProperty('type', 'Metal');
+				break;
+			}
+	}.property('options.@each.type', 'currentType'),
 	
 	/* Store current price for selected item */
 	price: 0,
@@ -239,10 +236,10 @@ Photoworks.OrderController = Ember.ObjectController.extend({
 Photoworks.Photos = DS.Model.extend({
 	title: DS.attr('string'),
 	img: DS.attr('string'),
-	printSizes: DS.hasMany('options', { async: true }),
-	mattSizes: DS.hasMany('options', { async: true }),
+	options: DS.hasMany('options', { async: true }),
+	/*mattSizes: DS.hasMany('options', { async: true }),
 	frameSizes: DS.hasMany('options', { async: true }),
-	metalSizes: DS.hasMany('options', { async: true })
+	metalSizes: DS.hasMany('options', { async: true })*/
 });
 
 /* Model for available print, matt, frame, and metal options */
@@ -264,24 +261,6 @@ Photoworks.CartItem = DS.Model.extend({
 	size: DS.attr('string'),
 	price: DS.attr('number')
 });
-
-/* Temp fixtures for testing */
-/*Photoworks.CartItem.FIXTURES = [
-	{
-	id: 1,
-	title: "Pacific Northwest Rainforest",
-	type: "Framed",
-	size: "8x10 in 11x14",
-	price: 50
-	},
-	{
-	id: 2,
-	title: "Mount Shuksan at Sunset",
-	type: "Matt",
-	size: "11x14 on 16x20",
-	price: 100
-	}
-];*/
 
 /* Available options */
 Photoworks.Options.FIXTURES = [
@@ -570,253 +549,169 @@ Photoworks.Photos.FIXTURES = [
  	id: 1,
  	title: 'Pacific Northwest Rainforest',
  	img: 'IMG_1124%20-%20IMG_1125.jpg',
- 	printSizes: [22, 23, 24],
- 	mattSizes: [25],
- 	frameSizes: [26, 27],
- 	metalSizes: [28, 29, 30] 
+ 	options: [22, 23, 24, 25, 26, 27, 28, 29, 30],
  	},
  	{
  	id: 2,
  	title: 'Mt Shuksan',
  	img: 'IMG_0908%20-%20IMG_0910-Edit.jpg',
- 	printSizes: [34, 35, 36],
- 	mattSizes: [],
- 	frameSizes: [33],
- 	metalSizes: [31, 32]
+ 	options: [34, 35, 36, 33, 31, 32],
  	},
  	{
  	id: 3,
  	title: 'Above the snowline',
  	img: 'IMG_1106%20-%20IMG_1111.jpg',
- 	printSizes: [34, 35, 36],
- 	mattSizes: [],
- 	frameSizes: [33],
- 	metalSizes: [31, 32]
+ 	options: [34, 35, 36, 33, 31, 32],
  	},
  	{
  	id: 4,
  	title: 'Mt Index and Lake Serene',
  	img: 'IMG_1082%20-%20IMG_1093-Edit.jpg',
- 	printSizes: [37],
- 	mattSizes: [38],
- 	frameSizes: [39],
- 	metalSizes: [40]
+ 	options: [37, 38, 39, 40],
  	},
  	{
  	id: 5,
  	title: 'Nooksack Falls',
  	img: 'IMG_0994%20-%20IMG_0997.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 6,
  	title: 'Snowfields at Mount Baker',
  	img: 'IMG_0926.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 7,
  	title: 'Barbed Stars',
  	img: 'IMG_7045.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 8,
  	title: 'Sunrise over the Hindu Kush',
  	img: 'IMG_8662.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 9,
  	title: 'Afghani Terraces',
  	img: 'IMG_8761.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 10,
  	title: 'Afghani Village',
  	img: 'IMG_8996.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 11,
  	title: 'Welsh Surfers',
  	img: 'IMG_1066.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 12,
  	title: 'Edinburgh Castle',
  	img: 'IMG_4062.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 13,
  	title: 'Sedona Sky',
  	img: 'IMG_4386-2.jpg',
- 	printSizes: [43, 44],
- 	mattSizes: [45],
- 	frameSizes: [46],
- 	metalSizes: [41, 42]
+ 	options: [43, 44, 45, 46, 41, 42],
  	},
  	{
  	id: 14,
  	title: 'Crater Lake',
  	img: 'IMG_9941-IMG_9945.jpg',
- 	printSizes: [34, 35, 36],
- 	mattSizes: [],
- 	frameSizes: [33],
- 	metalSizes: [31, 32]
+ 	options: [34, 35, 36, 33, 31, 32],
  	},
  	{
  	id: 15,
  	title: 'McKenzie River Falls',
  	img: 'IMG_0374.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 16,
  	title: 'After the Storm',
  	img: 'IMG_0612.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 17,
  	title: 'Mogollon Rim',
  	img: 'IMG_3451.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 18,
  	title: 'Firelit Trees and Stars',
  	img: 'IMG_3176.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 19,
  	title: 'Moonlit Mt. Hood',
  	img: 'IMG_3884.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 20,
  	title: 'Crashing Surf',
  	img: 'IMG_5634.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 21,
  	title: 'Big and Small',
  	img: 'IMG_7470.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 22,
  	title: 'Gaff-Rigged Sky',
  	img: 'IMG_7471.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 23,
  	title: 'Olympic Tugboat',
  	img: 'IMG_0135.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 24,
  	title: 'Mossy Path',
  	img: 'IMG_0208%20-%20IMG_0211.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 25,
  	title: 'Snowed in Bus',
  	img: 'IMG_0425-Edit.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 26,
  	title: 'Stream from Baker Hot Springs',
  	img: 'IMG_0584%20-%20IMG_0588.jpg',
- 	printSizes: [43, 44],
- 	mattSizes: [45],
- 	frameSizes: [46],
- 	metalSizes: [41, 42]
+ 	options: [43, 44, 45, 46, 41, 42],
  	},
  	{
  	id: 27,
  	title: 'Edinburgh Castle and Fountain',
  	img: 'IMG_3990.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 28,
  	title: 'Glowing Tent',
  	img: 'IMG_9895.jpg',
- 	printSizes: [1, 2, 3, 4],
- 	mattSizes: [9, 10, 11],
- 	frameSizes: [15, 16, 17],
- 	metalSizes: [18, 19, 20, 21]
+ 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  ];
  	

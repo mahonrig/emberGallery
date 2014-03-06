@@ -77,23 +77,9 @@
 					<br />
 					<h1 class='itemTitle'>{{title}}</h1>
 					{{view Ember.Select content=types optionValuePath='content.id'
-						 optionLabelPath='content.type' value=currentType.id}}
-					{{#if printSelected}}	
-					{{view Ember.Select classNames='item_size' content=printSizes optionValuePath='content.id'
+						 optionLabelPath='content.type' value=currentType}}	
+					{{view Ember.Select classNames='item_size' content=currentOptions optionValuePath='content.id'
 						 optionLabelPath='content.display' value=currentSize.id prompt="Select Size"}}
-					{{/if}}	
-					{{#if mattSelected}}	
-					{{view Ember.Select classNames='item_size' content=mattSizes optionValuePath='content.id'
-						 optionLabelPath='content.display' value=currentSize.id prompt="Select Size"}}
-					{{/if}}	
-					{{#if frameSelected}}	
-					{{view Ember.Select classNames='item_size' content=frameSizes optionValuePath='content.id'
-						 optionLabelPath='content.display' value=currentSize.id prompt="Select Size"}}
-					{{/if}}	
-					{{#if metalSelected}}	
-					{{view Ember.Select classNames='item_size' content=metalSizes optionValuePath='content.id'
-						 optionLabelPath='content.display' value=currentSize.id prompt="Select Size"}}
-					{{/if}}	
 					<button {{action 'addToCart' }}>Add to Cart</button><span class='added'>Added!</span><span class='errorSelect'>Please select a size!</span><br />
 					{{#link-to 'printDetails' }} More info on print options here! {{/link-to}}
 			</div>
