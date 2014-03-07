@@ -1,0 +1,33 @@
+Site ->
+	title: string
+	galleries: hasMany gallery
+	pages: hasMany page
+
+
+Gallery ->
+	title: string
+	description: string
+	photos: hasMany Photo
+	
+Photo ->
+	title: string
+	caption: string
+	file: string
+	orderTypes: hasMany orderType
+	orderOptions: hasMany orderOption
+	
+OrderType ->
+	type: string
+	
+OrderOption ->
+	type: string
+	size: string
+	price: number
+	
+CartItem ->
+	title: DS.attr('string'),
+	type: DS.attr('string'),
+	size: DS.attr('string'),
+	price: DS.attr('number')
+	
+	

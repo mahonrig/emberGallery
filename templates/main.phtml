@@ -1,0 +1,75 @@
+{% extends 'html.phtml' %}
+
+{% block Page %}
+
+	<div class='content'>
+	{% if messages %}
+	<h3 class='warnings'>{{ messages.warnings }}</h3>
+	<h3 class='errors'>{{ messages.errors }} </h3>
+	{% endif %}
+	{%block Content %}
+	
+		{% if location == 'gallery'  %}
+			<div class='galleryDisplay'>
+			<div id='slider' class='swipe'>
+  				<div class='swipe-wrap'>
+				{% for photo in photos %}
+				<div>
+				<img class="galleryPhoto" src="/{{photo.large_path}}" />
+				</div>
+				{% endfor %}
+				</div>
+			
+			</div>
+			<a id="prev" href="">Previous</a>
+			<a id="next" href="">Next</a>
+			</div>
+		{% elseif location == 'home' %}
+			<div>Home Page</div>
+		{% elseif location == 'page' %}
+			<div>{{ page_content|raw }}</div>
+		{% endif %}
+		
+		
+	
+	{% endblock %}
+	
+	</div>
+	
+	{% if admin == TRUE %}
+	
+	{% endif %}
+	
+	<script src='/js/jquery-1.10.2.js'></script>
+	<script src='/js/jquery.filedrop.js'></script>
+	
+	{% if location == 'gallery' %}
+	<script src='/js/swipe.js'></script>
+	<script>
+	
+	$(document).ready(function() {
+		mySwipe = Swipe(document.getElementById('slider'));
+		$("#prev").click(function(evt){
+			evt.preventDefault();
+			mySwipe.prev();
+		
+		});
+		$("#next").click(function(evt){
+			evt.preventDefault();
+			mySwipe.next();
+		});
+		$("body").keydown(function(e) {
+      		if(e.which == 37) { // left     
+          		mySwipe.prev();
+     		 }
+      		else if(e.which == 39) { // right     
+          		mySwipe.next();
+      		}
+    	});
+		
+	});
+	</script>
+	{% endif %}
+
+{% endblock %}
+	

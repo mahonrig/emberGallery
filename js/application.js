@@ -1,9 +1,10 @@
 /*
 ToDo:
-	-Filter order drop down by option type
-		- not firing on page load -> promise?
 	-Implement photo gallery
 	-About me page
+	- Filter print gallery by type?
+	-Update print details page with pictures
+	- ADMIN options - add photos, galleries, pages, etc...
 	-RESTful API
 */
 
@@ -18,32 +19,61 @@ Photoworks.CartItemAdapter = DS.LSAdapter.extend({
 	namespace: 'photoworks'
 });
 
+Photoworks.GalleryAdapter = DS.RESTAdapter.extend();
+
 /* Map our routes, resource used for noun, route used for verb */
 Photoworks.Router.map(function() {
+	this.resource('galleries', function(){
+		this.resource('gallery', { path: 'gallery/:gallery_id' });
+	});
   	this.resource('prints'); /* Thumbnails page */
   	this.resource('order', { path: '/order/:photo_id' }); /* Print large view and ordering */
   	this.resource('printDetails'); /* Product details */
 });
 
+Photoworks.Router.reopen({
+  location: 'history'
+});
+
 /* Route for large display of selected print and ordering options */  	
 Photoworks.OrderRoute = Ember.Route.extend({
   model: function(params) {
-    return this.store.find('photos', params.photo_id);
+    return this.store.find('photo', params.photo_id);
   }
+});
+
+Photoworks.GalleriesRoute = Ember.Route.extend({
+	model: function() {
+		return this.store.find('gallery');
+	}
+});
+
+Photoworks.GalleriesController = Ember.ArrayController.extend();
+
+Photoworks.GalleryRoute = Ember.Route.extend({
+	renderTemplate: function() {
+		this.render({outlet: 'gallery'});
+	},
+	model: function() {
+		return this.store.find('gallery', 1);
+	}
 });
 
 /* Route for the available prints thumbnail gallery */
 Photoworks.PrintsRoute = Ember.Route.extend({
 	model: function() {
-		return this.store.find('photos');
+		return this.store.find('photo');
 	}	
 });
 
 /* Currently only using this for the shopping cart, need to
 	convert to a view / more specific controller I think */
 Photoworks.ApplicationRoute = Ember.Route.extend({
-	model: function() {
+	/*model: function() {
 		return this.store.find('cartItem');
+	}*/
+	setupController: function(controller){
+		controller.set('cartItem', this.store.find('cartItem'));
 	}
 	
 });
@@ -53,21 +83,20 @@ Photoworks.ApplicationController = Ember.ArrayController.extend({
 
 	/* Return total number of items in cart */
 	totalItems: function(){
-		return this.get('length');
-	}.property('@each'),
+		return this.get('cartItem').get('length');
+	}.property('cartItem.@each'),
 	
 	/* Return total price in cart */
 	totalPrice: function(){
-		var cartItems = this.get('model');
+		var cartItems = this.get('cartItem');
 		return cartItems.reduce(function(prevValue, item){
-			console.log(item.get('price'));
 			return prevValue + item.get('price');
 			}, 0);
-	}.property('@each.cartItem.price'),
+	}.property('cartItem.@each.price'),
 	
 	/* Used for the paypal form, index the cart items */
 	assignIndex: function(){
-		this.map(function(item, index){
+		this.get('cartItem').map(function(item, index){
 			Ember.set(item, 'index', index+1);
 		});
 	}.observes('cartItem.[]', 'firstObject', 'lastObject'),
@@ -77,7 +106,7 @@ Photoworks.ApplicationController = Ember.ArrayController.extend({
 		
 		/* Clear all items from the cart */
 		clearCart: function(){
-			var cartItems = this.get('model');
+			var cartItems = this.get('cartItem');
 			cartItems.forEach(function(item){
 				item.deleteRecord();
 				item.save();
@@ -127,13 +156,16 @@ Photoworks.CartItemController = Ember.ObjectController.extend({
 Photoworks.ThumbController = Ember.ObjectController.extend({
 	/* Return thumbnail, probably don't want this hardcoded */
 	url: function(){
-		var img = this.get('img');
-		return "http://mgibsonphotoworks.com/uploads/thumbs/" + img ;
-	}.property('img')
+		var file = this.get('file');
+		return "http://mgibsonphotoworks.com/uploads/thumbs/" + file ;
+	}.property('file')
 });
 
 /* Controller for the large view ordering page */
 Photoworks.OrderController = Ember.ObjectController.extend({
+	init: function(){
+		$('title').text('Order a Print');
+	},
 	actions: {
 		addToCart: function() {
 			var title = this.get('title');
@@ -175,28 +207,28 @@ Photoworks.OrderController = Ember.ObjectController.extend({
 	
 	/* Return large image, need to not hardcode this */
 	url: function(){
-		var img = this.get('img');
-		return "http://mgibsonphotoworks.com/uploads/large/" + img ;
-	}.property('img'),
+		var file = this.get('file');
+		return "http://mgibsonphotoworks.com/uploads/large/" + file ;
+	}.property('file'),
 	
 	/* filter options depending on type selected */
 	currentOptions: function(){
 		var type = this.get('currentType');
 		switch (type){
 			case 1:
-				return this.get('options').filterProperty('type', 'Print');
+				return this.get('orderOptions').filterProperty('type', 'Print');
 				break;
 			case 2: 
-				return this.get('options').filterProperty('type', 'Matted');
+				return this.get('orderOptions').filterProperty('type', 'Matted');
 				break;
 			case 3:
-				return this.get('options').filterProperty('type', 'Framed');
+				return this.get('orderOptions').filterProperty('type', 'Framed');
 				break;
 			case 4:
-				return this.get('options').filterProperty('type', 'Metal');
+				return this.get('orderOptions').filterProperty('type', 'Metal');
 				break;
 			}
-	}.property('options.@each.type', 'currentType'),
+	}.property('orderOptions.@each.type', 'currentType'),
 	
 	/* Store current price for selected item */
 	price: 0,
@@ -216,7 +248,7 @@ Photoworks.OrderController = Ember.ObjectController.extend({
 		/* If id is set, an option is selected */
 		if (id){
 		/* Store returns a promise, use then() to wait for it to resolve */
-		this.store.find('options', id).then(function(option){
+		this.store.find('orderOptions', id).then(function(option){
 			console.log(option.get('price'));
 			console.log(option.get('type'));
 			console.log(option.get('size'));
@@ -232,18 +264,39 @@ Photoworks.OrderController = Ember.ObjectController.extend({
 	
 });
 
-/* Model for our photos */
-Photoworks.Photos = DS.Model.extend({
+Photoworks.Site = DS.Model.extend({
 	title: DS.attr('string'),
-	img: DS.attr('string'),
-	options: DS.hasMany('options', { async: true }),
-	/*mattSizes: DS.hasMany('options', { async: true }),
-	frameSizes: DS.hasMany('options', { async: true }),
-	metalSizes: DS.hasMany('options', { async: true })*/
+	galleries: DS.hasMany('gallery', { async: true }),
+	pages: DS.hasMany('page', { async: true })
+});
+
+Photoworks.Gallery = DS.Model.extend({
+	title: DS.attr('string'),
+	description: DS.attr('string'),
+	photos: DS.hasMany('photo', { async: true })
+});
+
+Photoworks.Page = DS.Model.extend({
+	title: DS.attr('string'),
+	description: DS.attr('string'),
+	content: DS.attr('string')
+});
+
+/* Model for our photos */
+Photoworks.Photo = DS.Model.extend({
+	title: DS.attr('string'),
+	caption: DS.attr('string'),
+	file: DS.attr('string'),
+	orderTypes: DS.hasMany('orderTypes', { async: true }),
+	orderOptions: DS.hasMany('orderOptions', { async: true }),
+});
+
+Photoworks.OrderTypes = DS.Model.extend({
+	type: DS.attr('string')
 });
 
 /* Model for available print, matt, frame, and metal options */
-Photoworks.Options = DS.Model.extend({
+Photoworks.OrderOptions = DS.Model.extend({
 	type: DS.attr('string'),
 	size: DS.attr('string'),
 	price: DS.attr('number'),
@@ -263,7 +316,7 @@ Photoworks.CartItem = DS.Model.extend({
 });
 
 /* Available options */
-Photoworks.Options.FIXTURES = [
+Photoworks.OrderOptions.FIXTURES = [
 	{
 		id: 1,
 		type: 'Print',
@@ -544,174 +597,174 @@ Photoworks.Options.FIXTURES = [
 ];
 
 /* Current photos in gallery */ 
-Photoworks.Photos.FIXTURES = [
+Photoworks.Photo.FIXTURES = [
  	{
  	id: 1,
  	title: 'Pacific Northwest Rainforest',
- 	img: 'IMG_1124%20-%20IMG_1125.jpg',
- 	options: [22, 23, 24, 25, 26, 27, 28, 29, 30],
+ 	file: 'IMG_1124%20-%20IMG_1125.jpg',
+ 	orderOptions: [22, 23, 24, 25, 26, 27, 28, 29, 30],
  	},
  	{
  	id: 2,
  	title: 'Mt Shuksan',
- 	img: 'IMG_0908%20-%20IMG_0910-Edit.jpg',
- 	options: [34, 35, 36, 33, 31, 32],
+ 	file: 'IMG_0908%20-%20IMG_0910-Edit.jpg',
+ 	orderOptions: [34, 35, 36, 33, 31, 32],
  	},
  	{
  	id: 3,
  	title: 'Above the snowline',
- 	img: 'IMG_1106%20-%20IMG_1111.jpg',
- 	options: [34, 35, 36, 33, 31, 32],
+ 	file: 'IMG_1106%20-%20IMG_1111.jpg',
+ 	orderOptions: [34, 35, 36, 33, 31, 32],
  	},
  	{
  	id: 4,
  	title: 'Mt Index and Lake Serene',
- 	img: 'IMG_1082%20-%20IMG_1093-Edit.jpg',
- 	options: [37, 38, 39, 40],
+ 	file: 'IMG_1082%20-%20IMG_1093-Edit.jpg',
+ 	orderOptions: [37, 38, 39, 40],
  	},
  	{
  	id: 5,
  	title: 'Nooksack Falls',
- 	img: 'IMG_0994%20-%20IMG_0997.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_0994%20-%20IMG_0997.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 6,
  	title: 'Snowfields at Mount Baker',
- 	img: 'IMG_0926.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_0926.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 7,
  	title: 'Barbed Stars',
- 	img: 'IMG_7045.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_7045.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 8,
  	title: 'Sunrise over the Hindu Kush',
- 	img: 'IMG_8662.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_8662.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 9,
  	title: 'Afghani Terraces',
- 	img: 'IMG_8761.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_8761.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 10,
  	title: 'Afghani Village',
- 	img: 'IMG_8996.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_8996.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 11,
  	title: 'Welsh Surfers',
- 	img: 'IMG_1066.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_1066.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 12,
  	title: 'Edinburgh Castle',
- 	img: 'IMG_4062.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_4062.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 13,
  	title: 'Sedona Sky',
- 	img: 'IMG_4386-2.jpg',
- 	options: [43, 44, 45, 46, 41, 42],
+ 	file: 'IMG_4386-2.jpg',
+ 	orderOptions: [43, 44, 45, 46, 41, 42],
  	},
  	{
  	id: 14,
  	title: 'Crater Lake',
- 	img: 'IMG_9941-IMG_9945.jpg',
- 	options: [34, 35, 36, 33, 31, 32],
+ 	file: 'IMG_9941-IMG_9945.jpg',
+ 	orderOptions: [34, 35, 36, 33, 31, 32],
  	},
  	{
  	id: 15,
  	title: 'McKenzie River Falls',
- 	img: 'IMG_0374.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_0374.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 16,
  	title: 'After the Storm',
- 	img: 'IMG_0612.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_0612.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 17,
  	title: 'Mogollon Rim',
- 	img: 'IMG_3451.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_3451.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 18,
  	title: 'Firelit Trees and Stars',
- 	img: 'IMG_3176.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_3176.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 19,
  	title: 'Moonlit Mt. Hood',
- 	img: 'IMG_3884.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_3884.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 20,
  	title: 'Crashing Surf',
- 	img: 'IMG_5634.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_5634.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 21,
  	title: 'Big and Small',
- 	img: 'IMG_7470.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_7470.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 22,
  	title: 'Gaff-Rigged Sky',
- 	img: 'IMG_7471.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_7471.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 23,
  	title: 'Olympic Tugboat',
- 	img: 'IMG_0135.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_0135.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 24,
  	title: 'Mossy Path',
- 	img: 'IMG_0208%20-%20IMG_0211.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_0208%20-%20IMG_0211.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 25,
  	title: 'Snowed in Bus',
- 	img: 'IMG_0425-Edit.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_0425-Edit.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 26,
  	title: 'Stream from Baker Hot Springs',
- 	img: 'IMG_0584%20-%20IMG_0588.jpg',
- 	options: [43, 44, 45, 46, 41, 42],
+ 	file: 'IMG_0584%20-%20IMG_0588.jpg',
+ 	orderOptions: [43, 44, 45, 46, 41, 42],
  	},
  	{
  	id: 27,
  	title: 'Edinburgh Castle and Fountain',
- 	img: 'IMG_3990.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_3990.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  	{
  	id: 28,
  	title: 'Glowing Tent',
- 	img: 'IMG_9895.jpg',
- 	options: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
+ 	file: 'IMG_9895.jpg',
+ 	orderOptions: [1, 2, 3, 4, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21],
  	},
  ];
  	
