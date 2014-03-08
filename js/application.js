@@ -8,6 +8,15 @@ ToDo:
 	-RESTful API
 */
 
+/* Need to get these url's from database */
+function largeImg(file){
+    return "http://mgibsonphotoworks.com/uploads/large/" + file;
+}
+
+function thumbImg(file){
+    return "http://mgibsonphotoworks.com/uploads/thumbs/" + file;
+}
+
 /* Create the ember application registered to a global variable */
 window.Photoworks = Ember.Application.create();
 
@@ -170,10 +179,10 @@ Photoworks.CartItemController = Ember.ObjectController.extend({
 
 /* Controller for individual thumbnails on the prints page */
 Photoworks.ThumbController = Ember.ObjectController.extend({
-	/* Return thumbnail, probably don't want this hardcoded */
+	/* Return thumbnail */
 	url: function(){
 		var file = this.get('file');
-		return "http://mgibsonphotoworks.com/uploads/thumbs/" + file ;
+        return thumbImg(file);
 	}.property('file')
 });
 
@@ -220,11 +229,11 @@ Photoworks.OrderController = Ember.ObjectController.extend({
 	currentSize: {
 		id: 1
 	},
-	
-	/* Return large image, need to not hardcode this */
+    
+	/* Return large image */
 	url: function(){
 		var file = this.get('file');
-		return "http://mgibsonphotoworks.com/uploads/large/" + file ;
+		return largeImg(file);
 	}.property('file'),
 	
 	/* filter options depending on type selected */
