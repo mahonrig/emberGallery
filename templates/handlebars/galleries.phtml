@@ -1,0 +1,11 @@
+{% verbatim %}
+<script type="text/x-handlebars" data-template-name="galleries">
+    <section id='galleries'>
+        <p>Gallery Main</p>
+        {{#each}}
+            {{#link-to 'gallery' id}}{{title}}{{/link-to}}
+		{{/each}}
+		{{outlet gallery}}
+    </section>
+</script>
+{% endverbatim %}
