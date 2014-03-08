@@ -45,10 +45,16 @@ Photoworks.OrderRoute = Ember.Route.extend({
 Photoworks.GalleriesRoute = Ember.Route.extend({
 	model: function() {
 		return this.store.find('gallery');
+	},
+	setupController: function(controller, model){
+		controller.set('model', model);
+		$('title').text('View all Galleries');
 	}
 });
 
 Photoworks.GalleriesController = Ember.ArrayController.extend();
+
+
 
 Photoworks.GalleryRoute = Ember.Route.extend({
 	renderTemplate: function() {
@@ -56,13 +62,23 @@ Photoworks.GalleryRoute = Ember.Route.extend({
 	},
 	model: function() {
 		return this.store.find('gallery', 1);
+	},
+	setupController: function(controller, model){
+		controller.set('model', model);
+		$('title').text('View Gallery');
 	}
 });
+
+Photoworks.GalleryController = Ember.ObjectController.extend();
 
 /* Route for the available prints thumbnail gallery */
 Photoworks.PrintsRoute = Ember.Route.extend({
 	model: function() {
 		return this.store.find('photo');
+	},
+	setupController: function(controller, model){
+		controller.set('model', model);
+		$('title').text('Available Prints');
 	}	
 });
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>625A3570-E25E-4A3E-AF5B-6DD44C1E3FA7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>website</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7774BBF6-5E6F-47C9-A4A5-A09683458A79</key>
+		<string>https://github.com/mahonrig/glry.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>website.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7774BBF6-5E6F-47C9-A4A5-A09683458A79</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mahonrig/glry.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7774BBF6-5E6F-47C9-A4A5-A09683458A79</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7774BBF6-5E6F-47C9-A4A5-A09683458A79</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Documents</string>
+		</dict>
+	</array>
+</dict>
+</plist>
