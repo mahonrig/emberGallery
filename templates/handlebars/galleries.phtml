@@ -1,10 +1,19 @@
 {% verbatim %}
 <script type="text/x-handlebars" data-template-name="galleries">
     <section id='galleries'>
-        <p>Gallery Main</p>
+    <a href='#' {{ action 'showGalleries'}}>All Galleries</a>
+    <div class='galleriesMain'>
         {{#each}}
-            {{#link-to 'gallery' id}}{{title}}{{/link-to}}
+            <div class="galleryPreview">
+                {{#link-to 'gallery' action='slideUp' actionParam=id}}{{title}}{{/link-to}}
+                <div class='galleryPreviewThumbs'>
+                    {{#each photo in photos}}
+                        <img {{bind-attr src='photo.thumbFile'}} />
+                    {{/each}}
+                </div>
+            </div>
 		{{/each}}
+    </div>
 		{{outlet gallery}}
     </section>
 </script>
