@@ -51,10 +51,8 @@
 	$app->get('/galleries', function() use ($app) {
 		if ($app->request->isAjax()){
             $galleries = 'json/galleries.json';
-            $photos = 'json/photos.json';
             $json = [];
             $json[gallery] = json_decode(file_get_contents($galleries), TRUE);
-            $json[photo] = json_decode(file_get_contents($photos), TRUE);
             
 			$app->response->headers->set('Content-Type', 'application/json');
 			$app->response->body(json_encode($json));
@@ -69,13 +67,9 @@
     
     $app->get('/galleries/gallery/:id', function($id) use ($app) {
         if ($app->request->isAjax()){
-            $strid = (string)$id;
             $galleries = 'json/galleries.json';
-            $photos = 'json/photos.json';
             $json = [];
             $json_gallery = json_decode(file_get_contents($galleries), TRUE);
-            $json[photo] = json_decode(file_get_contents($photos), TRUE);
-            
             $json[gallery] = $json_gallery[$id-1];
             
             $app->response->headers->set('Content-Type', 'application/json');
@@ -87,6 +81,42 @@
 			);
 			$app->render('app.phtml', $data);
 		}
+    });
+    
+    $app->get('/photos', function() use ($app) {
+        if ($app->request->isAjax()){
+            $photos = 'json/photos.json';
+            $json = [];
+            $json[photo] = json_decode(file_get_contents($photos), TRUE);
+            
+            $app->response->headers->set('Content-Type', 'application/json');
+			$app->response->body(json_encode($json));
+            } else {
+			$data = array(
+				'pageTitle' => 'View all Galleries',
+				'siteName' => 'Mahonri Gibson Photographic Works',
+			);
+			$app->render('app.phtml', $data);
+		}
+        
+    });
+    
+    $app->get('/photos/:id', function($id) use ($app) {
+        if ($app->request->isAjax()){
+            $photos = 'json/photos.json';
+            $json = [];
+            $json_photos = json_decode(file_get_contents($photos), TRUE);
+            $json[photo] = $json_photos[$id-1];
+            $app->response->headers->set('Content-Type', 'application/json');
+			$app->response->body(json_encode($json));
+            } else {
+			$data = array(
+				'pageTitle' => 'View all Galleries',
+				'siteName' => 'Mahonri Gibson Photographic Works',
+			);
+			$app->render('app.phtml', $data);
+		}
+        
     });
 	
 	$app->run();
