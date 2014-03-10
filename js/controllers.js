@@ -77,7 +77,16 @@ Photoworks.CartItemController = Ember.ObjectController.extend({
 	}.property('title', 'type', 'size')
 });
 
-/*Photoworks.GalleriesController = Ember.ArrayController.extend();*/
+Photoworks.GalleriesController = Ember.ArrayController.extend({
+    
+    actions: {
+        /* Hide the galleries preview and transition to individual gallery */
+        slideUp: function(id){
+            $('.galleriesMain').slideUp();
+            this.transitionToRoute('gallery', id);
+        },
+    },
+});
 
 /*Photoworks.GalleryController = Ember.ObjectController.extend();*/
 

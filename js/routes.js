@@ -65,6 +65,13 @@ Photoworks.ApplicationRoute = Ember.Route.extend({
     /* sending cartItems to the application controller */
 	setupController: function(controller){
 		controller.set('cartItem', this.store.find('cartItem'));
-	}
+	},
+    
+    actions: {
+        showGalleries: function(){
+            $('.galleriesMain').slideDown();
+            this.transitionTo('galleries');
+        },
+    }
 	
 });
