@@ -9,7 +9,7 @@
                 optionLabelPath='content.type' value=currentType}}
             {{view Ember.Select classNames='item_size' content=currentOptions optionValuePath='content.id'
                 optionLabelPath='content.display' value=currentSize prompt="Select Size"}}
-            <button {{action 'addToCart' }}>Add to Cart</button>
+            <button {{action 'addToCart'}}>Add to Cart</button>
             <span class='added'>Added!</span>
             <span class='errorSelect'>Please select a size!</span><br />
             {{#link-to 'printDetails' }} More info on print options here! {{/link-to}}
