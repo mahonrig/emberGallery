@@ -80,30 +80,31 @@ Photoworks.CartItemController = Ember.ObjectController.extend({
 Photoworks.GalleriesController = Ember.ArrayController.extend({
     
     actions: {
-        /* Hide the galleries preview and transition to individual gallery */
+        /* Hide the galleries preview */
         slideUp: function(id){
             $('.galleriesMain').slideUp();
-            this.transitionToRoute('gallery', id);
-        },
-    },
+        }
+    }
 });
 
-/*Photoworks.GalleryController = Ember.ObjectController.extend();*/
+Photoworks.PhotoController = Ember.ObjectController.extend({
+    actions: {
+        showPhotos: function(){
+            $('.allPhotos').fadeIn();
+        }
+    }
+});
 
-/* Controller for individual thumbnails on the prints page */
-Photoworks.ThumbController = Ember.ObjectController.extend({
-	/* Return thumbnail */
-	url: function(){
-		var file = this.get('file');
-        return thumbImg(file);
-	}.property('file')
+Photoworks.GalleryController = Ember.ObjectController.extend({
+    actions: {
+        hidePhotos: function(){
+            $('.allPhotos').fadeOut();
+        }
+    }
 });
 
 /* Controller for the large view ordering page */
 Photoworks.OrderController = Ember.ObjectController.extend({
-	init: function(){
-		$('title').text('Order a Print');
-	},
 	actions: {
 		addToCart: function() {
 			var title = this.get('title');
@@ -140,12 +141,6 @@ Photoworks.OrderController = Ember.ObjectController.extend({
 	
 	/* Store id of current size selected */
 	currentSize: 1,
-    
-	/* Return large image */
-	url: function(){
-		var file = this.get('file');
-		return largeImg(file);
-	}.property('file'),
 	
 	/* filter options depending on type selected */
 	currentOptions: function(){
