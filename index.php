@@ -65,7 +65,7 @@
 		}
 	});
     
-    $app->get('/galleries/gallery/:id', function($id) use ($app) {
+    $app->get('/galleries/:id', function($id) use ($app) {
         if ($app->request->isAjax()){
             $galleries = 'json/galleries.json';
             $json = [];
@@ -81,6 +81,14 @@
 			);
 			$app->render('app.phtml', $data);
 		}
+    });
+    
+    $app->get('/galleries/:gallery_id/photo/:photo_id', function($gallery_id, $photo_id) use ($app) {
+			$data = array(
+				'pageTitle' => 'View all Galleries',
+				'siteName' => 'Mahonri Gibson Photographic Works'
+			);
+			$app->render('app.phtml', $data);
     });
     
     $app->get('/photos', function() use ($app) {
