@@ -1,12 +1,16 @@
 /* Map our routes, resource used for noun, route used for verb */
 Photoworks.Router.map(function() {
 	this.resource('galleries', function(){
-		this.resource('gallery', { path: 'gallery/:id' });
-	});
+        this.resource('gallery', { path: '/:gallery_id' }, function(){
+            this.resource('photo', { path: '/photo/:photo_id' });
+        });
+    });
+   
   	this.resource('prints'); /* Thumbnails page */
   	this.resource('order', { path: '/order/:photo_id' }); /* Print large view and ordering */
   	this.resource('printDetails'); /* Product details */
 });
+
 
 /* Remove the # from url, app has to be served from all endpoints */
 Photoworks.Router.reopen({
@@ -17,7 +21,11 @@ Photoworks.Router.reopen({
 Photoworks.OrderRoute = Ember.Route.extend({
   model: function(params) {
     return this.store.find('photo', params.photo_id);
-  }
+  },
+	setupController: function(controller, model){
+		controller.set('model', model);
+		$('title').text('Order a Print - ' + model.get('title'));
+	}
 });
 
 /* Preview of all the galleries */
@@ -27,22 +35,29 @@ Photoworks.GalleriesRoute = Ember.Route.extend({
 	},
 	setupController: function(controller, model){
 		controller.set('model', model);
-		$('title').text('View all Galleries');
+		$('title').text('All Galleries');
 	}
 });
 
 /* Individual gallery route */
 Photoworks.GalleryRoute = Ember.Route.extend({
-	renderTemplate: function() {
-		this.render({outlet: 'gallery'});
-	},
 	model: function(params) {
-		return this.store.find('gallery', params.id);
+		return this.store.find('gallery', params.gallery_id);
 	},
-	setupController: function(controller, model){
+    setupController: function(controller, model){
 		controller.set('model', model);
-		$('title').text('View Gallery');
+		$('title').text('Viewing Gallery - ' + model.get('title'));
 	}
+});
+
+Photoworks.PhotoRoute = Ember.Route.extend({
+    model: function(params) {
+        return this.store.find('photo', params.photo_id);
+    },
+    setupController: function(controller, model){
+        controller.set('model', model);
+       $('title').text(model.get('title'));
+    }
 });
 
 /* Route for the available prints thumbnail gallery */
@@ -70,6 +85,7 @@ Photoworks.ApplicationRoute = Ember.Route.extend({
     actions: {
         showGalleries: function(){
             $('.galleriesMain').slideDown();
+            $('title').text('All Galleries');
             this.transitionTo('galleries');
         },
     }
