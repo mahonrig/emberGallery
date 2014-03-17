@@ -1,20 +1,44 @@
 {% verbatim %}
 <script type="text/x-handlebars" data-template-name="galleries">
     <section id='galleries'>
-    <a href='#' {{ action 'showGalleries'}}>All Galleries</a>
+    <a href='#' {{ action 'showGalleries'}}><h1 class='itemTitle'>All Galleries</h1></a>
     <div class='galleriesMain'>
         {{#each}}
             <div class="galleryPreview">
-                {{#link-to 'gallery' action='slideUp' actionParam=id}}{{title}}{{/link-to}}
-                <div class='galleryPreviewThumbs'>
+           {{#link-to 'gallery' id}} <h1 class='itemTitle' {{action 'slideUp'}}>{{title}}</h1>{{/link-to}}
+                {{#with id as gallery}}
                     {{#each photo in photos}}
-                        <img {{bind-attr src='photo.thumbFile'}} />
+                    <div class='galleryThumb'>
+                      {{#link-to 'photo' gallery photo}}  <img {{bind-attr src='photo.thumbFile'}} {{action 'slideUp'}}/>{{/link-to}}
+                    </div>
                     {{/each}}
-                </div>
-            </div>
+                {{/with}}
+            </div><br />
 		{{/each}}
+        
     </div>
-		{{outlet gallery}}
+    {{outlet}}
     </section>
+</script>
+
+<script type="text/x-handlebars" data-template-name="gallery">
+    <div class="galleryView">
+        {{outlet}}
+        <div class='allPhotos'>
+        {{#link-to 'gallery' id}} <h1 class='itemTitle'>{{title}}</h1>{{/link-to}}
+            {{#each photo in photos}}
+                <div class='productLarge'>
+                   {{#link-to 'photo' photo.id}} <img {{bind-attr src='photo.largeFile'}} {{action 'hidePhotos'}}/>{{/link-to}}
+                </div>
+            {{/each}}
+        </div>
+    </div><br />
+</script>
+
+<script type="text/x-handlebars" data-template-name="photo">
+    <div class='productLarge'>
+       {{#link-to 'gallery' }}<img {{bind-attr src='largeFile'}} {{action 'showPhotos'}}/>{{/link-to}}
+        <h2 class='itemTitle'>{{ title }}</h2>
+    </div>
 </script>
 {% endverbatim %}

@@ -2,7 +2,7 @@
 <script type="text/x-handlebars" data-template-name="order">
     <section id='order'>
         <div class='productLarge'>
-            <img {{bind-attr src=url}} />
+            <img {{bind-attr src=largeFile}} />
             <br />
             <h1 class='itemTitle'>{{title}}</h1>
             {{view Ember.Select content=types optionValuePath='content.id'

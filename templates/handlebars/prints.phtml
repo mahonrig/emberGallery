@@ -2,10 +2,10 @@
 <script type="text/x-handlebars" data-template-name="prints">
     <section id='printsGallery'>
         <div class='products'>
-            {{#each itemController='thumb'}}
+            {{#each}}
                 <div class='productThumb'>
                     {{#link-to 'order' id}}
-                        <img {{bind-attr src=url }} />
+                        <img {{bind-attr src=thumbFile }} />
                     {{/link-to}}
                 </div>
             {{/each}}
