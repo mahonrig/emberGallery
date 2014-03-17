@@ -11,6 +11,8 @@ img {
 
 body {
 	background-color: #1a1a1a;
+    max-width: 1280px;
+    margin: 0 auto;
 }
 
 #title {
@@ -116,6 +118,28 @@ nav {
 	}
 }
 
+.galleryThumb {
+    margin: 10px;
+    height: 150px;
+    float: left;
+    img {
+        margin: 5px;
+        border: 1px solid black;
+        box-shadow: 3px 3px 4px rgba(0,0,0,.8);
+    }
+}
+
+.galleryPreview {
+    margin: 10px;
+    width: 100%;
+    height: 200px;
+    padding: 20px;
+    overflow: auto;
+    border: 1px solid black;
+    background-color: #1f1f1f;
+    max-width: 90%;
+}
+
 .productLarge {
 	clear: both;
 	margin: 0 auto;
@@ -212,5 +236,14 @@ nav {
 		margin-left: 20px;
 	}
 	
+}
+
+.cc {
+    width: 250px;
+    margin: 0 auto;
+    margin-top: 100px;
+    text-align: center;
+    color: #dedede;
+    clear: both;
 }
 
