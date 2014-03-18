@@ -8,17 +8,10 @@ ToDo:
 	-RESTful API - or just use fixtures
 */
 
-/* Need to get these url's from database */
-function largeImg(file){
-    return "http://mgibsonphotoworks.com/uploads/large/" + file;
-}
-
-function thumbImg(file){
-    return "http://mgibsonphotoworks.com/uploads/thumbs/" + file;
-}
-
 /* Create the ember application registered to a global variable */
-window.Photoworks = Ember.Application.create();
+window.Photoworks = Ember.Application.create({
+    LOG_TRANSITIONS: true
+});
 
 /* Using fixture adapter for now, change to RESTful */
 Photoworks.ApplicationAdapter = DS.FixtureAdapter.extend();
