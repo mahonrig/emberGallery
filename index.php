@@ -6,6 +6,7 @@
 	require_once 'vendor/autoload.php';
 	//require_once 'scripts/db_functions.php';
 	define('DEBUG', false);
+    define('ADMIN', 1);
 	
 	// create our own view class to use twig templates
 	class TwigView extends \Slim\View {
@@ -17,6 +18,15 @@
 			
 		}
 	}
+    
+    function renderApp($app, $pagetitle){
+        $data = array(
+			'pageTitle' => $pagetitle,
+			'siteName' => 'Mahonri Gibson Photographic Works',
+                'admin' => ADMIN
+		);
+		$app->render('app.phtml', $data);
+    }
 	
 	// create the new slim app, set view to our twig class
 	$app = new \Slim\Slim(array(
@@ -25,27 +35,15 @@
 	
 	// load the homepage
 	$app->get('/', function() use ($app) {
-		$data = array(
-			'pageTitle' => 'Welcome to M. Gibson Photographic Works',
-			'siteName' => 'Mahonri Gibson Photographic Works'
-		);
-		$app->render('app.phtml', $data);
+		renderApp($app, 'Welcome to Mahonri Gibson Photographic Works');
 	});
 	
 	$app->get('/prints', function() use ($app) {
-		$data = array(
-			'pageTitle' => 'Available Prints',
-			'siteName' => 'Mahonri Gibson Photographic Works'
-		);
-		$app->render('app.phtml', $data);
+		renderApp($app, 'Available Prints');
 	});
 	
 	$app->get('/order/:id', function($id) use ($app) {
-		$data = array(
-			'pageTitle' => 'Order a Print',
-			'siteName' => 'Mahonri Gibson Photographic Works'
-		);
-		$app->render('app.phtml', $data);
+		renderApp($app, 'Order a Print');
 	});
 	
 	$app->get('/galleries', function() use ($app) {
@@ -57,11 +55,7 @@
 			$app->response->headers->set('Content-Type', 'application/json');
 			$app->response->body(json_encode($json));
 		} else {
-			$data = array(
-				'pageTitle' => 'View all Galleries',
-				'siteName' => 'Mahonri Gibson Photographic Works'
-			);
-			$app->render('app.phtml', $data);
+			renderApp($app, 'View All Galleries');
 		}
 	});
     
@@ -75,20 +69,12 @@
             $app->response->headers->set('Content-Type', 'application/json');
 			$app->response->body(json_encode($json));
 		} else {
-			$data = array(
-				'pageTitle' => 'View all Galleries',
-				'siteName' => 'Mahonri Gibson Photographic Works'
-			);
-			$app->render('app.phtml', $data);
+			renderApp($app, 'View Gallery');
 		}
     });
     
     $app->get('/galleries/:gallery_id/photo/:photo_id', function($gallery_id, $photo_id) use ($app) {
-			$data = array(
-				'pageTitle' => 'View all Galleries',
-				'siteName' => 'Mahonri Gibson Photographic Works'
-			);
-			$app->render('app.phtml', $data);
+			renderApp($app, 'View Photo');
     });
     
     $app->get('/photos', function() use ($app) {
@@ -100,11 +86,7 @@
             $app->response->headers->set('Content-Type', 'application/json');
 			$app->response->body(json_encode($json));
             } else {
-			$data = array(
-				'pageTitle' => 'View all Galleries',
-				'siteName' => 'Mahonri Gibson Photographic Works',
-			);
-			$app->render('app.phtml', $data);
+			$app->redirect('/');
 		}
         
     });
@@ -118,11 +100,7 @@
             $app->response->headers->set('Content-Type', 'application/json');
 			$app->response->body(json_encode($json));
             } else {
-			$data = array(
-				'pageTitle' => 'View all Galleries',
-				'siteName' => 'Mahonri Gibson Photographic Works',
-			);
-			$app->render('app.phtml', $data);
+			$app->redirect('/');
 		}
         
     });
