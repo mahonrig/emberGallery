@@ -1,7 +1,7 @@
 {% verbatim %}
 <script type="text/x-handlebars" data-template-name="galleries">
     <section id='galleries'>
-    <a href='#' {{ action 'showGalleries'}}><h1 class='itemTitle'>All Galleries</h1></a>
+    {{#link-to 'galleries'}}<h1 class='itemTitle'>All Galleries</h1>{{/link-to}}
     <div class='galleriesMain'>
         {{#each}}
             <div class="galleryPreview">
@@ -23,9 +23,9 @@
 
 <script type="text/x-handlebars" data-template-name="gallery">
     <div class="galleryView">
+    {{#link-to 'gallery' id}} <h1 class='itemTitle'>{{title}}</h1>{{/link-to}}
         {{outlet}}
         <div class='allPhotos'>
-        {{#link-to 'gallery' id}} <h1 class='itemTitle'>{{title}}</h1>{{/link-to}}
             {{#each photo in photos}}
                 <div class='productLarge'>
                    {{#link-to 'photo' photo.id}} <img {{bind-attr src='photo.largeFile'}} {{action 'hidePhotos'}}/>{{/link-to}}
@@ -37,7 +37,7 @@
 
 <script type="text/x-handlebars" data-template-name="photo">
     <div class='productLarge'>
-       {{#link-to 'gallery' }}<img {{bind-attr src='largeFile'}} {{action 'showPhotos'}}/>{{/link-to}}
+       {{#link-to 'gallery' }}<img {{bind-attr src='largeFile'}}/>{{/link-to}}
         <h2 class='itemTitle'>{{ title }}</h2>
     </div>
 </script>

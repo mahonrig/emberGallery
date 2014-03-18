@@ -10,6 +10,13 @@
         {% include "handlebars/prints.phtml" %}
         {% include "handlebars/order.phtml" %}
         {% include "handlebars/printDetails.phtml" %}
+        {% if admin %}
+        {% include "handlebars/mainAdmin.phtml" %}
+        {% endif %}
+
+    <script>
+        window.admin = {{admin}};
+    </script>
 	<script src="/js/libs/jquery-1.10.2.min.js"></script>
   	<script src="/js/libs/handlebars-1.0.0.js"></script>
   	<script src="/js/libs/ember.js"></script>
