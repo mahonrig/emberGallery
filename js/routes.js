@@ -36,27 +36,36 @@ Photoworks.GalleriesRoute = Ember.Route.extend({
 	setupController: function(controller, model){
 		controller.set('model', model);
 		$('title').text('All Galleries');
-	}
+	},
+    actions: {
+        /* Hide the galleries preview */
+        slideUp: function(id){
+            $('.galleriesMain').slideUp();
+        },
+        
+        showPhotos: function(){
+            $('.allPhotos').fadeIn();
+        },
+        
+        hidePhotos: function(){
+            $('.allPhotos').fadeOut();
+        },
+        showGalleries: function(){
+            $('.galleriesMain').slideDown();
+        },
+    }
 });
 
 /* Individual gallery route */
 Photoworks.GalleryRoute = Ember.Route.extend({
 	model: function(params) {
 		return this.store.find('gallery', params.gallery_id);
-	},
-    setupController: function(controller, model){
-		controller.set('model', model);
-		$('title').text('Viewing Gallery - ' + model.get('title'));
 	}
 });
 
 Photoworks.PhotoRoute = Ember.Route.extend({
     model: function(params) {
         return this.store.find('photo', params.photo_id);
-    },
-    setupController: function(controller, model){
-        controller.set('model', model);
-       $('title').text(model.get('title'));
     }
 });
 
@@ -80,14 +89,5 @@ Photoworks.ApplicationRoute = Ember.Route.extend({
     /* sending cartItems to the application controller */
 	setupController: function(controller){
 		controller.set('cartItem', this.store.find('cartItem'));
-	},
-    
-    actions: {
-        showGalleries: function(){
-            $('.galleriesMain').slideDown();
-            $('title').text('All Galleries');
-            this.transitionTo('galleries');
-        },
-    }
-	
+	}
 });
