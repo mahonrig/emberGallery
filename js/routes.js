@@ -5,11 +5,17 @@ Photoworks.Router.map(function() {
             this.resource('photo', { path: '/photo/:photo_id' });
         });
     });
+    
+    if (window.admin){
+        this.resource('admin');
+    }
    
   	this.resource('prints'); /* Thumbnails page */
   	this.resource('order', { path: '/order/:photo_id' }); /* Print large view and ordering */
   	this.resource('printDetails'); /* Product details */
 });
+
+
 
 
 /* Remove the # from url, app has to be served from all endpoints */
@@ -53,14 +59,27 @@ Photoworks.GalleriesRoute = Ember.Route.extend({
         showGalleries: function(){
             $('.galleriesMain').slideDown();
         },
-    }
+        willTransition: function(transition) {
+            if (transition.targetName == 'galleries.index')
+                this.controller.send('showGalleries');
+        }
+    },
+    
 });
 
 /* Individual gallery route */
 Photoworks.GalleryRoute = Ember.Route.extend({
 	model: function(params) {
 		return this.store.find('gallery', params.gallery_id);
-	}
+	},
+    actions: {
+         willTransition: function(transition) {
+            if (transition.targetName == 'gallery.index')
+                this.controller.send('showPhotos');
+            if (transition.targetName == 'galleries.index')
+                this.controller.send('showGalleries');
+        }
+    }
 });
 
 Photoworks.PhotoRoute = Ember.Route.extend({
@@ -81,7 +100,7 @@ Photoworks.PrintsRoute = Ember.Route.extend({
 });
 
 /* Currently only using this for the shopping cart, need to
- * convert to a view / more specific controller I think */
+ * convert to a view / component */
 Photoworks.ApplicationRoute = Ember.Route.extend({
 	/*model: function() {
 		return this.store.find('site');
