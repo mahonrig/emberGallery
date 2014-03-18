@@ -77,32 +77,6 @@ Photoworks.CartItemController = Ember.ObjectController.extend({
 	}.property('title', 'type', 'size')
 });
 
-Photoworks.GalleriesController = Ember.ArrayController.extend({
-    
-    actions: {
-        /* Hide the galleries preview */
-        slideUp: function(id){
-            $('.galleriesMain').slideUp();
-        }
-    }
-});
-
-Photoworks.PhotoController = Ember.ObjectController.extend({
-    actions: {
-        showPhotos: function(){
-            $('.allPhotos').fadeIn();
-        }
-    }
-});
-
-Photoworks.GalleryController = Ember.ObjectController.extend({
-    actions: {
-        hidePhotos: function(){
-            $('.allPhotos').fadeOut();
-        }
-    }
-});
-
 /* Controller for the large view ordering page */
 Photoworks.OrderController = Ember.ObjectController.extend({
 	actions: {
