@@ -1,12 +1,21 @@
 <?php
+    session_cache_limiter(false);
 	session_start();
-	session_cache_limiter(false);
-	
+  
+    if (isset($_SESSION['messages'])){
+        $messages = $_SESSION['messages'];
+    } else {
+        $messages = '';
+    }
+	if (isset($_SESSION['admin'])){
+        define('ADMIN', $_SESSION['admin']);
+    } else {
+        define('ADMIN', 0);
+    }
 	//load composer requirements
 	require_once 'vendor/autoload.php';
-	//require_once 'scripts/db_functions.php';
+    require_once 'scripts/db_functions.php';
 	define('DEBUG', false);
-    define('ADMIN', 1);
 	
 	// create our own view class to use twig templates
 	class TwigView extends \Slim\View {
@@ -20,10 +29,17 @@
 	}
     
     function renderApp($app, $pagetitle){
+        $db = getConnection();
+        try {
+            $title = get_site_title($db);
+        } catch (PDOException $e) {
+            $messages .= $e->getMessage();
+        }
         $data = array(
 			'pageTitle' => $pagetitle,
-			'siteName' => 'Mahonri Gibson Photographic Works',
-                'admin' => ADMIN
+			'siteTitle' => $title,
+            'admin' => ADMIN,
+            'messages' => $messages
 		);
 		$app->render('app.phtml', $data);
     }
@@ -37,9 +53,79 @@
 	$app->get('/', function() use ($app) {
 		renderApp($app, 'Welcome to Mahonri Gibson Photographic Works');
 	});
+    
+    $app->get('/login', function() use ($app) {
+		renderApp($app, 'Please login');
+	});
+    
+    $app->post('/checklogin', function() use ($app) {
+        if (isset($_POST['username']) && isset($_POST['password'])){
+            $user = trim($_POST['username']); $pass = trim($_POST['password']);
+            $db = getConnection();
+            $isAdmin = check_user($db, $user, $pass);
+            if ($isAdmin){
+                $_SESSION['admin'] = 1;
+                $app->redirect('/');
+            } else {
+                $_SESSION['messages'] = "Incorrect username or password ";
+                $app->redirect('/login');
+            }
+        }
+    });
+    
+    $app->get('/sites', function() use ($app){
+        if ($app->request->isAjax()){
+            $db = getConnection();
+            $json = [];
+            try {
+                $json[site][0] = get_site($db);
+            } catch (PDOException $e) {
+                $messages .= $e->getMessage();
+            }
+            $json[site][0]['admin'] = ADMIN;
+            $app->response->headers->set('Content-Type', 'application/json');
+			$app->response->body(json_encode($json));
+        } else {
+            $app->redirect('/');
+        }
+    });
+    
+    $app->get('/sites/:id', function($id) use ($app){
+        if ($app->request->isAjax()){
+            $db = getConnection();
+            $json = [];
+            try {
+                $json[site] = get_site($db);
+            } catch (PDOException $e) {
+                $messages .= $e->getMessage();
+            }
+            $json[site]['admin'] = ADMIN;
+            $app->response->headers->set('Content-Type', 'application/json');
+			$app->response->body(json_encode($json));
+        } else {
+            $app->redirect('/');
+        }
+    });
+    
+    $app->put('/sites/:id', function($id) use ($app) {
+        if ($app->request->isAjax()){
+            $json = $app->request->getBody();
+            $body = json_decode($json);
+            $db = getConnection();
+            try {
+                update_site($db, $id, $body);
+            } catch (PDOException $e) {
+                $messages .= $e->getMessage();
+            }
+        }
+    });
 	
 	$app->get('/prints', function() use ($app) {
 		renderApp($app, 'Available Prints');
+	});
+    
+    $app->get('/admin', function() use ($app) {
+		renderApp($app, 'Admin');
 	});
 	
 	$app->get('/order/:id', function($id) use ($app) {
