@@ -2,9 +2,11 @@
 <script type="text/x-handlebars">
 	<section id='photoworksApp'>
 		<header>
-{% endverbatim %}
-            <h1 id='title'><a href='/'>{{ siteName }}</a></h1>
-{% verbatim %}
+            <h1 class='title'>
+                {{#with site}}
+                    {{view Photoworks.EditTitleView}}
+                {{/with}}
+            </h1>
 			<nav id='navBar'>
 				<ul>
 					<li>{{#link-to 'galleries'}}Galleries{{/link-to}}</li>
@@ -31,6 +33,29 @@
         <span>-All Works-</span><br />
         <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />
         </div>
+        <br class='clear' />
 	</section>
 </script>
+<script type="text/x-handlebars" data-template-name="login">
+    <div id='login'>
+        <h1 class='itemTitle'>Please Login:</h1>
+        <form action='/checklogin' method='post'>
+            <input type='text' placeholder='Username' name='username'><br />
+            <input type='password' placeholder='Password' name='password'><br />
+            <input class='submit' type='submit' value='Login'>
+        </form>
+    </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="editTitle">
+    {{#if view.titleEditing}}
+        {{edit-title value=title}}
+    {{else}}{{#if admin}}
+        {{title}}
+        <img src='/resource/edit.png' class='edit' {{action 'editTitle' target='view'}}/>
+    {{else}}
+        {{title}}
+    {{/if}}{{/if}}
+</script>
+
 {% endverbatim %}

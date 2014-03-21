@@ -5,11 +5,11 @@
     <div class='galleriesMain'>
         {{#each}}
             <div class="galleryPreview">
-           {{#link-to 'gallery' id}} <h1 class='itemTitle' {{action 'slideUp'}}>{{title}}</h1>{{/link-to}}
+           {{#link-to 'gallery' id}} <h1 class='itemTitle' {{action 'hideGalleries'}}>{{title}}</h1>{{/link-to}}
                 {{#with id as gallery}}
                     {{#each photo in photos}}
                     <div class='galleryThumb'>
-                      {{#link-to 'photo' gallery photo}}  <img {{bind-attr src='photo.thumbFile'}} {{action 'slideUp'}}/>{{/link-to}}
+                      {{#link-to 'photo' gallery photo}}  <img {{bind-attr src='photo.thumbFile'}} {{action 'hideGalleries'}}/>{{/link-to}}
                     </div>
                     {{/each}}
                 {{/with}}
