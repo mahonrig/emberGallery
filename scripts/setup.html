@@ -1,0 +1,31 @@
+<!doctype html>
+    <head>
+        <title>Initial Setup for GLRY</title>
+        <link href='/stylesheets/screen.css' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div class='dbSetup'>
+        <h1>Initial Database Setup for GLRY</h1>
+		<h3>No configuration file was located, we're assuming you need to setup.</h3>
+		<form action='/scripts/setup.php' method='POST'>
+			<label for='db_host'>Database Host:</label>
+			<input type='text' name='db_host' size='50' /><br />
+			<label for='db_username'>Database Username:</label>
+			<input type='text' name='db_username' size='50' /><br />
+			<label for='db_password'>Database Password:</label>
+			<input type='password' name='db_password' size='50' /><br />
+			<label for='db_name'>Database Name:</label>
+			<input type='text' name='db_name' size='50' /><br />
+			<label for='site_name'>Site Name:</label>
+			<input type='text' name='site_name' size='50' /><br />
+			<label for='admin_user'>Admin Username:</label>
+			<input type='text' name='admin_user' size='50' /><br />
+			<label for='admin_pass'>Admin Password:</label>
+			<input type='password' name='admin_pass' size='50' /><br />
+			<input id='dbSubmit' type='submit' value='Submit Database Settings' /><br />
+		</form>
+<br class='clear' />
+        </div>
+
+    </body>
+</html>
