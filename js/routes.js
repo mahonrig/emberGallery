@@ -6,6 +6,9 @@ Photoworks.Router.map(function() {
         });
     });
     
+    /* if admin is set we'll enable these routes
+     * if someone enables this in js console, will error because TWIG
+     * won't include necessary handlebars templates */
     if (window.admin){
         this.resource('admin');
     }
@@ -13,14 +16,22 @@ Photoworks.Router.map(function() {
   	this.resource('prints'); /* Thumbnails page */
   	this.resource('order', { path: '/order/:photo_id' }); /* Print large view and ordering */
   	this.resource('printDetails'); /* Product details */
+    this.resource('login');
 });
-
-
-
 
 /* Remove the # from url, app has to be served from all endpoints */
 Photoworks.Router.reopen({
   location: 'history'
+});
+
+/* Currently only using this for the shopping cart, need to
+ * convert to a view / component */
+Photoworks.ApplicationRoute = Ember.Route.extend({
+    /* sending cartItems to the application controller */
+	setupController: function(controller, model){
+        controller.set('site', this.store.find('site', 1));
+		controller.set('cartItem', this.store.find('cartItem'));
+	}
 });
 
 /* Route for large display of selected print and ordering options */  	
@@ -43,19 +54,24 @@ Photoworks.GalleriesRoute = Ember.Route.extend({
 		controller.set('model', model);
 		$('title').text('All Galleries');
 	},
+    /* These all get handled when actions bubble up from nested controllers */
     actions: {
         /* Hide the galleries preview */
-        slideUp: function(id){
+        hideGalleries: function(id){
             $('.galleriesMain').slideUp();
         },
         
+        /* Reshow photos on gallery page */
         showPhotos: function(){
             $('.allPhotos').fadeIn();
         },
         
+        /* Hide other photos when on individual page */
         hidePhotos: function(){
             $('.allPhotos').fadeOut();
         },
+        
+        /* Reshow the galleries preview */
         showGalleries: function(){
             $('.galleriesMain').slideDown();
         },
@@ -97,16 +113,4 @@ Photoworks.PrintsRoute = Ember.Route.extend({
 		controller.set('model', model);
 		$('title').text('Available Prints');
 	}	
-});
-
-/* Currently only using this for the shopping cart, need to
- * convert to a view / component */
-Photoworks.ApplicationRoute = Ember.Route.extend({
-	/*model: function() {
-		return this.store.find('site');
-	}*/
-    /* sending cartItems to the application controller */
-	setupController: function(controller){
-		controller.set('cartItem', this.store.find('cartItem'));
-	}
 });

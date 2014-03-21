@@ -18,8 +18,8 @@ Photoworks.ApplicationController = Ember.ArrayController.extend({
 	/* Used for the paypal form, index the cart items */
 	assignIndex: function(){
 		this.get('cartItem').map(function(item, index){
-			Ember.set(item, 'index', index+1);
-		});
+            Ember.set(item, 'index', index+1);
+        });
 	}.observes('cartItem.[]', 'firstObject', 'lastObject'),
 	
 	/* Actions hash */
@@ -42,7 +42,13 @@ Photoworks.ApplicationController = Ember.ArrayController.extend({
         /* Button within the cart div */
 		hideCart: function(){
 			$('.cart').fadeOut();
-		}
+		},
+        
+        acceptTitleChange: function(){
+            this.store.find('site', 1).then(function(site){
+            site.save();
+            });
+        }
 	}
 });
 
@@ -99,8 +105,14 @@ Photoworks.OrderController = Ember.ObjectController.extend({
 				console.log('Please select a size');
 				$('.errorSelect').fadeIn().delay(500).fadeOut();
 			}
-		}
+		},
+        
+        acceptTitleChange: function(){
+            this.get('model').save();
+        }
 	},
+    
+    admin: window.admin,
 	
 	/* Available print types, convert to model and have on per photo basis */
 	types: [
@@ -153,7 +165,7 @@ Photoworks.OrderController = Ember.ObjectController.extend({
 		/* If id is set, an option is selected */
 		if (currentSize){
 		/* Store returns a promise, use then() to wait for it to resolve */
-		this.store.find('orderOptions', currentSize).then(function(option){
+		this.store.find('orderOption', currentSize).then(function(option){
 			console.log(option.get('price'));
 			console.log(option.get('type'));
 			console.log(option.get('size'));

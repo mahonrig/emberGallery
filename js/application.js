@@ -1,11 +1,14 @@
 /*
-ToDo:
-	-Implement photo gallery
-	-About me page
-	- Filter print gallery by type?
-	-Update print details page with pictures
-	- ADMIN options - add/remove photos, galleries, pages, etc...
-	-RESTful API - or just use fixtures
+* ToDo:
+*	-About me page
+*	- Filter print gallery by type?
+*	-Update print details page with pictures
+*	- ADMIN options - add/remove photos, galleries, pages, etc...
+*	- DB backend
+*   - Graceful error handling in Ember app and Slim backend
+*   - Setup (for other people to use)
+*   - Social sharing buttons
+*   - Lightbox, slideshow
 */
 
 /* Create the ember application registered to a global variable */
@@ -13,7 +16,7 @@ window.Photoworks = Ember.Application.create({
     LOG_TRANSITIONS: true
 });
 
-/* Using fixture adapter for now, change to RESTful */
+/* Still using fixture adapter for Options */
 Photoworks.ApplicationAdapter = DS.FixtureAdapter.extend();
 
 /* Local storage for the shopping cart */
@@ -25,7 +28,10 @@ Photoworks.CartItemAdapter = DS.LSAdapter.extend({
 /* Pulling galleries from our REST API*/
 Photoworks.GalleryAdapter = DS.RESTAdapter.extend();
 
+/* Pull photos from REST */
 Photoworks.PhotoAdapter = DS.RESTAdapter.extend();
+
+Photoworks.SiteAdapter = DS.RESTAdapter.extend();
 
 /* Modify link-to to be able to add optional action */
 Ember.LinkView.reopen({

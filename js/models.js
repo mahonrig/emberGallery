@@ -1,8 +1,13 @@
 /* Contain site information - not used yet */
 Photoworks.Site = DS.Model.extend({
 	title: DS.attr('string'),
-	galleries: DS.hasMany('gallery', { async: true }),
-	pages: DS.hasMany('page', { async: true })
+    email: DS.attr('string'),
+    facebook: DS.attr('string'),
+    twitter: DS.attr('string'),
+    tumblr: DS.attr('string'),
+    pinterest: DS.attr('string'),
+    paypal: DS.attr('string'),
+    admin: DS.attr('number')
 });
 
 /* Individual Galleries */
@@ -16,7 +21,14 @@ Photoworks.Gallery = DS.Model.extend({
 Photoworks.Page = DS.Model.extend({
 	title: DS.attr('string'),
 	description: DS.attr('string'),
-	content: DS.attr('string')
+	contents: DS.hasMany('block')
+});
+
+/* Pages will be built up out of blocks */
+Photoworks.Block = DS.Model.extend({
+    type: DS.attr('string'), /* what type of content is in this block?*/
+    content: DS.attr('string'),
+    page: DS.belongsTo('page')
 });
 
 /* Model for our photos */
@@ -28,17 +40,17 @@ Photoworks.Photo = DS.Model.extend({
     mediumFile: DS.attr('string'),
     smallFile: DS.attr('string'),
     thumbFile: DS.attr('string'),
-	orderTypes: DS.hasMany('orderTypes', { async: true }),
-	orderOptions: DS.hasMany('orderOptions', { async: true }),
+	orderTypes: DS.hasMany('orderType', { async: true }),
+	orderOptions: DS.hasMany('orderOption', { async: true }),
 });
 
 /* What order types are available for each photo */
-Photoworks.OrderTypes = DS.Model.extend({
+Photoworks.OrderType = DS.Model.extend({
 	type: DS.attr('string')
 });
 
 /* Model for available print, matt, frame, and metal options */
-Photoworks.OrderOptions = DS.Model.extend({
+Photoworks.OrderOption = DS.Model.extend({
 	type: DS.attr('string'),
 	size: DS.attr('string'),
 	price: DS.attr('number'),
@@ -58,7 +70,7 @@ Photoworks.CartItem = DS.Model.extend({
 });
 
 /* Available options */
-Photoworks.OrderOptions.FIXTURES = [
+Photoworks.OrderOption.FIXTURES = [
 	{
 		id: 1,
 		type: 'Print',
