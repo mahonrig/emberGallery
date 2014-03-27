@@ -89,6 +89,11 @@ Photoworks.EditTitleView = Ember.View.extend({
     }
 });
 
+/* Inside shadow box in addPhotos template,
+ * holds each of the NewPhotosView */
+Photoworks.NewPhotosContainer = Ember.ContainerView.create();
+Photoworks.NewPhotosContainer.appendTo('.shadowBox');
+
 Photoworks.UploadPhotosView = Ember.View.extend({
         templateName: 'addPhotos',
 
@@ -104,7 +109,6 @@ Photoworks.UploadPhotosView = Ember.View.extend({
 
         drop: function(event) {
             event.preventDefault();
-
             /* Loop through each dropped photo, create new view for the images */
             var files = event.dataTransfer.files;
             for (var i = 0; i < files.length; i++){
@@ -115,19 +119,15 @@ Photoworks.UploadPhotosView = Ember.View.extend({
                     file: files[i],
                   }));
                 }
+
             }
 
             /* shadow box should now hold the new photos, lets show it */
+
             $('.shadowBox').width($(window).width());
             $('.shadowBox').height($(window).height());
             $('.shadowBox').fadeIn();
         },
-});
-
-/* Inside shadow box in addPhotos template,
- * holds each of the NewPhotosView */
-Photoworks.NewPhotosContainer = Ember.ContainerView.create({
-    childViews: [],
 });
 
 /* Used for each of our new photos to submit
@@ -139,11 +139,13 @@ Photoworks.NewPhotosView = Ember.View.extend({
     /* file: is set upon create during drop event */
     /* For file preview, get the image data */
     setsrc: function(){
+      console.log('Setsrc');
       var that = this;
       var reader = new FileReader();
       reader.readAsDataURL(this.get('file'));
       reader.onload = function(imgsrc){
         that.set('src', imgsrc.target.result);
+        console.log('reader onload' + that.get('src'));
       }
     }.observes('file').on('init'),
 
