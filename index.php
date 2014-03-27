@@ -172,37 +172,44 @@
     });
 
     $app->get('/photos', function() use ($app) {
-        if ($app->request->isAjax()){
-            $photos = 'json/photos.json';
-            $json = [];
-            $json[photo] = json_decode(file_get_contents($photos), TRUE);
+    //    if ($app->request->isAjax()){
+            $data = array();
+            try {
+              $db = getConnection();
+              $data[photo] = get_photos($db);
+            } catch (PDOException $err){
+              $messages .= $err->getMessage();
+            }
 
             $app->response->headers->set('Content-Type', 'application/json');
-			$app->response->body(json_encode($json));
-            } else {
-			$app->redirect('/');
-		}
+			      $app->response->body(json_encode($data));
+    //    } else {
+		//	       $app->redirect('/');
+		//}
 
     });
 
     $app->get('/photos/:id', function($id) use ($app) {
-        if ($app->request->isAjax()){
-            $photos = 'json/photos.json';
-            $json = [];
-            $json_photos = json_decode(file_get_contents($photos), TRUE);
-            $json[photo] = $json_photos[$id-1];
+    //    if ($app->request->isAjax()){
+          $data = array();
+            try {
+              $db = getConnection();
+              $data[photo] = get_photo($db, $id);
+            } catch (PDOException $err){
+              $messages .= $err->getMessage();
+            }
             $app->response->headers->set('Content-Type', 'application/json');
-			$app->response->body(json_encode($json));
-            } else {
-			$app->redirect('/');
-		}
+			      $app->response->body(json_encode($json));
+    //    } else {
+		//	       $app->redirect('/');
+		 //   }
 
     });
 
     /* This probably all needs refactored
      * Still need to implement admin check */
     $app->post('/photos/new', function() use ($app){
-      if (isset($_FILES['file']) && isset($_POST['title'])){
+      if (isset($_FILES['file']) && isset($_POST['title']) && ADMIN){
 
         if (!file_exists('uploads/')){
           @mkdir ("uploads/", 0755)
@@ -242,6 +249,10 @@
         $image->resizeToWidth(150);
         $image->save($thumb);
         $title = $_POST['title'];
+        $large = '/' . $large;
+        $medium = '/' . $medium;
+        $small = '/' . $small;
+        $thumb = '/' . $thumb;
         $db = getConnection();
         $id = add_photo($db, $title, $large, $medium, $small, $thumb);
         $data = array('thumb' => $thumb, 'id' => $id, 'error' => $error_msg);
