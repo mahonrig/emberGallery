@@ -46,7 +46,10 @@ Photoworks.ApplicationController = Ember.ArrayController.extend({
         
         acceptTitleChange: function(){
             this.store.find('site', 1).then(function(site){
-            site.save();
+            if (site.get('isDirty')){
+                site.save();
+                console.log('Saved Site');
+            }
             });
         }
 	}
@@ -108,7 +111,7 @@ Photoworks.OrderController = Ember.ObjectController.extend({
 		},
         
         acceptTitleChange: function(){
-            this.get('model').save();
+                this.get('model').save();
         }
 	},
     
@@ -180,3 +183,11 @@ Photoworks.OrderController = Ember.ObjectController.extend({
 	}.observes('currentSize')
 	
 });
+
+Photoworks.GalleryPreviewController = Ember.ObjectController.extend({
+    admin: window.admin,
+});
+
+/*Photoworks.AdminController = Ember.ObjectController.extend({
+    count: 0,
+});*/
