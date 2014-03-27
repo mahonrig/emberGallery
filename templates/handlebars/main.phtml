@@ -4,7 +4,7 @@
 		<header>
             <h1 class='title'>
                 {{#with site}}
-                    {{view Photoworks.EditTitleView}}
+                    <a href='/'>{{view Photoworks.EditTitleView}}</a>
                 {{/with}}
             </h1>
 			<nav id='navBar'>
@@ -15,7 +15,7 @@
 					<li>
                         {% endverbatim %}
                         {% include "handlebars/cart.phtml" %}
-                        
+
 					</li>
                     {% if admin %}
                     {% verbatim %}
@@ -39,7 +39,7 @@
 <script type="text/x-handlebars" data-template-name="login">
     <div id='login'>
         <h1 class='itemTitle'>Please Login:</h1>
-        <form action='/checklogin' method='post'>
+        <form action='/login' method='post'>
             <input type='text' placeholder='Username' name='username'><br />
             <input type='password' placeholder='Password' name='password'><br />
             <input class='submit' type='submit' value='Login'>
@@ -48,14 +48,16 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="editTitle">
-    {{#if view.titleEditing}}
+    {{#if admin}}
+			{{#if view.titleEditing}}
         {{edit-title value=title}}
-    {{else}}{{#if admin}}
+    	{{else}}
         {{title}}
         <img src='/resource/edit.png' class='edit' {{action 'editTitle' target='view'}}/>
-    {{else}}
+    	{{/if}}
+		{{else}}
         {{title}}
-    {{/if}}{{/if}}
+    {{/if}}
 </script>
 
 {% endverbatim %}
