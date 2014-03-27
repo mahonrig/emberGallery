@@ -12,15 +12,15 @@ Photoworks.Site = DS.Model.extend({
 
 /* Individual Galleries */
 Photoworks.Gallery = DS.Model.extend({
-	title: DS.attr('string'),
-	description: DS.attr('string'),
+	title: DS.attr('string',{defaultValue: 'New Gallery'}),
+	description: DS.attr('string',{defaultValue: 'Description'}),
 	photos: DS.hasMany('photo', { async: true })
 });
 
 /* For about me, contact, print details, etc...*/
 Photoworks.Page = DS.Model.extend({
-	title: DS.attr('string'),
-	description: DS.attr('string'),
+	title: DS.attr('string',{defaultValue: 'New Page'}),
+	description: DS.attr('string',{defaultValue: 'Description'}),
 	contents: DS.hasMany('block')
 });
 
@@ -33,8 +33,8 @@ Photoworks.Block = DS.Model.extend({
 
 /* Model for our photos */
 Photoworks.Photo = DS.Model.extend({
-	title: DS.attr('string'),
-	caption: DS.attr('string'),
+	title: DS.attr('string',{defaultValue: 'New Photo'}),
+	caption: DS.attr('string',{defaultValue: 'Description'}),
 	file: DS.attr('string'),
     largeFile: DS.attr('string'),
     mediumFile: DS.attr('string'),
