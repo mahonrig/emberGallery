@@ -3,7 +3,7 @@
     <section id='galleries'>
     {{#link-to 'galleries'}}<h1 class='itemTitle'>All Galleries</h1>{{/link-to}}
     <div class='galleriesMain'>
-        {{#each}}
+        {{#each itemController='galleryPreview'}}
             <div class="galleryPreview">
            {{#link-to 'gallery' id}} <h1 class='itemTitle' {{action 'hideGalleries'}}>{{title}}</h1>{{/link-to}}
                 {{#with id as gallery}}
