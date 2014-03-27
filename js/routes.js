@@ -8,7 +8,9 @@ Photoworks.Router.map(function() {
     
     /* if admin is set we'll enable these routes
      * if someone enables this in js console, will error because TWIG
-     * won't include necessary handlebars templates */
+     * won't include necessary handlebars templates
+     * Maybe we should just display an error message on each of these routes
+     * if not logged in */
     if (window.admin){
         this.resource('admin');
     }
@@ -32,6 +34,14 @@ Photoworks.ApplicationRoute = Ember.Route.extend({
         controller.set('site', this.store.find('site', 1));
 		controller.set('cartItem', this.store.find('cartItem'));
 	}
+});
+
+Photoworks.AdminRoute = Ember.Route.extend({
+    setupController: function(controller){
+        controller.set('site', this.store.find('site', 1));
+        controller.set('photos', this.store.find('photo'));
+        controller.set('galleries', this.store.find('gallery'));
+    }
 });
 
 /* Route for large display of selected print and ordering options */  	
