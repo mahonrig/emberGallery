@@ -1,6 +1,34 @@
 {% verbatim %}
 <script type="text/x-handlebars" data-template-name="admin">
-This is admin
+    {{site.title}}
+    {{#each galleries}}
+    {{title}}
+    {{/each}}
+    {{#each photos}}
+    {{title}}
+    {{/each}}
+    {{view Photoworks.UploadPhotosView}}
 {% endverbatim %}
 {{ messages }}
 </script>
+{% verbatim %}
+<script type="text/x-handlebars" data-template-name="addPhotos">
+    <div class='drop'>
+        <h1>Drop photo's here</h1>
+    </div>
+    <div class='shadowBox'>
+        {{view Photoworks.NewPhotosContainer}}
+    </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="newPhotoDetails">
+        <div class='newPhotoDetails'>
+            <h1 class='itemTitle'>Edit details</h1>
+            <img class='newPhoto' {{bind-attr src='view.src'}} /><br />
+            {{view Ember.TextField value=view.title}}
+            <button type='button' {{action 'cancel' target='view'}}>Cancel</button>
+            <button type='button' {{action 'submit' target='view'}}>Submit</button><br />
+            <progress min='0' max='100' value='0'></progress>
+        </div>
+</script>
+{% endverbatim %}
