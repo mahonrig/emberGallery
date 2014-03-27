@@ -349,3 +349,27 @@ nav {
     }
 }
 
+.drop {
+    float: left;
+    height: 150px;
+    width: 200px;
+    background-color: #2f2f2f;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+.shadowBox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    background-color: rgba( 0, 0, 0, .8);
+    overflow: scroll;
+}
+
+.newPhotoDetails {
+    margin: 0 auto;
+    padding: 5%;
+    width: 90%;
+    text-align: center;
+}
+
