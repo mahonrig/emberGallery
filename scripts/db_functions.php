@@ -8,12 +8,12 @@ function add_gallery($db, $gallery_name, $gallery_link) {
 		$stmt = $db->prepare('INSERT INTO galleries (name, link) VALUES (:name, :link)');
 		$stmt->execute(array(':name' => $gallery_name, ':link'=>$gallery_link));
 		return $db->LastInsertId();
-		
+
 }
 
-function add_image($db, $large, $medium, $small, $thumb) {
-		$stmt = $db->prepare('INSERT INTO images (large_path, medium_path, small_path, thumb_path) VALUES (:large, :medium, :small, :thumb)');
-        $stmt->execute(array(':large' => $large, ':medium' => $medium, ':small' => $small, ':thumb' => $thumb));
+function add_photo($db, $title, $large, $medium, $small, $thumb) {
+		$stmt = $db->prepare('INSERT INTO photos (name, large_path, medium_path, small_path, thumb_path) VALUES (:title, :large, :medium, :small, :thumb)');
+        $stmt->execute(array(':title' => $title, ':large' => $large, ':medium' => $medium, ':small' => $small, ':thumb' => $thumb));
         return $db->LastInsertId();
 }
 
@@ -28,7 +28,7 @@ function add_page($db, $name, $link, $content) {
 	return $db->LastInsertId();
 }
 
-	
+
 function add_user($db, $username, $password) {
 
 		// check to see if username already exists
@@ -36,7 +36,7 @@ function add_user($db, $username, $password) {
 		$stmt->execute(array(':username' => $username, ':password' => crypt($password, $username)));
 		return $db->LastInsertId();
 }
-	
+
 
 function check_user($db, $username, $password) {
 	$stmt = $db->prepare('SELECT user_id, username FROM users WHERE username = :name AND password = :pass');
@@ -142,15 +142,15 @@ function add_image_gallery($db, $image_id, $gallery_id) {
 }
 
 function remove_image_gallery($db, $image_id, $gallery_id) {
-	$stmt = $db->prepare('DELETE FROM gallery_images WHERE image_id	= :image_id AND gallery_id = :gallery_id');	
+	$stmt = $db->prepare('DELETE FROM gallery_images WHERE image_id	= :image_id AND gallery_id = :gallery_id');
 	$stmt->execute(array(':image_id' => $image_id, ':gallery_id' => $gallery_id));
 }
 
 function get_galleries($db) {
 		$query = "SELECT id, name, link FROM galleries ORDER BY id";
 		$stmt = $db->query($query);
-		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);	
-		return $results;		
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $results;
 }
 
 function get_pages($db) {
@@ -210,5 +210,5 @@ function table_exists($db, $table) {
 	} else {
 		return false;
 	}
-}	
+}
 ?>
