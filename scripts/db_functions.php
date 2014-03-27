@@ -12,7 +12,7 @@ function add_gallery($db, $gallery_name, $gallery_link) {
 }
 
 function add_photo($db, $title, $large, $medium, $small, $thumb) {
-		$stmt = $db->prepare('INSERT INTO photos (name, large_path, medium_path, small_path, thumb_path) VALUES (:title, :large, :medium, :small, :thumb)');
+		$stmt = $db->prepare('INSERT INTO photos (title, largeFile, mediumFile, smallFile, thumbFile) VALUES (:title, :large, :medium, :small, :thumb)');
         $stmt->execute(array(':title' => $title, ':large' => $large, ':medium' => $medium, ':small' => $small, ':thumb' => $thumb));
         return $db->LastInsertId();
 }
@@ -61,15 +61,15 @@ function get_site($db) {
 	return $results;
 }
 
-function get_all_images($db) {
-	$query = "SELECT * FROM images";
+function get_photos($db) {
+	$query = "SELECT * FROM photos";
 	$stmt = $db->query($query);
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result;
 }
 
-function get_image($db, $id) {
-	$stmt = $db->prepare("SELECT * FROM images WHERE id = :id");
+function get_photo($db, $id) {
+	$stmt = $db->prepare("SELECT * FROM photos WHERE id = :id");
 	$stmt->execute(array(':id'=>$id));
 	$result = $stmt->fetch(PDO::FETCH_ASSOC);
 	return $result;
