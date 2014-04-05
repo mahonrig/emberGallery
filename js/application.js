@@ -12,26 +12,26 @@
 */
 
 /* Create the ember application registered to a global variable */
-window.Photoworks = Ember.Application.create({
+window.App = Ember.Application.create({
     LOG_TRANSITIONS: true
 });
 
 /* Still using fixture adapter for Options */
-Photoworks.ApplicationAdapter = DS.FixtureAdapter.extend();
+App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
 /* Local storage for the shopping cart */
-Photoworks.CartItemSerializer = DS.LSSerializer.extend();
-Photoworks.CartItemAdapter = DS.LSAdapter.extend({
+App.CartItemSerializer = DS.LSSerializer.extend();
+App.CartItemAdapter = DS.LSAdapter.extend({
 	namespace: 'photoworks'
 });
 
 /* Pulling galleries from our REST API*/
-Photoworks.GalleryAdapter = DS.RESTAdapter.extend();
+App.GalleryAdapter = DS.RESTAdapter.extend();
 
 /* Pull photos from REST */
-Photoworks.PhotoAdapter = DS.RESTAdapter.extend();
+App.PhotoAdapter = DS.RESTAdapter.extend();
 
-Photoworks.SiteAdapter = DS.RESTAdapter.extend();
+App.SiteAdapter = DS.RESTAdapter.extend();
 
 /* Modify link-to to be able to add optional action */
 Ember.LinkView.reopen({
@@ -45,17 +45,10 @@ Ember.LinkView.reopen({
 
       // trigger the action on the controller
       this.get('controller').send(action, this.get('actionParam'));
-      return false; 
-    }           
+      return false;
+    }
 
     // no action to take, handle the link-to normally
     return this._super(event);
   }
 });
-
-
-
-
-
-
- 	
