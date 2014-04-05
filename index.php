@@ -116,7 +116,7 @@
     });
 
     $app->put('/sites/:id', function($id) use ($app) {
-        if ($app->request->isAjax()){
+        if ($app->request->isAjax() && ADMIN){
             $json = $app->request->getBody();
             $body = json_decode($json);
             $db = getConnection();
@@ -124,6 +124,7 @@
                 update_site($db, $id, $body);
             } catch (PDOException $e) {
                 $messages .= $e->getMessage();
+                echo $messages;
             }
         }
     });
@@ -142,12 +143,20 @@
 
 	$app->get('/galleries', function() use ($app) {
 		if ($app->request->isAjax()){
-            $galleries = 'json/galleries.json';
-            $json = [];
-            $json[gallery] = json_decode(file_get_contents($galleries), TRUE);
+        $data = array();
+        try {
+          $db = getConnection();
+          $data['gallery'] = get_galleries($db);
+          foreach ($data['gallery'] as &$gallery){
+            $id = $gallery['id'];
+            $gallery['photos'] = get_gallery_photos($db, $id);
+          }
+        } catch (PDOException $e){
+          $messages .= $e->getMessage();
+        }
 
 			$app->response->headers->set('Content-Type', 'application/json');
-			$app->response->body(json_encode($json));
+			$app->response->body(json_encode($data));
 		} else {
 			renderApp($app, 'View All Galleries');
 		}
@@ -155,24 +164,56 @@
 
     $app->get('/galleries/:id', function($id) use ($app) {
         if ($app->request->isAjax()){
-            $galleries = 'json/galleries.json';
-            $json = [];
-            $json_gallery = json_decode(file_get_contents($galleries), TRUE);
-            $json[gallery] = $json_gallery[$id-1];
-
+            $data = array();
+            try {
+              $db = getConnection();
+              $data['gallery'] = get_gallery($db, $id);
+              $data['gallery']['photos'] = get_gallery_photos($db, $id);
+            } catch (PDOException $e){
+              $messages .= $e->getMessage();
+            }
             $app->response->headers->set('Content-Type', 'application/json');
-			$app->response->body(json_encode($json));
-		} else {
-			renderApp($app, 'View Gallery');
-		}
+			      $app->response->body(json_encode($data));
+		     } else {
+			        renderApp($app, 'View Gallery');
+		     }
+    });
+
+    $app->put('/galleries/:id', function($id) use ($app){
+      if (ADMIN){
+        $json = $app->request->getBody();
+        $data = json_decode($json);
+        $db = getConnection();
+        try {
+          update_gallery($db, $id, $data);
+        } catch (PDOException $e) {
+          $messages .= $e->getMessage();
+          echo $messages;
+        }
+      }
     });
 
     $app->get('/galleries/:gallery_id/photo/:photo_id', function($gallery_id, $photo_id) use ($app) {
 			renderApp($app, 'View Photo');
     });
 
+    $app->post('/gallery/new', function() use ($app){
+      if (isset($_POST['title'])){
+        $title = trim($_POST['title']);
+        try {
+          $db = getConnection();
+          $id = add_gallery($db, $title);
+        } catch (PDOException $e){
+          $messages .= $e->getMessage();
+        }
+        echo 'New Gallery ID: ' . $id;
+      } else {
+        echo 'Title not set';
+      }
+    });
+
     $app->get('/photos', function() use ($app) {
-    //    if ($app->request->isAjax()){
+        if ($app->request->isAjax()){
             $data = array();
             try {
               $db = getConnection();
@@ -183,14 +224,14 @@
 
             $app->response->headers->set('Content-Type', 'application/json');
 			      $app->response->body(json_encode($data));
-    //    } else {
-		//	       $app->redirect('/');
-		//}
+        } else {
+			       $app->redirect('/');
+		    }
 
     });
 
     $app->get('/photos/:id', function($id) use ($app) {
-    //    if ($app->request->isAjax()){
+        if ($app->request->isAjax()){
           $data = array();
             try {
               $db = getConnection();
@@ -199,11 +240,35 @@
               $messages .= $err->getMessage();
             }
             $app->response->headers->set('Content-Type', 'application/json');
-			      $app->response->body(json_encode($json));
-    //    } else {
-		//	       $app->redirect('/');
-		 //   }
+			      $app->response->body(json_encode($data));
+        } else {
+			       $app->redirect('/');
+		    }
 
+    });
+
+    $app->put('/photos/:id', function($id) use ($app) {
+      if ($app->request->isAjax() && ADMIN){
+          $json = $app->request->getBody();
+          $data = json_decode($json);
+          $db = getConnection();
+          try {
+              update_photo($db, $id, $data);
+          } catch (PDOException $e) {
+              $messages .= $e->getMessage();
+          }
+      }
+    });
+
+    $app->delete('/photos/:id', function($id) use ($app){
+      if (ADMIN){
+        $db = getConnection();
+        try {
+            delete_photo($db, $id);
+        } catch (PDOException $e) {
+            $messages .= $e->getMessage();
+        }
+      }
     });
 
     /* This probably all needs refactored
@@ -255,7 +320,7 @@
         $thumb = '/' . $thumb;
         $db = getConnection();
         $id = add_photo($db, $title, $large, $medium, $small, $thumb);
-        $data = array('thumb' => $thumb, 'id' => $id, 'error' => $error_msg);
+        $data = array('id' => $id, 'title'=>$title, 'largeFile'=>$large, 'mediumFile'=>$medium, 'smallFile'=>$small, 'thumbFile' => $thumb, 'error' => $error_msg);
         $app->response->headers->set('Content-Type', 'application/json');
         $app->response->body(json_encode($data));
       } else {
