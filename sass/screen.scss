@@ -5,32 +5,33 @@
 
 @import "compass/reset";
 
+* {
+  box-sizing: border-box;
+}
 
 img {
 	max-width: 100%;
 }
 
 body {
-	background-color: #1a1a1a;
-    max-width: 1280px;
-    margin: 0 auto;
-    position: relative;
+	background-color: rgb(26,26,26);
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-header {
-    width: 100%;
-    background-color: rgba(26,26,26,.9);
-    border-radius: 10px;
-    position: relative;
+html {
+  position: relative;
 }
 
 .title {
-    position: absolute;
-    right: 0;
+  position: fixed;
+  right: 0;
+  bottom: 1%;
 	font-family: 'Rock Salt', cursive;
 	font-size: 1.2em;
 	padding: 10px;
 	color: #ddd;
+  z-index: 1000;
 
 	a {
 		text-decoration: none;
@@ -40,18 +41,20 @@ header {
 			color: #fff;
 		}
 	}
-    input {
-        margin: 0;
-        padding: 0;
-        font-family: 'Rock Salt', cursive;
-        font-size: 1em;
-        color: #ddd;
-        background-color: transparent;
-        width: 100%;
-        border: none;
-        &:focus {
-            outline: none;
-        }
+
+}
+
+.editTitle {
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: 1em;
+    color: inherit;
+    background-color: transparent;
+    //width: 100%;
+    border: none;
+    &:focus {
+        outline: none;
     }
 }
 
@@ -68,58 +71,45 @@ a {
 	}
 }
 nav {
-	float: left;
-	margin: 10px;
-	font-family: 'Varela Round', sans-serif;
-	ul {
-		list-style: none;
-		position: relative;
-		display: inline;
-		padding: .5em;
-		ul {
-			display: none;
-			position: absolute;
-			top: 20px; left: 10px;
+  position: fixed;
+  left: -175px; top: 10%;
+  height: 80%;
+  width: 200px;
+  background-color: rgba(26,26,26,.8);
+  border-radius: 10px;
+  color: #dedede;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.2em;
+  z-index: 100;
+  a {
+    &:hover {
+      color: #fff;
+    }
+  }
+}
 
-			li {
-				float: none;
-				margin-top: 5px;
-				padding: 3px;
-				position: relative;
-				text-align: center;
-				background-color: rgba(50,50,50,.9);
-				box-shadow: 3px 3px 5px rgba(0,0,0,.8);
-				& + li:before {
-					content: "";
-					padding: 0;
-				}
-			}
-		}
-		li:hover > ul {
-			display: block;
-			li {
-				display: block;
-				a {
-					display: block;
-					width: 100%;
-				}
-			}
-		}
-		li {
-			margin: 2px;
-			padding: 2px;
-			display: inline;
-		}
-		li + li:before {
-			color: #aaa;
-			content: "\2022 ";
-			padding: 0 5px;
-			padding-right: 10px;
-		}
-	}
-	ul:after {
-		content: ""; clear: both; display: block;
-	}
+#showNav {
+  position: absolute;
+  width: 25px; height: 25px;
+  right: 0px; top: 45%;
+  text-align: center;
+  vertical-align: middle;
+  z-index: 101;
+}
+
+.pageLinks, .galleryLinks {
+  li {
+    padding: .5em;
+  }
+}
+
+.pageLinks{
+  position: relative;
+  top: 20%;
+}
+.galleryLinks {
+  position: relative;
+  top: 10%;
 }
 
 #main {
@@ -143,61 +133,65 @@ nav {
 	}
 }
 
-.galleryThumb {
-    margin: 10px;
-    height: 150px;
-    float: left;
-    img {
-        margin: 5px;
-        border: 1px solid black;
-        box-shadow: 3px 3px 4px rgba(0,0,0,.8);
-    }
+.galleriesMain {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 2%;
+  left: 2%;
 }
 
 .galleryPreview {
-    margin: 10px;
-    width: 100%;
-    height: 200px;
-    padding: 20px;
-    overflow: auto;
-    border: 1px solid black;
-    background-color: #1f1f1f;
-    max-width: 90%;
+  position: absolute;
+  width: 256px;
+  box-shadow: 2px 0px 10px rgba(0,0,0,.8);
+  text-align: center;
+  min-height: 100px;
+  border-radius: 0 0 10px 10px;
+  a:last-of-type img {
+    border-radius: 0 0 10px 10px;
+  }
+  img {
+    margin: -2px; padding: 0;
+  }
+  h1 {
+    margin: 5px;
+  }
 }
 
-.largeImage {
-		margin: 5px;
-		padding: 10px;
-		background-color: #dedede;
+.openGallery {
+  position: absolute;
+  width: 50px; height: 50px;
+  top: 50%;
+  right: -50px;
+}
+
+
+
+.largePhoto {
+    text-align: right;
+		margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+		padding: 20px;
+    padding-bottom: 5px;
+    width: 90%;
+		background-color: #f5f5f5;
 		border: 1px solid black;
-		box-shadow: 3px 3px 4px rgba(0,0,0,.8);
+		box-shadow: 0px 0px 10px rgba(0,0,0,.8) inset;
+    border-radius: 10px;
+    img {
+      border: 2px solid black;
+    }
 	}
 
-.productLarge {
-	clear: both;
-	margin: 0 auto;
-	text-align: center;
-	width: 90%;
-	margin: 20px;
-	position: relative;
-	.productName {
-		margin: 5px;
-		color: #aaa;
-		font-size: 1.5em;
-		font-family: 'Varela Round', sans-serif;
-	}
-	select, button {
-		margin: 5px;
-		font-size: 1.2em;
-	}
-	.added, .errorSelect {
-	display: none;
-	position: absolute;
-	color: #dedede;
-	font-family: 'Varela Round', sans-serif;
-	font-size: 1.2em;
-	margin: 10px;
-	}
+.added, .errorSelect {
+  display: none;
+  position: absolute;
+  color: #dedede;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.2em;
+  margin: 10px;
 }
 
 .cart {
@@ -241,14 +235,15 @@ nav {
 	color: #dedede;
 	font-family: 'Varela Round', sans-serif;
 	font-size: 1.2em;
-    input {
-        color: #dedede;
-        background-color: #1a1a1a;
-        font-family: 'Varela Round', sans-serif;
-        font-size: 1.0em;
-        border: none;
-        margin: 0; padding: 0;
-    }
+}
+
+.photoTitle {
+  color: #202020;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.2em;
+  margin: 0;
+  padding: 5px;
+  padding-top: 10px;
 }
 
 #printDetails {
@@ -372,4 +367,67 @@ nav {
     padding: 5%;
     width: 90%;
     text-align: center;
+}
+
+.dropPhoto {
+  float: left;
+  width: 150px; height: 150px;
+  border: 1px solid black;
+}
+
+.availablePhotos {
+  //display: none;
+  position: fixed;
+  right: -175px; top: 10%;
+  height: 80%;
+  width: 200px;
+  background-color: rgba(26,26,26,.8);
+  border-radius: 10px;
+  color: #dedede;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.2em;
+  z-index: 100;
+  padding-left: 25px;
+  img {
+    margin: 2px;
+    padding: 3px;
+    background-color: #dedede;
+    border: 1px solid black;
+  }
+}
+
+.scroll {
+  height: 100%;
+  overflow: scroll;
+}
+
+.showPhotos {
+  width: 25px; height: 25px;
+  position: absolute;
+  left: 0px; top: 45%;
+  text-align: center;
+  vertical-align: middle;
+  z-index: 101;
+}
+
+#showPhotosIcon {
+  background-color: transparent;
+  border: none;
+  margin: 2px;
+  padding: 0;
+}
+
+.removePhoto {
+  display: none;
+  z-index: 100;
+  position: fixed;
+  top: 0; left: 40%;
+  width: 200px; height: 150px;
+  background-color: rgba(50,50,50,.9);
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+  padding: 50px;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 2em;
 }
