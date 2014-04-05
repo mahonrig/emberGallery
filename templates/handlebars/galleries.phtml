@@ -1,34 +1,54 @@
 {% verbatim %}
 <script type="text/x-handlebars" data-template-name="galleries">
     <section id='galleries'>
-    {{#link-to 'galleries'}}<h1 class='itemTitle'>All Galleries</h1>{{/link-to}}
     <div class='galleriesMain'>
-        {{#each itemController='galleryPreview'}}
+
+      {{#each itemController='galleryPreview'}}
+          {{#view App.AddPhotoView}}
             <div class="galleryPreview">
-           {{#link-to 'gallery' id}} <h1 class='itemTitle' {{action 'hideGalleries'}}>{{title}}</h1>{{/link-to}}
-                {{#with id as gallery}}
+            <h1 class='itemTitle'>{{#link-to 'gallery' id}}{{view App.EditTitleView}}{{/link-to}}</h1>
+              {{#with id as gallery}}
+                {{#view App.DroppablePhotoView}}
                     {{#each photo in photos}}
-                    <div class='galleryThumb'>
-                      {{#link-to 'photo' gallery photo}}  <img {{bind-attr src='photo.thumbFile'}} {{action 'hideGalleries'}}/>{{/link-to}}
-                    </div>
+                        {{#link-to 'photo' gallery photo}}  <img {{bind-attr id='photo.id' src='photo.smallFile' data-gallery='id'}} {{action 'hideGalleries'}}/>{{/link-to}}
                     {{/each}}
-                {{/with}}
-            </div><br />
-		{{/each}}
-        
+                {{/view}}
+              {{/with}}
+            </div>
+          {{/view}}
+
+		   {{/each}}
+
     </div>
     {{outlet}}
+    {{#if admin}}
+    {{#view App.RemovePhotoView}}<div class='removePhoto'>Drop here to remove</div>{{/view}}
+
+      <div class='availablePhotos'>
+        <div class='showPhotos' {{action 'toggleAllPhotos' target='view'}}><img id='showPhotosIcon' src='/resource/icon-photo.png' alt='Show Photos'/></div>
+        <div class='scroll'>
+        {{#view App.UploadPhotosView}}
+        {{#view App.DroppablePhotoView}}
+          <input type='file' id='uploadInput' name='uploadInput' multiple style='display: none'/>
+          {{#each photos}}
+              <img draggable='true' {{bind-attr src='thumbFile' id='id'}} />
+          {{/each}}
+        {{/view}}
+        {{/view}}
+        </div>
+    </div>
+    {{/if}}
     </section>
 </script>
 
 <script type="text/x-handlebars" data-template-name="gallery">
     <div class="galleryView">
-    {{#link-to 'gallery' id}} <h1 class='itemTitle'>{{title}}</h1>{{/link-to}}
         {{outlet}}
         <div class='allPhotos'>
-            {{#each photo in photos}}
-                <div class='productLarge'>
-                   {{#link-to 'photo' photo.id}} <img {{bind-attr src='photo.largeFile'}} {{action 'hidePhotos'}}/>{{/link-to}}
+            {{#each photos}}
+                <div class='largePhoto'>
+                   {{#link-to 'photo' id }}<img {{bind-attr src='largeFile'}} {{action 'hidePhotos'}}/>{{/link-to}}
+                    <h2 class='photoTitle'>{{ title }}</h2>
                 </div>
             {{/each}}
         </div>
@@ -36,9 +56,15 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="photo">
-    <div class='productLarge'>
+    <div class='largePhoto'>
        {{#link-to 'gallery' }}<img {{bind-attr src='largeFile'}}/>{{/link-to}}
-        <h2 class='itemTitle'>{{ title }}</h2>
+        <h2 class='photoTitle'>{{ title }}</h2>
     </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="dropPhoto">
+  <div class='dropPhoto'>
+  <span class='itemTitle'>Drop new Photo here</span>
+  </div>
 </script>
 {% endverbatim %}

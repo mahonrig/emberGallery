@@ -4,26 +4,37 @@
 		<header>
             <h1 class='title'>
                 {{#with site}}
-                    <a href='/'>{{view Photoworks.EditTitleView}}</a>
+                    <a href='/'>{{view App.EditTitleView}}</a>
                 {{/with}}
             </h1>
 			<nav id='navBar'>
-				<ul>
-					<li>{{#link-to 'galleries'}}Galleries{{/link-to}}</li>
-					<li><a href='http://mgibsonphotoworks.com/page/about'>About M. Gibson</a></li>
-					<li>{{#link-to 'prints'}}Order a Print{{/link-to}}</li>
-					<li>
+				<div id='showNav' {{action 'showNav' target='view'}}><img src='/resource/icon-menu.svg' alt='Show Menu'/></div>
+				<div class='galleryLinks'>
+					<ul>
+						<li>{{#link-to 'galleries'}}All Galleries{{/link-to}}</li>
+						{{#each galleries}}
+							<li>{{#link-to 'gallery' id}}{{title}}{{/link-to}}</li>
+						{{/each}}
+					</ul>
+				</div>
+				<div class='pageLinks'>
+					<ul>
+						<li><a href='http://mgibsonphotoworks.com/page/about'>About M. Gibson</a></li>
+						<li>{{#link-to 'prints'}}Order a Print{{/link-to}}</li>
+						<li>
                         {% endverbatim %}
                         {% include "handlebars/cart.phtml" %}
 
-					</li>
+						</li>
                     {% if admin %}
                     {% verbatim %}
                     <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>
                     {% endverbatim %}
                     {% endif %}
                     {% verbatim %}
-				</ul>
+										<a href="https://gum.co/BkbKD">'The Forest' Mobile Wallpaper Pack</a>
+					</ul>
+				</div>
 			</nav>
 		</header>
 		<section id='main'>

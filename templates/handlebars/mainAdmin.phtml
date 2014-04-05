@@ -7,7 +7,8 @@
     {{#each photos}}
     {{title}}
     {{/each}}
-    {{view Photoworks.UploadPhotosView}}
+    
+    {{view App.NewGalleryView}}
 
 {% endverbatim %}
 {{ messages }}
@@ -30,5 +31,13 @@
             <button type='button' {{action 'submit' target='view'}}>Submit</button><br />
             <progress min='0' max='100' value='0'></progress>
         </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="newGallery">
+  <div class='newGallery'>
+    <h1 class='itemTitle'>New Gallery: </h1>
+    {{view Ember.TextField value=view.title}}
+    <button type='button' {{action 'submit' target='view'}}>Submit</button><span class='added'>Added</span><br />
+  </div>
 </script>
 {% endverbatim %}
