@@ -1,5 +1,5 @@
 /* Contain site information - not used yet */
-Photoworks.Site = DS.Model.extend({
+App.Site = DS.Model.extend({
 	title: DS.attr('string'),
     email: DS.attr('string'),
     facebook: DS.attr('string'),
@@ -11,28 +11,28 @@ Photoworks.Site = DS.Model.extend({
 });
 
 /* Individual Galleries */
-Photoworks.Gallery = DS.Model.extend({
+App.Gallery = DS.Model.extend({
 	title: DS.attr('string',{defaultValue: 'New Gallery'}),
 	description: DS.attr('string',{defaultValue: 'Description'}),
 	photos: DS.hasMany('photo', { async: true })
 });
 
 /* For about me, contact, print details, etc...*/
-Photoworks.Page = DS.Model.extend({
+App.Page = DS.Model.extend({
 	title: DS.attr('string',{defaultValue: 'New Page'}),
 	description: DS.attr('string',{defaultValue: 'Description'}),
 	contents: DS.hasMany('block')
 });
 
 /* Pages will be built up out of blocks */
-Photoworks.Block = DS.Model.extend({
+App.Block = DS.Model.extend({
     type: DS.attr('string'), /* what type of content is in this block?*/
     content: DS.attr('string'),
     page: DS.belongsTo('page')
 });
 
 /* Model for our photos */
-Photoworks.Photo = DS.Model.extend({
+App.Photo = DS.Model.extend({
 	title: DS.attr('string',{defaultValue: 'New Photo'}),
 	caption: DS.attr('string',{defaultValue: 'Description'}),
 	file: DS.attr('string'),
@@ -45,12 +45,12 @@ Photoworks.Photo = DS.Model.extend({
 });
 
 /* What order types are available for each photo */
-Photoworks.OrderType = DS.Model.extend({
+App.OrderType = DS.Model.extend({
 	type: DS.attr('string')
 });
 
 /* Model for available print, matt, frame, and metal options */
-Photoworks.OrderOption = DS.Model.extend({
+App.OrderOption = DS.Model.extend({
 	type: DS.attr('string'),
 	size: DS.attr('string'),
 	price: DS.attr('number'),
@@ -62,7 +62,7 @@ Photoworks.OrderOption = DS.Model.extend({
 });
 
 /* Model for our shopping cart items */
-Photoworks.CartItem = DS.Model.extend({
+App.CartItem = DS.Model.extend({
 	title: DS.attr('string'),
 	type: DS.attr('string'),
 	size: DS.attr('string'),
@@ -70,7 +70,7 @@ Photoworks.CartItem = DS.Model.extend({
 });
 
 /* Available options */
-Photoworks.OrderOption.FIXTURES = [
+App.OrderOption.FIXTURES = [
 	{
 		id: 1,
 		type: 'Print',
