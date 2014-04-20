@@ -10,14 +10,17 @@
 *   - Social sharing buttons
 *   - Lightbox, slideshow
 */
+/* Chrome caches AJAX calls, gives us json when hitting back button */
+$.ajaxSetup({cache: false});
 
 /* Create the ember application registered to a global variable */
-window.App = Ember.Application.create({
-    LOG_TRANSITIONS: true
-});
+window.App = Ember.Application.create();
+
+App.stop = false;
+App.deletedGallery = false;
 
 /* Still using fixture adapter for Options */
-App.ApplicationAdapter = DS.FixtureAdapter.extend();
+App.ApplicationAdapter = DS.RESTAdapter.extend();
 
 /* Local storage for the shopping cart */
 App.CartItemSerializer = DS.LSSerializer.extend();
@@ -26,12 +29,12 @@ App.CartItemAdapter = DS.LSAdapter.extend({
 });
 
 /* Pulling galleries from our REST API*/
-App.GalleryAdapter = DS.RESTAdapter.extend();
+//App.GalleryAdapter = DS.RESTAdapter.extend();
 
 /* Pull photos from REST */
-App.PhotoAdapter = DS.RESTAdapter.extend();
+//App.PhotoAdapter = DS.RESTAdapter.extend();
 
-App.SiteAdapter = DS.RESTAdapter.extend();
+//App.SiteAdapter = DS.RESTAdapter.extend();
 
 /* Modify link-to to be able to add optional action */
 Ember.LinkView.reopen({

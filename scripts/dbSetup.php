@@ -28,7 +28,7 @@
 
 	// setup the required database tables
     if (!table_exists($db, "site")) {
-        $query = "CREATE TABLE site (id int AUTO_INCREMENT PRIMARY KEY, title varchar(100) NOT NULL, email varchar(255), facebook varchar(255), twitter varchar(255), tumblr varchar(255), pinterest varchar(255), paypal varchar(255));";
+        $query = "CREATE TABLE site (id int AUTO_INCREMENT PRIMARY KEY, title varchar(100) NOT NULL, bannerImg int, email varchar(255), facebook varchar(255), twitter varchar(255), tumblr varchar(255), pinterest varchar(255), paypal varchar(255));";
         tryQuery($db, $query);
 	} else {
 		$messages .= "Site info table already exists. ";
@@ -49,7 +49,7 @@
 	}
 
 	if (!table_exists($db, "photos")) {
-		$query = "CREATE TABLE photos (id int AUTO_INCREMENT PRIMARY KEY, title varchar(100), caption varchar(500), largeFile varchar(255), mediumFile varchar(255), smallFile varchar(255), thumbFile varchar(255));";
+		$query = "CREATE TABLE photos (id int AUTO_INCREMENT PRIMARY KEY, title varchar(100), caption varchar(500), xlargeFile varchar(255), largeFile varchar(255), mediumFile varchar(255), smallFile varchar(255), thumbFile varchar(255));";
 		tryQuery($db, $query);
 	} else {
 		$messages .= "Photo table already exists. ";
@@ -84,7 +84,7 @@
     }
 
     if (!table_exists($db, "orderOptions")) {
-        $query = "CREATE TABLE orderOptions (id int AUTO_INCREMENT PRIMARY KEY, type_id int NOT NULL, size varchar(50), price int);";
+        $query = "CREATE TABLE orderOptions (id int AUTO_INCREMENT PRIMARY KEY, type int NOT NULL, size varchar(50), price int);";
         tryQuery($db, $query);
     } else {
         $messages .= "orderOptions table already exists. ";

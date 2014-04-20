@@ -1,4 +1,2358 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:"
+      name = "">
+      <Group
+         location = "group:../scripts"
+         name = "scripts">
+         <FileRef
+            location = "group:../Documents/scripts/app_config.php">
+         </FileRef>
+         <FileRef
+            location = "group:scripts/dbSetup.php">
+         </FileRef>
+         <FileRef
+            location = "group:scripts/config.ini">
+         </FileRef>
+         <FileRef
+            location = "group:scripts/database_connection.php">
+         </FileRef>
+         <FileRef
+            location = "group:scripts/db_functions.php">
+         </FileRef>
+         <FileRef
+            location = "group:scripts/setup.php">
+         </FileRef>
+         <FileRef
+            location = "group:scripts/simple_image.php">
+         </FileRef>
+         <FileRef
+            location = "group:scripts/setup.html">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:js"
+         name = "js">
+         <FileRef
+            location = "group:application.js">
+         </FileRef>
+         <FileRef
+            location = "group:routes.js">
+         </FileRef>
+         <FileRef
+            location = "group:controllers.js">
+         </FileRef>
+         <FileRef
+            location = "group:models.js">
+         </FileRef>
+         <FileRef
+            location = "group:views.js">
+         </FileRef>
+         <Group
+            location = "group:libs"
+            name = "libs">
+            <FileRef
+               location = "group:ember-data.js">
+            </FileRef>
+            <FileRef
+               location = "group:ember.js">
+            </FileRef>
+            <FileRef
+               location = "group:handlebars-1.0.0.js">
+            </FileRef>
+            <FileRef
+               location = "group:jquery-1.10.2.min.js">
+            </FileRef>
+            <FileRef
+               location = "group:localstorage_adapter.js">
+            </FileRef>
+         </Group>
+      </Group>
+      <Group
+         location = "container:"
+         name = "json">
+         <FileRef
+            location = "group:json/galleries.json">
+         </FileRef>
+         <FileRef
+            location = "group:json/photos.json">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:config.rb">
+      </FileRef>
+      <FileRef
+         location = "group:index.php">
+      </FileRef>
+      <FileRef
+         location = "group:LICENSE">
+      </FileRef>
+      <FileRef
+         location = "group:model_plan.txt">
+      </FileRef>
+      <FileRef
+         location = "group:README.md">
+      </FileRef>
+      <Group
+         location = "group:sass"
+         name = "sass">
+         <FileRef
+            location = "group:ie.scss">
+         </FileRef>
+         <FileRef
+            location = "group:print.scss">
+         </FileRef>
+         <FileRef
+            location = "group:screen.scss">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:stylesheets"
+         name = "stylesheets">
+         <FileRef
+            location = "group:ie.css">
+         </FileRef>
+         <FileRef
+            location = "group:print.css">
+         </FileRef>
+         <FileRef
+            location = "group:screen.css">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:vendor"
+         name = "vendor">
+         <FileRef
+            location = "group:autoload.php">
+         </FileRef>
+         <Group
+            location = "group:composer"
+            name = "composer">
+            <FileRef
+               location = "group:autoload_classmap.php">
+            </FileRef>
+            <FileRef
+               location = "group:autoload_namespaces.php">
+            </FileRef>
+            <FileRef
+               location = "group:autoload_psr4.php">
+            </FileRef>
+            <FileRef
+               location = "group:autoload_real.php">
+            </FileRef>
+            <FileRef
+               location = "group:ClassLoader.php">
+            </FileRef>
+            <FileRef
+               location = "group:installed.json">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:slim"
+            name = "slim">
+            <Group
+               location = "group:slim"
+               name = "slim">
+               <FileRef
+                  location = "group:composer.json">
+               </FileRef>
+               <FileRef
+                  location = "group:CONTRIBUTING.md">
+               </FileRef>
+               <FileRef
+                  location = "group:index.php">
+               </FileRef>
+               <FileRef
+                  location = "group:LICENSE">
+               </FileRef>
+               <FileRef
+                  location = "group:phpunit.xml.dist">
+               </FileRef>
+               <FileRef
+                  location = "group:README.markdown">
+               </FileRef>
+               <Group
+                  location = "group:Slim"
+                  name = "Slim">
+                  <FileRef
+                     location = "group:Environment.php">
+                  </FileRef>
+                  <Group
+                     location = "group:Exception"
+                     name = "Exception">
+                     <FileRef
+                        location = "group:Pass.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Stop.php">
+                     </FileRef>
+                  </Group>
+                  <Group
+                     location = "group:Helper"
+                     name = "Helper">
+                     <FileRef
+                        location = "group:Set.php">
+                     </FileRef>
+                  </Group>
+                  <Group
+                     location = "group:Http"
+                     name = "Http">
+                     <FileRef
+                        location = "group:Cookies.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Headers.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Request.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Response.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Util.php">
+                     </FileRef>
+                  </Group>
+                  <FileRef
+                     location = "group:Log.php">
+                  </FileRef>
+                  <FileRef
+                     location = "group:LogWriter.php">
+                  </FileRef>
+                  <Group
+                     location = "group:Middleware"
+                     name = "Middleware">
+                     <FileRef
+                        location = "group:ContentTypes.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Flash.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:MethodOverride.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:PrettyExceptions.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:SessionCookie.php">
+                     </FileRef>
+                  </Group>
+                  <FileRef
+                     location = "group:Middleware.php">
+                  </FileRef>
+                  <FileRef
+                     location = "group:Route.php">
+                  </FileRef>
+                  <FileRef
+                     location = "group:Router.php">
+                  </FileRef>
+                  <FileRef
+                     location = "group:Slim.php">
+                  </FileRef>
+                  <FileRef
+                     location = "group:View.php">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:tests"
+                  name = "tests">
+                  <FileRef
+                     location = "group:bootstrap.php">
+                  </FileRef>
+                  <FileRef
+                     location = "group:EnvironmentTest.php">
+                  </FileRef>
+                  <FileRef
+                     location = "group:Foo.php">
+                  </FileRef>
+                  <Group
+                     location = "group:Helper"
+                     name = "Helper">
+                     <FileRef
+                        location = "group:SetTest.php">
+                     </FileRef>
+                  </Group>
+                  <Group
+                     location = "group:Http"
+                     name = "Http">
+                     <FileRef
+                        location = "group:CookiesTest.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:HeadersTest.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:RequestTest.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:ResponseTest.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:UtilTest.php">
+                     </FileRef>
+                  </Group>
+                  <FileRef
+                     location = "group:LogTest.php">
+                  </FileRef>
+                  <FileRef
+                     location = "group:LogWriterTest.php">
+                  </FileRef>
+                  <Group
+                     location = "group:Middleware"
+                     name = "Middleware">
+                     <FileRef
+                        location = "group:ContentTypesTest.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:FlashTest.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:MethodOverrideTest.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:PrettyExceptionsTest.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:SessionCookieTest.php">
+                     </FileRef>
+                  </Group>
+                  <FileRef
+                     location = "group:MiddlewareTest.php">
+                  </FileRef>
+                  <FileRef
+                     location = "group:README">
+                  </FileRef>
+                  <FileRef
+                     location = "group:RouterTest.php">
+                  </FileRef>
+                  <FileRef
+                     location = "group:RouteTest.php">
+                  </FileRef>
+                  <FileRef
+                     location = "group:SlimTest.php">
+                  </FileRef>
+                  <Group
+                     location = "group:templates"
+                     name = "templates">
+                     <FileRef
+                        location = "group:test.php">
+                     </FileRef>
+                  </Group>
+                  <FileRef
+                     location = "group:ViewTest.php">
+                  </FileRef>
+               </Group>
+            </Group>
+         </Group>
+         <Group
+            location = "group:twig"
+            name = "twig">
+            <Group
+               location = "group:twig"
+               name = "twig">
+               <FileRef
+                  location = "group:CHANGELOG">
+               </FileRef>
+               <FileRef
+                  location = "group:composer.json">
+               </FileRef>
+               <Group
+                  location = "group:doc"
+                  name = "doc">
+                  <FileRef
+                     location = "group:advanced.rst">
+                  </FileRef>
+                  <FileRef
+                     location = "group:advanced_legacy.rst">
+                  </FileRef>
+                  <FileRef
+                     location = "group:api.rst">
+                  </FileRef>
+                  <FileRef
+                     location = "group:coding_standards.rst">
+                  </FileRef>
+                  <FileRef
+                     location = "group:deprecated.rst">
+                  </FileRef>
+                  <Group
+                     location = "group:filters"
+                     name = "filters">
+                     <FileRef
+                        location = "group:abs.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:batch.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:capitalize.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:convert_encoding.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:date.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:date_modify.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:default.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:escape.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:first.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:format.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:index.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:join.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:json_encode.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:keys.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:last.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:length.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:lower.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:merge.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:nl2br.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:number_format.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:raw.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:replace.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:reverse.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:round.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:slice.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:sort.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:split.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:striptags.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:title.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:trim.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:upper.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:url_encode.rst">
+                     </FileRef>
+                  </Group>
+                  <Group
+                     location = "group:functions"
+                     name = "functions">
+                     <FileRef
+                        location = "group:attribute.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:block.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:constant.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:cycle.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:date.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:dump.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:include.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:index.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:max.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:min.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:parent.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:random.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:range.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:source.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:template_from_string.rst">
+                     </FileRef>
+                  </Group>
+                  <FileRef
+                     location = "group:index.rst">
+                  </FileRef>
+                  <FileRef
+                     location = "group:installation.rst">
+                  </FileRef>
+                  <FileRef
+                     location = "group:internals.rst">
+                  </FileRef>
+                  <FileRef
+                     location = "group:intro.rst">
+                  </FileRef>
+                  <FileRef
+                     location = "group:recipes.rst">
+                  </FileRef>
+                  <Group
+                     location = "group:tags"
+                     name = "tags">
+                     <FileRef
+                        location = "group:autoescape.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:block.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:do.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:embed.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:extends.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:filter.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:flush.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:for.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:from.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:if.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:import.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:include.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:index.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:macro.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:sandbox.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:set.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:spaceless.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:use.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:verbatim.rst">
+                     </FileRef>
+                  </Group>
+                  <FileRef
+                     location = "group:templates.rst">
+                  </FileRef>
+                  <Group
+                     location = "group:tests"
+                     name = "tests">
+                     <FileRef
+                        location = "group:constant.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:defined.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:divisibleby.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:empty.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:even.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:index.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:iterable.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:null.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:odd.rst">
+                     </FileRef>
+                     <FileRef
+                        location = "group:sameas.rst">
+                     </FileRef>
+                  </Group>
+               </Group>
+               <Group
+                  location = "group:ext"
+                  name = "ext">
+                  <Group
+                     location = "group:twig"
+                     name = "twig">
+                     <FileRef
+                        location = "group:config.m4">
+                     </FileRef>
+                     <FileRef
+                        location = "group:config.w32">
+                     </FileRef>
+                     <FileRef
+                        location = "group:LICENSE">
+                     </FileRef>
+                     <FileRef
+                        location = "group:php_twig.h">
+                     </FileRef>
+                     <FileRef
+                        location = "group:twig.c">
+                     </FileRef>
+                  </Group>
+               </Group>
+               <Group
+                  location = "group:lib"
+                  name = "lib">
+                  <Group
+                     location = "group:Twig"
+                     name = "Twig">
+                     <FileRef
+                        location = "group:Autoloader.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Compiler.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:CompilerInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Environment.php">
+                     </FileRef>
+                     <Group
+                        location = "group:Error"
+                        name = "Error">
+                        <FileRef
+                           location = "group:Loader.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Runtime.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Syntax.php">
+                        </FileRef>
+                     </Group>
+                     <FileRef
+                        location = "group:Error.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:ExistsLoaderInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:ExpressionParser.php">
+                     </FileRef>
+                     <Group
+                        location = "group:Extension"
+                        name = "Extension">
+                        <FileRef
+                           location = "group:Core.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Debug.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Escaper.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Optimizer.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Sandbox.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Staging.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:StringLoader.php">
+                        </FileRef>
+                     </Group>
+                     <FileRef
+                        location = "group:Extension.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:ExtensionInterface.php">
+                     </FileRef>
+                     <Group
+                        location = "group:Filter"
+                        name = "Filter">
+                        <FileRef
+                           location = "group:Function.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Method.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Node.php">
+                        </FileRef>
+                     </Group>
+                     <FileRef
+                        location = "group:Filter.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:FilterCallableInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:FilterInterface.php">
+                     </FileRef>
+                     <Group
+                        location = "group:Function"
+                        name = "Function">
+                        <FileRef
+                           location = "group:Function.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Method.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Node.php">
+                        </FileRef>
+                     </Group>
+                     <FileRef
+                        location = "group:Function.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:FunctionCallableInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:FunctionInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Lexer.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:LexerInterface.php">
+                     </FileRef>
+                     <Group
+                        location = "group:Loader"
+                        name = "Loader">
+                        <FileRef
+                           location = "group:Array.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Chain.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Filesystem.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:String.php">
+                        </FileRef>
+                     </Group>
+                     <FileRef
+                        location = "group:LoaderInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Markup.php">
+                     </FileRef>
+                     <Group
+                        location = "group:Node"
+                        name = "Node">
+                        <FileRef
+                           location = "group:AutoEscape.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Block.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:BlockReference.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Body.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Do.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Embed.php">
+                        </FileRef>
+                        <Group
+                           location = "group:Expression"
+                           name = "Expression">
+                           <FileRef
+                              location = "group:Array.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:AssignName.php">
+                           </FileRef>
+                           <Group
+                              location = "group:Binary"
+                              name = "Binary">
+                              <FileRef
+                                 location = "group:Add.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:And.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:BitwiseAnd.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:BitwiseOr.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:BitwiseXor.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Concat.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Div.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:EndsWith.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Equal.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:FloorDiv.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Greater.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:GreaterEqual.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:In.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Less.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:LessEqual.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Matches.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Mod.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Mul.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:NotEqual.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:NotIn.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Or.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Power.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Range.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:StartsWith.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Sub.php">
+                              </FileRef>
+                           </Group>
+                           <FileRef
+                              location = "group:Binary.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:BlockReference.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:Call.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:Conditional.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:Constant.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:ExtensionReference.php">
+                           </FileRef>
+                           <Group
+                              location = "group:Filter"
+                              name = "Filter">
+                              <FileRef
+                                 location = "group:Default.php">
+                              </FileRef>
+                           </Group>
+                           <FileRef
+                              location = "group:Filter.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:Function.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:GetAttr.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:MethodCall.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:Name.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:Parent.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:TempName.php">
+                           </FileRef>
+                           <Group
+                              location = "group:Test"
+                              name = "Test">
+                              <FileRef
+                                 location = "group:Constant.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Defined.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Divisibleby.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Even.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Null.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Odd.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Sameas.php">
+                              </FileRef>
+                           </Group>
+                           <FileRef
+                              location = "group:Test.php">
+                           </FileRef>
+                           <Group
+                              location = "group:Unary"
+                              name = "Unary">
+                              <FileRef
+                                 location = "group:Neg.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Not.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:Pos.php">
+                              </FileRef>
+                           </Group>
+                           <FileRef
+                              location = "group:Unary.php">
+                           </FileRef>
+                        </Group>
+                        <FileRef
+                           location = "group:Expression.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Flush.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:For.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:ForLoop.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:If.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Import.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Include.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Macro.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Module.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Print.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Sandbox.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:SandboxedModule.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:SandboxedPrint.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Set.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:SetTemp.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Spaceless.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Text.php">
+                        </FileRef>
+                     </Group>
+                     <FileRef
+                        location = "group:Node.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:NodeInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:NodeOutputInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:NodeTraverser.php">
+                     </FileRef>
+                     <Group
+                        location = "group:NodeVisitor"
+                        name = "NodeVisitor">
+                        <FileRef
+                           location = "group:Escaper.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Optimizer.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:SafeAnalysis.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Sandbox.php">
+                        </FileRef>
+                     </Group>
+                     <FileRef
+                        location = "group:NodeVisitorInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Parser.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:ParserInterface.php">
+                     </FileRef>
+                     <Group
+                        location = "group:Sandbox"
+                        name = "Sandbox">
+                        <FileRef
+                           location = "group:SecurityError.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:SecurityPolicy.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:SecurityPolicyInterface.php">
+                        </FileRef>
+                     </Group>
+                     <FileRef
+                        location = "group:SimpleFilter.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:SimpleFunction.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:SimpleTest.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Template.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:TemplateInterface.php">
+                     </FileRef>
+                     <Group
+                        location = "group:Test"
+                        name = "Test">
+                        <FileRef
+                           location = "group:Function.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:IntegrationTestCase.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Method.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Node.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:NodeTestCase.php">
+                        </FileRef>
+                     </Group>
+                     <FileRef
+                        location = "group:Test.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:TestCallableInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:TestInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:Token.php">
+                     </FileRef>
+                     <Group
+                        location = "group:TokenParser"
+                        name = "TokenParser">
+                        <FileRef
+                           location = "group:AutoEscape.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Block.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Do.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Embed.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Extends.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Filter.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Flush.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:For.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:From.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:If.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Import.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Include.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Macro.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Sandbox.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Set.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Spaceless.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:Use.php">
+                        </FileRef>
+                     </Group>
+                     <FileRef
+                        location = "group:TokenParser.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:TokenParserBroker.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:TokenParserBrokerInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:TokenParserInterface.php">
+                     </FileRef>
+                     <FileRef
+                        location = "group:TokenStream.php">
+                     </FileRef>
+                  </Group>
+               </Group>
+               <FileRef
+                  location = "group:LICENSE">
+               </FileRef>
+               <FileRef
+                  location = "group:phpunit.xml.dist">
+               </FileRef>
+               <FileRef
+                  location = "group:README.rst">
+               </FileRef>
+               <Group
+                  location = "group:test"
+                  name = "test">
+                  <FileRef
+                     location = "group:bootstrap.php">
+                  </FileRef>
+                  <Group
+                     location = "group:Twig"
+                     name = "Twig">
+                     <Group
+                        location = "group:Tests"
+                        name = "Tests">
+                        <FileRef
+                           location = "group:AutoloaderTest.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:CompilerTest.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:EnvironmentTest.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:ErrorTest.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:escapingTest.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:ExpressionParserTest.php">
+                        </FileRef>
+                        <Group
+                           location = "group:Extension"
+                           name = "Extension">
+                           <FileRef
+                              location = "group:CoreTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:SandboxTest.php">
+                           </FileRef>
+                        </Group>
+                        <FileRef
+                           location = "group:FileCachingTest.php">
+                        </FileRef>
+                        <Group
+                           location = "group:Fixtures"
+                           name = "Fixtures">
+                           <Group
+                              location = "group:errors"
+                              name = "errors">
+                              <FileRef
+                                 location = "group:base.html">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:index.html">
+                              </FileRef>
+                           </Group>
+                           <Group
+                              location = "group:exceptions"
+                              name = "exceptions">
+                              <FileRef
+                                 location = "group:unclosed_tag.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:undefined_trait.test">
+                              </FileRef>
+                           </Group>
+                           <Group
+                              location = "group:expressions"
+                              name = "expressions">
+                              <FileRef
+                                 location = "group:array.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:array_call.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:binary.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:bitwise.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:comparison.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:divisibleby.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:dotdot.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:ends_with.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:grouping.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:literals.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:magic_call.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:matches.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:method_call.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:operators_as_variables.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:postfix.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:sameas.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:starts_with.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:strings.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:ternary_operator.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:ternary_operator_noelse.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:ternary_operator_nothen.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:two_word_operators_as_variables.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:unary.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:unary_precedence.test">
+                              </FileRef>
+                           </Group>
+                           <Group
+                              location = "group:filters"
+                              name = "filters">
+                              <FileRef
+                                 location = "group:abs.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:batch.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:batch_float.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:batch_with_empty_fill.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:batch_with_exact_elements.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:batch_with_fill.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:convert_encoding.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:date.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:date_default_format.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:date_default_format_interval.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:date_immutable.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:date_interval.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:date_modify.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:date_namedargs.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:default.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:dynamic_filter.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:escape.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:escape_html_attr.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:escape_non_supported_charset.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:first.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:force_escape.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:format.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:join.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:json_encode.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:last.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:length.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:length_utf8.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:merge.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:nl2br.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:number_format.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:number_format_default.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:replace.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:reverse.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:round.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:slice.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:sort.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:special_chars.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:split.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:trim.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:urlencode.test">
+                              </FileRef>
+                           </Group>
+                           <Group
+                              location = "group:functions"
+                              name = "functions">
+                              <FileRef
+                                 location = "group:attribute.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:block.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:constant.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:cycle.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:date.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:date_namedargs.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:dump.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:dump_array.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:dynamic_function.test">
+                              </FileRef>
+                              <Group
+                                 location = "group:include"
+                                 name = "include">
+                                 <FileRef
+                                    location = "group:assignment.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:autoescaping.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:expression.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:ignore_missing.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:missing.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:missing_nested.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:sandbox.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:template_instance.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:templates_as_array.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:with_context.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:with_variables.test">
+                                 </FileRef>
+                              </Group>
+                              <FileRef
+                                 location = "group:max.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:min.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:range.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:source.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:special_chars.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:template_from_string.test">
+                              </FileRef>
+                           </Group>
+                           <Group
+                              location = "group:macros"
+                              name = "macros">
+                              <FileRef
+                                 location = "group:default_values.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:nested_calls.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:reserved_variables.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:simple.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:with_filters.test">
+                              </FileRef>
+                           </Group>
+                           <Group
+                              location = "group:regression"
+                              name = "regression">
+                              <FileRef
+                                 location = "group:empty_token.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:issue_1143.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:simple_xml_element.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:strings_like_numbers.test">
+                              </FileRef>
+                           </Group>
+                           <Group
+                              location = "group:tags"
+                              name = "tags">
+                              <Group
+                                 location = "group:autoescape"
+                                 name = "autoescape">
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:blocks.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:double_escaping.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:functions.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:literal.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:nested.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:objects.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:raw.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:strategy.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:type.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:with_filters.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:with_filters_arguments.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:with_pre_escape_filters.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:with_preserves_safety_filters.test">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:block"
+                                 name = "block">
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:block_unique_name.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:special_chars.test">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:embed"
+                                 name = "embed">
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:error_line.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:multiple.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:nested.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:with_extends.test">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:filter"
+                                 name = "filter">
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:json_encode.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:multiple.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:nested.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:with_for_tag.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:with_if_tag.test">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:for"
+                                 name = "for">
+                                 <FileRef
+                                    location = "group:condition.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:context.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:else.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:inner_variables.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:keys.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:keys_and_values.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:loop_context.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:loop_context_local.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:loop_not_defined.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:loop_not_defined_cond.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:nested_else.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:objects.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:objects_countable.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:recursive.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:values.test">
+                                 </FileRef>
+                              </Group>
+                              <FileRef
+                                 location = "group:from.test">
+                              </FileRef>
+                              <Group
+                                 location = "group:if"
+                                 name = "if">
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:expression.test">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:include"
+                                 name = "include">
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:expression.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:ignore_missing.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:missing.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:missing_nested.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:only.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:template_instance.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:templates_as_array.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:with_variables.test">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:inheritance"
+                                 name = "inheritance">
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:conditional.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:dynamic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:empty.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:extends_as_array.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:multiple.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:nested_blocks.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:nested_blocks_parent_only.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:nested_inheritance.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:parent.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:parent_change.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:parent_in_a_block.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:parent_isolation.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:parent_nested.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:parent_without_extends.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:parent_without_extends_but_traits.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:template_instance.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:use.test">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:macro"
+                                 name = "macro">
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:endmacro_name.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:external.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:from.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:global.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:self_import.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:special_chars.test">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:raw"
+                                 name = "raw">
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:mixed_usage_with_raw.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:whitespace_control.test">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:sandbox"
+                                 name = "sandbox">
+                                 <FileRef
+                                    location = "group:not_valid1.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:not_valid2.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:simple.test">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:set"
+                                 name = "set">
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:capture-empty.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:capture.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:expression.test">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:spaceless"
+                                 name = "spaceless">
+                                 <FileRef
+                                    location = "group:simple.test">
+                                 </FileRef>
+                              </Group>
+                              <FileRef
+                                 location = "group:special_chars.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:trim_block.test">
+                              </FileRef>
+                              <Group
+                                 location = "group:use"
+                                 name = "use">
+                                 <FileRef
+                                    location = "group:aliases.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:deep.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:deep_empty.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:multiple.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:multiple_aliases.test">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:verbatim"
+                                 name = "verbatim">
+                                 <FileRef
+                                    location = "group:basic.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:mixed_usage_with_raw.test">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:whitespace_control.test">
+                                 </FileRef>
+                              </Group>
+                           </Group>
+                           <Group
+                              location = "group:tests"
+                              name = "tests">
+                              <FileRef
+                                 location = "group:array.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:constant.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:defined.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:empty.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:even.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:in.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:in_with_objects.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:iterable.test">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:odd.test">
+                              </FileRef>
+                           </Group>
+                        </Group>
+                        <FileRef
+                           location = "group:IntegrationTest.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:LexerTest.php">
+                        </FileRef>
+                        <Group
+                           location = "group:Loader"
+                           name = "Loader">
+                           <FileRef
+                              location = "group:ArrayTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:ChainTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:FilesystemTest.php">
+                           </FileRef>
+                           <Group
+                              location = "group:Fixtures"
+                              name = "Fixtures">
+                              <Group
+                                 location = "group:named"
+                                 name = "named">
+                                 <FileRef
+                                    location = "group:index.html">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:named_bis"
+                                 name = "named_bis">
+                                 <FileRef
+                                    location = "group:index.html">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:named_final"
+                                 name = "named_final">
+                                 <FileRef
+                                    location = "group:index.html">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:named_ter"
+                                 name = "named_ter">
+                                 <FileRef
+                                    location = "group:index.html">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:normal"
+                                 name = "normal">
+                                 <FileRef
+                                    location = "group:index.html">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:normal_bis"
+                                 name = "normal_bis">
+                                 <FileRef
+                                    location = "group:index.html">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:normal_final"
+                                 name = "normal_final">
+                                 <FileRef
+                                    location = "group:index.html">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:normal_ter"
+                                 name = "normal_ter">
+                                 <FileRef
+                                    location = "group:index.html">
+                                 </FileRef>
+                              </Group>
+                              <Group
+                                 location = "group:themes"
+                                 name = "themes">
+                                 <Group
+                                    location = "group:theme1"
+                                    name = "theme1">
+                                    <FileRef
+                                       location = "group:blocks.html.twig">
+                                    </FileRef>
+                                 </Group>
+                                 <Group
+                                    location = "group:theme2"
+                                    name = "theme2">
+                                    <FileRef
+                                       location = "group:blocks.html.twig">
+                                    </FileRef>
+                                 </Group>
+                              </Group>
+                           </Group>
+                        </Group>
+                        <FileRef
+                           location = "group:NativeExtensionTest.php">
+                        </FileRef>
+                        <Group
+                           location = "group:Node"
+                           name = "Node">
+                           <FileRef
+                              location = "group:AutoEscapeTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:BlockReferenceTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:BlockTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:DoTest.php">
+                           </FileRef>
+                           <Group
+                              location = "group:Expression"
+                              name = "Expression">
+                              <FileRef
+                                 location = "group:ArrayTest.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:AssignNameTest.php">
+                              </FileRef>
+                              <Group
+                                 location = "group:Binary"
+                                 name = "Binary">
+                                 <FileRef
+                                    location = "group:AddTest.php">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:AndTest.php">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:ConcatTest.php">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:DivTest.php">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:FloorDivTest.php">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:ModTest.php">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:MulTest.php">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:OrTest.php">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:SubTest.php">
+                                 </FileRef>
+                              </Group>
+                              <FileRef
+                                 location = "group:CallTest.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:ConditionalTest.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:ConstantTest.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:FilterTest.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:FunctionTest.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:GetAttrTest.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:NameTest.php">
+                              </FileRef>
+                              <FileRef
+                                 location = "group:ParentTest.php">
+                              </FileRef>
+                              <Group
+                                 location = "group:PHP53"
+                                 name = "PHP53">
+                                 <FileRef
+                                    location = "group:FilterInclude.php">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:FunctionInclude.php">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:TestInclude.php">
+                                 </FileRef>
+                              </Group>
+                              <FileRef
+                                 location = "group:TestTest.php">
+                              </FileRef>
+                              <Group
+                                 location = "group:Unary"
+                                 name = "Unary">
+                                 <FileRef
+                                    location = "group:NegTest.php">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:NotTest.php">
+                                 </FileRef>
+                                 <FileRef
+                                    location = "group:PosTest.php">
+                                 </FileRef>
+                              </Group>
+                           </Group>
+                           <FileRef
+                              location = "group:ForTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:IfTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:ImportTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:IncludeTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:MacroTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:ModuleTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:PrintTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:SandboxedModuleTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:SandboxedPrintTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:SandboxTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:SetTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:SpacelessTest.php">
+                           </FileRef>
+                           <FileRef
+                              location = "group:TextTest.php">
+                           </FileRef>
+                        </Group>
+                        <Group
+                           location = "group:NodeVisitor"
+                           name = "NodeVisitor">
+                           <FileRef
+                              location = "group:OptimizerTest.php">
+                           </FileRef>
+                        </Group>
+                        <FileRef
+                           location = "group:ParserTest.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:TemplateTest.php">
+                        </FileRef>
+                        <FileRef
+                           location = "group:TokenStreamTest.php">
+                        </FileRef>
+                     </Group>
+                  </Group>
+               </Group>
+            </Group>
+         </Group>
+      </Group>
+      <FileRef
+         location = "group:website.xcworkspace">
+      </FileRef>
+      <Group
+         location = "group:templates"
+         name = "templates">
+         <Group
+            location = "container:"
+            name = "handlebars">
+            <FileRef
+               location = "group:templates/handlebars/main.phtml">
+            </FileRef>
+            <FileRef
+               location = "group:templates/handlebars/galleries.phtml">
+            </FileRef>
+            <FileRef
+               location = "group:templates/handlebars/prints.phtml">
+            </FileRef>
+            <FileRef
+               location = "group:templates/handlebars/order.phtml">
+            </FileRef>
+            <FileRef
+               location = "group:templates/handlebars/printDetails.phtml">
+            </FileRef>
+            <FileRef
+               location = "group:templates/handlebars/cart.phtml">
+            </FileRef>
+            <FileRef
+               location = "group:templates/handlebars/mainAdmin.phtml">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:admin.phtml">
+         </FileRef>
+         <FileRef
+            location = "group:admin_page.phtml">
+         </FileRef>
+         <FileRef
+            location = "group:admin_photo.phtml">
+         </FileRef>
+         <FileRef
+            location = "group:app.phtml">
+         </FileRef>
+         <FileRef
+            location = "group:html.phtml">
+         </FileRef>
+         <FileRef
+            location = "group:main.phtml">
+         </FileRef>
+         <FileRef
+            location = "group:order.phtml">
+         </FileRef>
+         <FileRef
+            location = "group:customcss.phtml">
+         </FileRef>
+      </Group>
+   </Group>
 </Workspace>

@@ -1,70 +1,139 @@
 {% verbatim %}
 <script type="text/x-handlebars" data-template-name="galleries">
     <section id='galleries'>
+    <div id='photoShadowBox'>{{outlet}}</div>
     <div class='galleriesMain'>
-
       {{#each itemController='galleryPreview'}}
           {{#view App.AddPhotoView}}
             <div class="galleryPreview">
-            <h1 class='itemTitle'>{{#link-to 'gallery' id}}{{view App.EditTitleView}}{{/link-to}}</h1>
               {{#with id as gallery}}
                 {{#view App.DroppablePhotoView}}
                     {{#each photo in photos}}
-                        {{#link-to 'photo' gallery photo}}  <img {{bind-attr id='photo.id' src='photo.smallFile' data-gallery='id'}} {{action 'hideGalleries'}}/>{{/link-to}}
+                      {{#view App.PhotoSmallView}}
+                        {{#link-to 'galleries.photo' photo}}  <img class='photoSmall' {{bind-attr id='photo.id' src='photo.fileThumb' data-gallery='id'}}/>{{/link-to}}
+                      {{/view}}
                     {{/each}}
+                    {{#if admin}}
+                    <div class='photoSmall dropHere'>Drop Here</div>
+                    {{/if}}
                 {{/view}}
               {{/with}}
             </div>
           {{/view}}
 
 		   {{/each}}
+       {{#if admin}}
+         <div class='galleryPreview'>
+           <div class='newGallery'>
+           {{view App.NewGalleryView}}
+           </div>
+         </div>
+       {{/if}}
 
     </div>
-    {{outlet}}
     {{#if admin}}
-    {{#view App.RemovePhotoView}}<div class='removePhoto'>Drop here to remove</div>{{/view}}
-
-      <div class='availablePhotos'>
-        <div class='showPhotos' {{action 'toggleAllPhotos' target='view'}}><img id='showPhotosIcon' src='/resource/icon-photo.png' alt='Show Photos'/></div>
-        <div class='scroll'>
-        {{#view App.UploadPhotosView}}
-        {{#view App.DroppablePhotoView}}
-          <input type='file' id='uploadInput' name='uploadInput' multiple style='display: none'/>
-          {{#each photos}}
-              <img draggable='true' {{bind-attr src='thumbFile' id='id'}} />
-          {{/each}}
-        {{/view}}
-        {{/view}}
-        </div>
-    </div>
+      {{#view App.RemovePhotoView}}<div class='removePhoto'>Drop here to remove</div>{{/view}}
+      {{view App.AvailablePhotosView}}
     {{/if}}
     </section>
 </script>
 
 <script type="text/x-handlebars" data-template-name="gallery">
+  <div id='photoShadowBox'>{{outlet}}</div>
     <div class="galleryView">
-        {{outlet}}
-        <div class='allPhotos'>
-            {{#each photos}}
-                <div class='largePhoto'>
-                   {{#link-to 'photo' id }}<img {{bind-attr src='largeFile'}} {{action 'hidePhotos'}}/>{{/link-to}}
-                    <h2 class='photoTitle'>{{ title }}</h2>
-                </div>
-            {{/each}}
+      {{#each photos}}
+        <div class='mediumPhoto'>
+          {{#link-to 'gallery.photo' id }}<img {{bind-attr src='fileSmall'}}/>{{/link-to}}
         </div>
-    </div><br />
+      {{/each}}
+    </div>
+</script>
+<script type="text/x-handlebars" data-template-name="availablePhotos">
+  <div class='availablePhotos'>
+    <div class='showPhotos' {{action 'toggleAllPhotos' target='view'}}><img id='showPhotosIcon' src='/resource/icon-photo.png' alt='Show Photos'/></div>
+    <div class='scroll'>
+    {{#view App.UploadPhotosView}}
+    {{#view App.DroppablePhotoView}}
+      <input type='file' id='uploadInput' name='uploadInput' multiple style='display: none' {{bind-attr value='view.clickFile'}}/>
+      <div class='dropHere'>Drop Here</div>
+      {{#each photos}}
+        {{#view App.EachAvailableView}}
+          {{#link-to 'admin.photo' id}}<img draggable='true' {{bind-attr src='fileThumb' id='id'}} />{{/link-to}}
+        {{/view}}
+      {{/each}}
+    {{/view}}
+    {{/view}}
+    </div>
+</div>
+</script>
+<script type="text/x-handlebars" data-template-name="slideshow/photo">
+  {{view App.LargePhotoView}}
 </script>
 
-<script type="text/x-handlebars" data-template-name="photo">
+<script type="text/x-handlebars" data-template-name="galleries/photo">
+    {{view App.LargePhotoView}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="gallery/photo">
+    {{view App.LargePhotoView}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="largephoto">
     <div class='largePhoto'>
-       {{#link-to 'gallery' }}<img {{bind-attr src='largeFile'}}/>{{/link-to}}
-        <h2 class='photoTitle'>{{ title }}</h2>
+       <img class='fileLarge' {{bind-attr src='fileLarge'}}{{action 'back'}}/>
+       <div class='details'>
+         <h2 class='photoTitle'>{{ title }}</h2>
+        {{#if orderTypes}}
+          <span class='showOrder' {{action 'showOrder' target='view'}}><img src='/resource/shopping32.png' alt='Show Order Options'/></span>
+        {{else}}{{#if admin}}
+          <span class='showOrder' {{action 'showOrder' target='view'}}><img src='/resource/shopping32.png' alt='Show Order Options'/></span>
+        {{/if}}{{/if}}
+         {{view App.SharingPhotoView}}
+       </div>
+       <div class='order'>
+         {{view Ember.Select content=orderTypes optionValuePath='content'
+            optionLabelPath='content.type' value=currentType prompt='Select Type'}}
+         {{view Ember.Select classNames='item_size' content=currentOptions optionValuePath='content'
+            optionLabelPath='content.display' value=currentOption prompt="Select Size"}}
+          <button {{action 'addToCart'}}>Add to Cart</button>
+          <span class='added'>Added!</span>
+          <span class='errorSelect'>Please select a size!</span><br />
+          {{#link-to 'printDetails' }} More info on print options here! {{/link-to}}
+          {{#if admin}}
+            <br />{{view Ember.Select content=availableTypes optionValuePath='content' optionLabelPath='content.type' value=newType prompt='Select new type'}}
+            {{view Ember.Select content=newType.options optionValuePath='content' optionLabelPath='content.size' value=newOption prompt='Select new option'}}
+            <button type='button' {{action 'addNewOrderOption'}}>Add</button>
+          {{/if}}
+        </div>
+
     </div>
 </script>
 
-<script type="text/x-handlebars" data-template-name="dropPhoto">
-  <div class='dropPhoto'>
-  <span class='itemTitle'>Drop new Photo here</span>
-  </div>
+<script type="text/x-handlebars" data-template-name="sharing">
+
+<div class='sharing'>
+  {{#if view.mobile}}
+    <img src="/resource/all64.png" alt="Sharing Buttons" usemap="#sharemap">
+    <map name="sharemap">
+      <area shape="rect" coords="5,0,53,64" {{bind-attr href='view.twitterURL'}} alt="Twitter" target='_blank'>
+      <area shape="rect" coords="54,0,100,64" {{bind-attr href='view.facebookURL'}} alt="FaceBook" target='_blank'>
+      <area shape="rect" coords="101,0,144,64" {{bind-attr href='view.gplusURL'}} alt="Google Plus" target='_blank'>
+      <area shape="rect" coords="145,0,180,64" {{bind-attr href='view.tumblrURL'}} alt="Tumblr" target='_blank'>
+      <area shape="rect" coords="181,0,225,64" {{bind-attr href='view.pinterestURL'}} alt="Pinterest" target='_blank'>
+      <area shape="rect" coords="226,0,275,64" {{bind-attr href='view.emailURL'}} alt="Email" target='_blank'>
+    </map>
+  {{else}}
+    <img src="/resource/all32.png" alt="Sharing Buttons" usemap="#sharemap">
+    <map name="sharemap">
+      <area shape="rect" coords="0,0,24,32" {{bind-attr href='view.twitterURL'}} alt="Twitter" target='_blank'>
+      <area shape="rect" coords="24,0,48,32" {{bind-attr href='view.facebookURL'}} alt="FaceBook" target='_blank'>
+      <area shape="rect" coords="48,0,72,32" {{bind-attr href='view.gplusURL'}} alt="Google Plus" target='_blank'>
+      <area shape="rect" coords="72,0,90,32" {{bind-attr href='view.tumblrURL'}} alt="Tumblr" target='_blank'>
+      <area shape="rect" coords="91,0,115,32" {{bind-attr href='view.pinterestURL'}} alt="Pinterest" target='_blank'>
+      <area shape="rect" coords="116,0,140,32" {{bind-attr href='view.emailURL'}} alt="Email" target='_blank'>
+    </map>
+  {{/if}}
+</div>
 </script>
+
 {% endverbatim %}

@@ -13,14 +13,14 @@ img {
 	max-width: 100%;
 }
 
-body {
-	background-color: rgb(26,26,26);
-  max-width: 1280px;
-  margin: 0 auto;
+html {
+  background-color: rgb(15,15,15);
 }
 
-html {
+body {
   position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .title {
@@ -31,7 +31,7 @@ html {
 	font-size: 1.2em;
 	padding: 10px;
 	color: #ddd;
-  z-index: 1000;
+  z-index: 200;
 
 	a {
 		text-decoration: none;
@@ -70,31 +70,77 @@ a {
 		color: #fff;
 	}
 }
+
+.banner {
+  position: relative;
+  top: -20px;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 200;
+  margin: 0; padding: 0;
+  max-width: 1280px;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.8);
+  .bannerImg {
+    margin-bottom: -1px;
+    width: 100%;
+  }
+}
+
+.fade {
+  position: absolute;
+  bottom: 50px;
+  height: 150px;
+  width: 100%;
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+  background: -linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+}
+
 nav {
-  position: fixed;
-  left: -175px; top: 10%;
-  height: 80%;
-  width: 200px;
-  background-color: rgba(26,26,26,.8);
-  border-radius: 10px;
+  position: absolute;
+  left: 0; bottom: 0px;
+  width: 100%;
+  height: 50px;
+  background-color: rgba(0,0,0,.7);
   color: #dedede;
   font-family: 'Varela Round', sans-serif;
   font-size: 1.2em;
-  z-index: 100;
+  z-index: 1000;
+
   a {
     &:hover {
       color: #fff;
     }
   }
-}
+  ul, li {
+    display: inline-block;
+    list-style: none;
+  }
+  .pageLinks, .galleryLinks {
+      display: inline-block;
+  }
 
-#showNav {
-  position: absolute;
-  width: 25px; height: 25px;
-  right: 0px; top: 45%;
-  text-align: center;
-  vertical-align: middle;
-  z-index: 101;
+  .pageLinks {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 5%;
+  }
+  .galleryLinks {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: 5%;
+    .galleries {
+      display: none;
+      background-color: rgba(0,0,0,.6);
+      position: absolute;
+      top: 30px;
+      left: 10px;
+      li {
+        display: block;
+      }
+    }
+  }
 }
 
 .pageLinks, .galleryLinks {
@@ -103,60 +149,71 @@ nav {
   }
 }
 
-.pageLinks{
-  position: relative;
-  top: 20%;
-}
-.galleryLinks {
-  position: relative;
-  top: 10%;
-}
-
-#main {
-	clear: both;
+#main, #app {
+	width: 100%;
+  height: 100%;
 }
 
 #orderGallery {
 	width: 90%;
 	margin: 0 auto;
 }
-
-.productThumb {
-	float: left;
-	margin: 10px;
-	height: 150px;
-	text-align: center;
-	img {
-		margin: 5px;
-		border: 1px solid black;
-		box-shadow: 3px 3px 4px rgba(0,0,0,.8);
-	}
+#galleries {
+  position: relative;
+  top: -20px;
 }
-
 .galleriesMain {
   position: absolute;
-  height: 100%;
+  top: 0px;
   width: 100%;
-  top: 2%;
-  left: 2%;
+  height: 100%;
+  margin-top: 0;
+  overflow: scroll;
 }
 
 .galleryPreview {
   position: absolute;
   width: 256px;
-  box-shadow: 2px 0px 10px rgba(0,0,0,.8);
   text-align: center;
   min-height: 100px;
   border-radius: 0 0 10px 10px;
-  a:last-of-type img {
+  .photoSmall {
+    position: relative;
+    top: 0px;
+    left: 0;
+    margin: 0px; padding: -2px;
+    margin-top: -10px;
+    box-shadow: 3px 3px 5px rgba(0,0,0,.8);
     border-radius: 0 0 10px 10px;
   }
+
+}
+
+.galleryView {
+  position: relative;
+  top: -20px;
+  width: 100%;
+  text-align: center;
+}
+
+.newGallery {
+  position: relative;
+  top: 50px;
+}
+
+.mediumPhoto {
+  position: relative;
+  top: 0px;
+  padding: 0px;
+  margin: 0 auto;
+  padding-bottom: -5px;
+  margin-top: -10px;
+  border-radius: 0 0 10px 10px;
   img {
-    margin: -2px; padding: 0;
+    box-shadow: 3px 3px 5px rgba(0,0,0,.8);
+    border-radius: 0 0 10px 10px;
   }
-  h1 {
-    margin: 5px;
-  }
+
 }
 
 .openGallery {
@@ -168,22 +225,12 @@ nav {
 
 
 
-.largePhoto {
-    text-align: right;
-		margin: 0 auto;
-    margin-top: 2em;
-    margin-bottom: 2em;
-		padding: 20px;
-    padding-bottom: 5px;
-    width: 90%;
-		background-color: #f5f5f5;
-		border: 1px solid black;
-		box-shadow: 0px 0px 10px rgba(0,0,0,.8) inset;
-    border-radius: 10px;
-    img {
-      border: 2px solid black;
-    }
-	}
+
+
+  .sharing {
+    float: left;
+    display: inline-block;
+  }
 
 .added, .errorSelect {
   display: none;
@@ -196,11 +243,11 @@ nav {
 
 .cart {
 	display: none;
-	z-index: 1;
+	z-index: 1000;
 	position: absolute;
 	border: 1px solid black;
 	box-shadow: 3px 3px 4px rgba(0,0,0,.8);
-	top: 2em;
+  top: 0;
 	right: 0;
 	background-color: rgba(50,50,50,.9);
 	color: #dedede;
@@ -232,6 +279,7 @@ nav {
 }
 
 .itemTitle {
+  display: inline-block;
 	color: #dedede;
 	font-family: 'Varela Round', sans-serif;
 	font-size: 1.2em;
@@ -241,30 +289,10 @@ nav {
   color: #202020;
   font-family: 'Varela Round', sans-serif;
   font-size: 1.2em;
+  float: right;
   margin: 0;
   padding: 5px;
   padding-top: 10px;
-}
-
-#printDetails {
-	color: #dedede;
-	font-family: 'Varela Round', sans-serif;
-	h1, h2, p {
-		margin: 5px;
-		padding: 5px;
-	}
-	h1 {
-		font-size: 1.5em;
-	}
-	h2 {
-		font-size: 1.2em;
-		margin-left: 10px;
-	}
-	p {
-		font-size: 1em;
-		margin-left: 20px;
-	}
-
 }
 
 .cc {
@@ -322,7 +350,8 @@ nav {
 }
 
 #login {
-    margin: 0 auto;
+    position: relative;
+    left: 25%;
     width: 50%;
     text-align: center;
     padding: 10px;
@@ -340,7 +369,7 @@ nav {
         width: 90%;
     }
     .submit {
-        width: 50%;
+        width: 25%;
     }
 }
 
@@ -359,7 +388,7 @@ nav {
     top: 0; left: 0;
     background-color: rgba( 0, 0, 0, .8);
     overflow: scroll;
-    z-index: 100;
+    z-index: 500;
 }
 
 .newPhotoDetails {
@@ -367,6 +396,7 @@ nav {
     padding: 5%;
     width: 90%;
     text-align: center;
+    z-index: 200;
 }
 
 .dropPhoto {
@@ -376,17 +406,17 @@ nav {
 }
 
 .availablePhotos {
-  //display: none;
   position: fixed;
-  right: -175px; top: 10%;
-  height: 80%;
+  top: 0;
+  right: -175px;
+  height: 100%;
   width: 200px;
   background-color: rgba(26,26,26,.8);
   border-radius: 10px;
   color: #dedede;
   font-family: 'Varela Round', sans-serif;
   font-size: 1.2em;
-  z-index: 100;
+  z-index: 201;
   padding-left: 25px;
   img {
     margin: 2px;
@@ -417,17 +447,255 @@ nav {
   padding: 0;
 }
 
+.dropHere {
+  height: 100px;
+  background-color: #333;
+  padding-top: 25%;
+}
+
+#admin {
+  position: absolute;
+  width: 80%;
+  margin: 0 auto;
+}
+
 .removePhoto {
   display: none;
-  z-index: 100;
+  z-index: 1000;
   position: fixed;
   top: 0; left: 40%;
   width: 200px; height: 150px;
   background-color: rgba(50,50,50,.9);
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   text-align: center;
   padding: 50px;
   font-family: 'Varela Round', sans-serif;
-  font-size: 2em;
+  font-size: 1em;
+}
+.twitter-share-button {
+  z-index:2000;
+}
+
+.sharing {
+  img {
+    border: none;
+    margin: 0; padding: 0;
+  }
+}
+
+.order {
+  display: none;
+  position: absolute;
+  width: 95%;
+  left: 2.5%; top: 0;
+  text-align: center;
+  background-color: rgba(26,26,26,0.9);
+  border-radius: 10px;
+  padding: 10px;
+  z-index: 1001;
+
+  select {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+  }
+}
+
+.indivOrder {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1em;
+  color: #ddd;
+  .ember-view {
+    display: inline-block;
+  }
+}
+
+.showOrder {
+  position: relative;
+  float: left;
+  width: 32px; height: 32px;
+  vertical-align: center;
+  img {
+    border: none;
+    margin: 0; padding: 0;
+  }
+}
+
+.siteInfo, .orderInfo {
+  margin: 0 auto;
+  width: 45%;
+  float: left;
+  padding: 25px;
+}
+
+.prevPhoto, .nextPhoto {
+  //display: none;
+}
+
+.slideshowControl {
+  position: relative;
+  bottom: -1em;
+  text-align: center;
+  margin: 10px;
+}
+.slideShow {
+  position: relative;
+  top: -20px;
+}
+
+.currentPhoto, .prevPhoto, .nextPhoto, {
+  position: absolute;
+  width: 60%;
+  left: 20%;
+  img {
+    border-radius: 0 0 10px 10px;
+    box-shadow: 3px 3px 5px rgba(0,0,0,.8);
+  }
+}
+
+#photoShadowBox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 300;
+  background-color: rgba(10,10,10,0.8);
+  text-align: center;
+  overflow: scroll;
+  .largePhoto {
+    position: relative;
+    z-index: 301;
+    margin: 0 auto;
+    margin-top: 2%;
+    padding: 20px;
+    padding-bottom: 5px;
+    width: 90%;
+    background-color: #f5f5f5;
+    border: 1px solid black;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.8) inset;
+    border-radius: 10px;
+    .fileLarge {
+      border: 2px solid black;
+    }
+
+  }
+
+  .ember-view {
+    margin: 0 auto;
+  }
+}
+
+.details {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.about {
+  position: relative;
+  text-align: center;
+  top: -20px;
+  width: 100%;
+  margin: 0 auto;
+  .aboutPhoto {
+    position: relative;
+    margin: 0 auto;
+    width: 80%;
+    z-index: 100;
+    img {
+      border-radius: 0 0 10px 10px;
+      box-shadow: 3px 3px 5px rgba(0,0,0,.8);
+
+    }
+  }
+  .mainText {
+    position: relative;
+    top: -10px;
+    background-color: #ddd;
+    margin: 0 auto;
+    padding: 1em;
+    width: 70%;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(0,0,0,.8);
+    z-index: 99;
+    a{
+      color: rgb(60,60,60);
+    }
+    a:hover {
+      color: rbg(0,100,0);
+    }
+    h1, h2, p {
+      margin: .75em;
+      line-height: 1.5;
+      font-family: 'Varela Round', sans-serif;
+      color: rgb(26,26,26);
+    }
+    h1 {
+      font-size: 1.2em;
+      margin-bottom: 0;
+    }
+    h2 {
+      font-size: 1.1em;
+      margin-bottom: 0;
+    }
+    p {
+        font-size: 1em;
+      }
+    #buttons {
+      //background-color: #ddd;
+      border-radius: 10px;
+    }
+  }
+}
+
+/*Media Queries*/
+@media (min-width: 1280px) {
+
+}
+
+@media (min-width: 1024px) and (max-width: 1279px){
+
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+}
+
+@media (min-width: 512px) and (max-width: 767px) {
+#photoShadowBox{
+  .largePhoto {
+    padding: 8px;
+    border-radius: 4px;
+    .photoTitle {
+      font-size: 1em;
+    }
+  }
+}
+
+}
+
+@media (max-width: 511px) {
+	.fade {
+    height: 25px;
+    bottom: 50px;
+  }
+
+  a {
+    font-size: .8em;
+  }
+
+  .about .mainText p {
+    font-size: .8em;
+  }
+
+  .title a {
+    font-size: .9em;
+  }
+
+  #photoShadowBox{
+    .largePhoto {
+      padding: 5px;
+      border-radius: 5px;
+    }
+  }
 }

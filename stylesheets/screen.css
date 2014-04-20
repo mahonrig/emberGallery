@@ -78,15 +78,15 @@ img {
 }
 
 /* line 16, ../sass/screen.scss */
-body {
-  background-color: #1a1a1a;
-  max-width: 1280px;
-  margin: 0 auto;
+html {
+  background-color: #0f0f0f;
 }
 
-/* line 22, ../sass/screen.scss */
-html {
+/* line 20, ../sass/screen.scss */
+body {
   position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 /* line 26, ../sass/screen.scss */
@@ -98,7 +98,7 @@ html {
   font-size: 1.2em;
   padding: 10px;
   color: #ddd;
-  z-index: 1000;
+  z-index: 200;
 }
 /* line 36, ../sass/screen.scss */
 .title a {
@@ -142,112 +142,171 @@ a:hover {
   color: #fff;
 }
 
-/* line 73, ../sass/screen.scss */
+/* line 74, ../sass/screen.scss */
+.banner {
+  position: relative;
+  top: -20px;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 200;
+  margin: 0;
+  padding: 0;
+  max-width: 1280px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+}
+/* line 83, ../sass/screen.scss */
+.banner .bannerImg {
+  margin-bottom: -1px;
+  width: 100%;
+}
+
+/* line 89, ../sass/screen.scss */
+.fade {
+  position: absolute;
+  bottom: 50px;
+  height: 150px;
+  width: 100%;
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+  background: -linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+/* line 98, ../sass/screen.scss */
 nav {
-  position: fixed;
-  left: -175px;
-  top: 10%;
-  height: 80%;
-  width: 200px;
-  background-color: rgba(26, 26, 26, 0.8);
-  border-radius: 10px;
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 100%;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.7);
   color: #dedede;
   font-family: 'Varela Round', sans-serif;
   font-size: 1.2em;
-  z-index: 100;
+  z-index: 1000;
 }
-/* line 85, ../sass/screen.scss */
+/* line 110, ../sass/screen.scss */
 nav a:hover {
   color: #fff;
 }
-
-/* line 91, ../sass/screen.scss */
-#showNav {
+/* line 114, ../sass/screen.scss */
+nav ul, nav li {
+  display: inline-block;
+  list-style: none;
+}
+/* line 118, ../sass/screen.scss */
+nav .pageLinks, nav .galleryLinks {
+  display: inline-block;
+}
+/* line 122, ../sass/screen.scss */
+nav .pageLinks {
   position: absolute;
-  width: 25px;
-  height: 25px;
-  right: 0px;
-  top: 45%;
-  text-align: center;
-  vertical-align: middle;
-  z-index: 101;
+  bottom: 0;
+  right: 0;
+  margin-right: 5%;
+}
+/* line 128, ../sass/screen.scss */
+nav .galleryLinks {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: 5%;
+}
+/* line 133, ../sass/screen.scss */
+nav .galleryLinks .galleries {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 30px;
+  left: 10px;
+}
+/* line 139, ../sass/screen.scss */
+nav .galleryLinks .galleries li {
+  display: block;
 }
 
-/* line 101, ../sass/screen.scss */
+/* line 147, ../sass/screen.scss */
 .pageLinks li, .galleryLinks li {
   padding: .5em;
 }
 
-/* line 106, ../sass/screen.scss */
-.pageLinks {
-  position: relative;
-  top: 20%;
+/* line 152, ../sass/screen.scss */
+#main, #app {
+  width: 100%;
+  height: 100%;
 }
 
-/* line 110, ../sass/screen.scss */
-.galleryLinks {
-  position: relative;
-  top: 10%;
-}
-
-/* line 115, ../sass/screen.scss */
-#main {
-  clear: both;
-}
-
-/* line 119, ../sass/screen.scss */
+/* line 157, ../sass/screen.scss */
 #orderGallery {
   width: 90%;
   margin: 0 auto;
 }
 
-/* line 124, ../sass/screen.scss */
-.productThumb {
-  float: left;
-  margin: 10px;
-  height: 150px;
-  text-align: center;
-}
-/* line 129, ../sass/screen.scss */
-.productThumb img {
-  margin: 5px;
-  border: 1px solid black;
-  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.8);
+/* line 161, ../sass/screen.scss */
+#galleries {
+  position: relative;
+  top: -20px;
 }
 
-/* line 136, ../sass/screen.scss */
+/* line 165, ../sass/screen.scss */
 .galleriesMain {
   position: absolute;
-  height: 100%;
+  top: 0px;
   width: 100%;
-  top: 2%;
-  left: 2%;
+  height: 100%;
+  margin-top: 0;
+  overflow: scroll;
 }
 
-/* line 144, ../sass/screen.scss */
+/* line 174, ../sass/screen.scss */
 .galleryPreview {
   position: absolute;
   width: 256px;
-  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.8);
   text-align: center;
   min-height: 100px;
   border-radius: 0 0 10px 10px;
 }
-/* line 151, ../sass/screen.scss */
-.galleryPreview a:last-of-type img {
+/* line 180, ../sass/screen.scss */
+.galleryPreview .photoSmall {
+  position: relative;
+  top: 0px;
+  left: 0;
+  margin: 0px;
+  padding: -2px;
+  margin-top: -10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
   border-radius: 0 0 10px 10px;
 }
-/* line 154, ../sass/screen.scss */
-.galleryPreview img {
-  margin: -2px;
-  padding: 0;
-}
-/* line 157, ../sass/screen.scss */
-.galleryPreview h1 {
-  margin: 5px;
+
+/* line 192, ../sass/screen.scss */
+.galleryView {
+  position: relative;
+  top: -20px;
+  width: 100%;
+  text-align: center;
 }
 
-/* line 162, ../sass/screen.scss */
+/* line 199, ../sass/screen.scss */
+.newGallery {
+  position: relative;
+  top: 50px;
+}
+
+/* line 204, ../sass/screen.scss */
+.mediumPhoto {
+  position: relative;
+  top: 0px;
+  padding: 0px;
+  margin: 0 auto;
+  padding-bottom: -5px;
+  margin-top: -10px;
+  border-radius: 0 0 10px 10px;
+}
+/* line 212, ../sass/screen.scss */
+.mediumPhoto img {
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+  border-radius: 0 0 10px 10px;
+}
+
+/* line 219, ../sass/screen.scss */
 .openGallery {
   position: absolute;
   width: 50px;
@@ -256,26 +315,13 @@ nav a:hover {
   right: -50px;
 }
 
-/* line 171, ../sass/screen.scss */
-.largePhoto {
-  text-align: right;
-  margin: 0 auto;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  padding: 20px;
-  padding-bottom: 5px;
-  width: 90%;
-  background-color: #f5f5f5;
-  border: 1px solid black;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8) inset;
-  border-radius: 10px;
-}
-/* line 183, ../sass/screen.scss */
-.largePhoto img {
-  border: 2px solid black;
+/* line 230, ../sass/screen.scss */
+.sharing {
+  float: left;
+  display: inline-block;
 }
 
-/* line 188, ../sass/screen.scss */
+/* line 235, ../sass/screen.scss */
 .added, .errorSelect {
   display: none;
   position: absolute;
@@ -285,93 +331,70 @@ nav a:hover {
   margin: 10px;
 }
 
-/* line 197, ../sass/screen.scss */
+/* line 244, ../sass/screen.scss */
 .cart {
   display: none;
-  z-index: 1;
+  z-index: 1000;
   position: absolute;
   border: 1px solid black;
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.8);
-  top: 2em;
+  top: 0;
   right: 0;
   background-color: rgba(50, 50, 50, 0.9);
   color: #dedede;
   font-family: 'Varela Round', sans-serif;
 }
-/* line 208, ../sass/screen.scss */
+/* line 255, ../sass/screen.scss */
 .cart h1 {
   font-size: 1.2em;
   padding: 5px;
 }
-/* line 212, ../sass/screen.scss */
+/* line 259, ../sass/screen.scss */
 .cart span {
   padding: 5px;
 }
-/* line 215, ../sass/screen.scss */
+/* line 262, ../sass/screen.scss */
 .cart button {
   margin: 5px;
   font-size: 1em;
 }
 
-/* line 221, ../sass/screen.scss */
+/* line 268, ../sass/screen.scss */
 .cartItems {
   text-align: right;
 }
 
-/* line 225, ../sass/screen.scss */
+/* line 272, ../sass/screen.scss */
 .paypalSubmit {
   margin: 5px;
   font-size: 1.2em;
 }
 
-/* line 230, ../sass/screen.scss */
+/* line 277, ../sass/screen.scss */
 .right {
   float: right;
 }
 
-/* line 234, ../sass/screen.scss */
+/* line 281, ../sass/screen.scss */
 .itemTitle {
+  display: inline-block;
   color: #dedede;
   font-family: 'Varela Round', sans-serif;
   font-size: 1.2em;
 }
 
-/* line 240, ../sass/screen.scss */
+/* line 288, ../sass/screen.scss */
 .photoTitle {
   color: #202020;
   font-family: 'Varela Round', sans-serif;
   font-size: 1.2em;
+  float: right;
   margin: 0;
   padding: 5px;
   padding-top: 10px;
 }
 
-/* line 249, ../sass/screen.scss */
-#printDetails {
-  color: #dedede;
-  font-family: 'Varela Round', sans-serif;
-}
-/* line 252, ../sass/screen.scss */
-#printDetails h1, #printDetails h2, #printDetails p {
-  margin: 5px;
-  padding: 5px;
-}
-/* line 256, ../sass/screen.scss */
-#printDetails h1 {
-  font-size: 1.5em;
-}
-/* line 259, ../sass/screen.scss */
-#printDetails h2 {
-  font-size: 1.2em;
-  margin-left: 10px;
-}
-/* line 263, ../sass/screen.scss */
-#printDetails p {
-  font-size: 1em;
-  margin-left: 20px;
-}
-
-/* line 270, ../sass/screen.scss */
+/* line 298, ../sass/screen.scss */
 .cc {
   display: none;
   width: 250px;
@@ -382,7 +405,7 @@ nav a:hover {
   clear: both;
 }
 
-/* line 280, ../sass/screen.scss */
+/* line 308, ../sass/screen.scss */
 .dbSetup {
   width: 500px;
   margin: 5% auto;
@@ -392,16 +415,16 @@ nav a:hover {
   background-color: #1f1f1f;
   color: #dedede;
 }
-/* line 288, ../sass/screen.scss */
+/* line 316, ../sass/screen.scss */
 .dbSetup h1 {
   font-size: 1.3em;
 }
-/* line 291, ../sass/screen.scss */
+/* line 319, ../sass/screen.scss */
 .dbSetup h3 {
   font-size: 1.2em;
   color: #aa0000;
 }
-/* line 295, ../sass/screen.scss */
+/* line 323, ../sass/screen.scss */
 .dbSetup label {
   display: inline-block;
   float: left;
@@ -410,34 +433,35 @@ nav a:hover {
   text-align: right;
   font-size: 1.1em;
 }
-/* line 303, ../sass/screen.scss */
+/* line 331, ../sass/screen.scss */
 .dbSetup input {
   display: inline-block;
   float: left;
 }
-/* line 307, ../sass/screen.scss */
+/* line 335, ../sass/screen.scss */
 .dbSetup input, .dbSetup label, .dbSetup h1, .dbSetup h3 {
   margin: 5px;
   padding: 5px;
 }
-/* line 311, ../sass/screen.scss */
+/* line 339, ../sass/screen.scss */
 .dbSetup #dbSubmit {
   font-size: 1.2em;
 }
 
-/* line 316, ../sass/screen.scss */
+/* line 344, ../sass/screen.scss */
 .clear {
   clear: both;
 }
 
-/* line 320, ../sass/screen.scss */
+/* line 348, ../sass/screen.scss */
 .edit {
   height: 1em;
 }
 
-/* line 324, ../sass/screen.scss */
+/* line 352, ../sass/screen.scss */
 #login {
-  margin: 0 auto;
+  position: relative;
+  left: 25%;
   width: 50%;
   text-align: center;
   padding: 10px;
@@ -445,7 +469,7 @@ nav a:hover {
   border: 1px solid black;
   border-radius: 10px;
 }
-/* line 332, ../sass/screen.scss */
+/* line 361, ../sass/screen.scss */
 #login input {
   border: 1px solid black;
   border-radius: 10px;
@@ -456,12 +480,12 @@ nav a:hover {
   background-color: #2a2a2a;
   width: 90%;
 }
-/* line 342, ../sass/screen.scss */
+/* line 371, ../sass/screen.scss */
 #login .submit {
-  width: 50%;
+  width: 25%;
 }
 
-/* line 347, ../sass/screen.scss */
+/* line 376, ../sass/screen.scss */
 .drop {
   float: left;
   height: 150px;
@@ -471,7 +495,7 @@ nav a:hover {
   border: 1px solid black;
 }
 
-/* line 356, ../sass/screen.scss */
+/* line 385, ../sass/screen.scss */
 .shadowBox {
   display: none;
   position: fixed;
@@ -479,18 +503,19 @@ nav a:hover {
   left: 0;
   background-color: rgba(0, 0, 0, 0.8);
   overflow: scroll;
-  z-index: 100;
+  z-index: 500;
 }
 
-/* line 365, ../sass/screen.scss */
+/* line 394, ../sass/screen.scss */
 .newPhotoDetails {
   margin: 0 auto;
   padding: 5%;
   width: 90%;
   text-align: center;
+  z-index: 200;
 }
 
-/* line 372, ../sass/screen.scss */
+/* line 402, ../sass/screen.scss */
 .dropPhoto {
   float: left;
   width: 150px;
@@ -498,22 +523,22 @@ nav a:hover {
   border: 1px solid black;
 }
 
-/* line 378, ../sass/screen.scss */
+/* line 408, ../sass/screen.scss */
 .availablePhotos {
   position: fixed;
+  top: 0;
   right: -175px;
-  top: 10%;
-  height: 80%;
+  height: 100%;
   width: 200px;
   background-color: rgba(26, 26, 26, 0.8);
   border-radius: 10px;
   color: #dedede;
   font-family: 'Varela Round', sans-serif;
   font-size: 1.2em;
-  z-index: 100;
+  z-index: 201;
   padding-left: 25px;
 }
-/* line 391, ../sass/screen.scss */
+/* line 421, ../sass/screen.scss */
 .availablePhotos img {
   margin: 2px;
   padding: 3px;
@@ -521,13 +546,13 @@ nav a:hover {
   border: 1px solid black;
 }
 
-/* line 399, ../sass/screen.scss */
+/* line 429, ../sass/screen.scss */
 .scroll {
   height: 100%;
   overflow: scroll;
 }
 
-/* line 404, ../sass/screen.scss */
+/* line 434, ../sass/screen.scss */
 .showPhotos {
   width: 25px;
   height: 25px;
@@ -539,7 +564,7 @@ nav a:hover {
   z-index: 101;
 }
 
-/* line 413, ../sass/screen.scss */
+/* line 443, ../sass/screen.scss */
 #showPhotosIcon {
   background-color: transparent;
   border: none;
@@ -547,10 +572,24 @@ nav a:hover {
   padding: 0;
 }
 
-/* line 420, ../sass/screen.scss */
+/* line 450, ../sass/screen.scss */
+.dropHere {
+  height: 100px;
+  background-color: #333;
+  padding-top: 25%;
+}
+
+/* line 456, ../sass/screen.scss */
+#admin {
+  position: absolute;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* line 462, ../sass/screen.scss */
 .removePhoto {
   display: none;
-  z-index: 100;
+  z-index: 1000;
   position: fixed;
   top: 0;
   left: 40%;
@@ -558,9 +597,249 @@ nav a:hover {
   height: 150px;
   background-color: rgba(50, 50, 50, 0.9);
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   text-align: center;
   padding: 50px;
   font-family: 'Varela Round', sans-serif;
-  font-size: 2em;
+  font-size: 1em;
+}
+
+/* line 476, ../sass/screen.scss */
+.twitter-share-button {
+  z-index: 2000;
+}
+
+/* line 481, ../sass/screen.scss */
+.sharing img {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 487, ../sass/screen.scss */
+.order {
+  display: none;
+  position: absolute;
+  width: 95%;
+  left: 2.5%;
+  top: 0;
+  text-align: center;
+  background-color: rgba(26, 26, 26, 0.9);
+  border-radius: 10px;
+  padding: 10px;
+  z-index: 1001;
+}
+/* line 498, ../sass/screen.scss */
+.order select {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+/* line 505, ../sass/screen.scss */
+.indivOrder {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1em;
+  color: #ddd;
+}
+/* line 509, ../sass/screen.scss */
+.indivOrder .ember-view {
+  display: inline-block;
+}
+
+/* line 514, ../sass/screen.scss */
+.showOrder {
+  position: relative;
+  float: left;
+  width: 32px;
+  height: 32px;
+  vertical-align: center;
+}
+/* line 519, ../sass/screen.scss */
+.showOrder img {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 525, ../sass/screen.scss */
+.siteInfo, .orderInfo {
+  margin: 0 auto;
+  width: 45%;
+  float: left;
+  padding: 25px;
+}
+
+/* line 536, ../sass/screen.scss */
+.slideshowControl {
+  position: relative;
+  bottom: -1em;
+  text-align: center;
+  margin: 10px;
+}
+
+/* line 542, ../sass/screen.scss */
+.slideShow {
+  position: relative;
+  top: -20px;
+}
+
+/* line 547, ../sass/screen.scss */
+.currentPhoto, .prevPhoto, .nextPhoto {
+  position: absolute;
+  width: 60%;
+  left: 20%;
+}
+/* line 551, ../sass/screen.scss */
+.currentPhoto img, .prevPhoto img, .nextPhoto img {
+  border-radius: 0 0 10px 10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* line 557, ../sass/screen.scss */
+#photoShadowBox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  background-color: rgba(10, 10, 10, 0.8);
+  text-align: center;
+  overflow: scroll;
+}
+/* line 565, ../sass/screen.scss */
+#photoShadowBox .largePhoto {
+  position: relative;
+  z-index: 301;
+  margin: 0 auto;
+  margin-top: 2%;
+  padding: 20px;
+  padding-bottom: 5px;
+  width: 90%;
+  background-color: #f5f5f5;
+  border: 1px solid black;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8) inset;
+  border-radius: 10px;
+}
+/* line 577, ../sass/screen.scss */
+#photoShadowBox .largePhoto .fileLarge {
+  border: 2px solid black;
+}
+/* line 583, ../sass/screen.scss */
+#photoShadowBox .ember-view {
+  margin: 0 auto;
+}
+
+/* line 588, ../sass/screen.scss */
+.details {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* line 594, ../sass/screen.scss */
+.about {
+  position: relative;
+  text-align: center;
+  top: -20px;
+  width: 100%;
+  margin: 0 auto;
+}
+/* line 600, ../sass/screen.scss */
+.about .aboutPhoto {
+  position: relative;
+  margin: 0 auto;
+  width: 80%;
+  z-index: 100;
+}
+/* line 605, ../sass/screen.scss */
+.about .aboutPhoto img {
+  border-radius: 0 0 10px 10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+}
+/* line 611, ../sass/screen.scss */
+.about .mainText {
+  position: relative;
+  top: -10px;
+  background-color: #ddd;
+  margin: 0 auto;
+  padding: 1em;
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+  z-index: 99;
+}
+/* line 621, ../sass/screen.scss */
+.about .mainText a {
+  color: #3c3c3c;
+}
+/* line 624, ../sass/screen.scss */
+.about .mainText a:hover {
+  color: rbg(0, 100, 0);
+}
+/* line 627, ../sass/screen.scss */
+.about .mainText h1, .about .mainText h2, .about .mainText p {
+  margin: .75em;
+  line-height: 1.5;
+  font-family: 'Varela Round', sans-serif;
+  color: #1a1a1a;
+}
+/* line 633, ../sass/screen.scss */
+.about .mainText h1 {
+  font-size: 1.2em;
+  margin-bottom: 0;
+}
+/* line 637, ../sass/screen.scss */
+.about .mainText h2 {
+  font-size: 1.1em;
+  margin-bottom: 0;
+}
+/* line 641, ../sass/screen.scss */
+.about .mainText p {
+  font-size: 1em;
+}
+/* line 644, ../sass/screen.scss */
+.about .mainText #buttons {
+  border-radius: 10px;
+}
+
+/*Media Queries*/
+@media (min-width: 512px) and (max-width: 767px) {
+  /* line 666, ../sass/screen.scss */
+  #photoShadowBox .largePhoto {
+    padding: 8px;
+    border-radius: 4px;
+  }
+  /* line 669, ../sass/screen.scss */
+  #photoShadowBox .largePhoto .photoTitle {
+    font-size: 1em;
+  }
+}
+@media (max-width: 511px) {
+  /* line 678, ../sass/screen.scss */
+  .fade {
+    height: 25px;
+    bottom: 50px;
+  }
+
+  /* line 683, ../sass/screen.scss */
+  a {
+    font-size: .8em;
+  }
+
+  /* line 687, ../sass/screen.scss */
+  .about .mainText p {
+    font-size: .8em;
+  }
+
+  /* line 691, ../sass/screen.scss */
+  .title a {
+    font-size: .9em;
+  }
+
+  /* line 696, ../sass/screen.scss */
+  #photoShadowBox .largePhoto {
+    padding: 5px;
+    border-radius: 5px;
+  }
 }

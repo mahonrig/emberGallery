@@ -1,38 +1,32 @@
 <!doctype html>
 <head>
 	<title>{{ pageTitle }}</title>
+	<meta name="viewport" content="width=device-width" />
 	<link href='http://fonts.googleapis.com/css?family=Rock+Salt|Varela+Round' rel='stylesheet' type='text/css'>
 	<link href='/stylesheets/screen.css' rel='stylesheet' type='text/css'>
     <link href='/stylesheet/custom' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="https://gumroad.com/js/gumroad.js"></script>
 </head>
 <body>
-	<div class='shadowBox'></div>
   <h1 class='itemTitle'>{{messages}}</h1>
     {% include "handlebars/main.phtml" %}
-        {% include "handlebars/galleries.phtml" %}
-        {% include "handlebars/prints.phtml" %}
-        {% include "handlebars/order.phtml" %}
-        {% include "handlebars/printDetails.phtml" %}
-        {% if admin %}
-        {% include "handlebars/mainAdmin.phtml" %}
-        {% endif %}
+    {% include "handlebars/galleries.phtml" %}
+    {% include "handlebars/printDetails.phtml" %}
+    {% if admin %}
+    {% include "handlebars/mainAdmin.phtml" %}
+    {% endif %}
 
     <script>
         window.admin = {{admin}};
     </script>
-	<script src="/js/libs/jquery-1.10.2.min.js"></script>
-	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		<script src="/js/libs/jquery-1.10.2.min.js"></script>
     <script src="/js/libs/imagesloaded.pkgd.min.js"></script>
   	<script src="/js/libs/handlebars-1.0.0.js"></script>
   	<script src="/js/libs/ember.js"></script>
+		<script src="/js/libs/ember-animate.js"></script>
   	<script src="/js/libs/ember-data.js"></script>
   	<script src="/js/libs/localstorage_adapter.js"></script>
-  	<script src="/js/application.js"></script>
-    <script src="/js/routes.js"></script>
-    <script src="/js/controllers.js"></script>
-    <script src="/js/views.js"></script>
-    <script src="/js/models.js"></script>
+  	<script src="/build/app.min.js"></script>
 
 </body>
 </html>

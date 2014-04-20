@@ -1,25 +1,42 @@
 {% verbatim %}
 <script type="text/x-handlebars" data-template-name="admin">
-    {{site.title}}
-    {{#each galleries}}
-    {{title}}
+<div id='photoShadowBox'>{{outlet}}</div>
+<section id='admin'>
+<div class='siteInfo'>
+    <h1 class='itemTitle'>Site Name:</h1>{{view Ember.TextField value=site.title}}<br />
+    <h1 class='itemTitle'>Banner:</h1>{{view Ember.Select content=photos optionValuePath='content'
+        optionLabelPath='content.title' value=site.bannerImg prompt='Select Photo'}}<br />
+    <h1 class='itemTitle'>Email:</h1>{{view Ember.TextField value=site.email}}<br />
+    <h1 class='itemTitle'>Facebook Page:</h1>{{view Ember.TextField value=site.facebook}}<br />
+    <h1 class='itemTitle'>Twitter handle:</h1>{{view Ember.TextField value=site.twitter}}<br />
+    <h1 class='itemTitle'>Tumblr Page:</h1>{{view Ember.TextField value=site.tumblr}}<br />
+    <h1 class='itemTitle'>Pinterest Page:</h1>{{view Ember.TextField value=site.pinterest}}<br />
+    <h1 class='itemTitle'>Paypal email:</h1>{{view Ember.TextField value=site.paypal}}<br />
+    <button type='button' {{action 'saveSite'}}>Save</button><br />
+</div>
+<div class='orderInfo'>
+    <h1 class='itemTitle'>New Order Type:</h1>{{view Ember.TextField value=newOrderType}}<button type='button'{{action 'submitNewOrderType'}}>Save</button><br />
+    {{#each orderTypes itemController='order'}}
+      <div class='indivOrder'>
+        {{view Ember.TextField value=type}}<button type='button'{{action 'updateOrderType' id}}>Modify</button><button type='button'{{action 'deleteOrderType' id}}>Delete</button><br />
+        <h1 class='itemTitle'>Create New Option: </h1><br />
+        <h1 class='itemTitle'>Size: </h1>{{view Ember.TextField value=newOrderSize}}<br />
+        <h1 class='itemTitle'>Price: </h1>{{view Ember.TextField value=newOrderPrice}}<br />
+        <button type='button' {{action 'createOrderOption' id}}>Create</button><br />
+        {{#each option in options}}
+          <h1>{{option.size}} {{option.price}}</h1><button type='button' {{action 'deleteOrderOption' option.id}}>Delete</button><br />
+        {{/each}}
+      </div>
     {{/each}}
-    {{#each photos}}
-    {{title}}
-    {{/each}}
-    
-    {{view App.NewGalleryView}}
+</div>
 
-{% endverbatim %}
-{{ messages }}
+{{view App.AvailablePhotosView}}
 
+</section>
 </script>
-{% verbatim %}
-<script type="text/x-handlebars" data-template-name="addPhotos">
-    <div class='drop'>
-        <h1>Drop photo's here</h1>
-    </div>
 
+<script type="text/x-handlebars" data-template-name="admin/photo">
+  {{view App.LargePhotoView}}
 </script>
 
 <script type="text/x-handlebars" data-template-name="newPhotoDetails">
@@ -35,7 +52,6 @@
 
 <script type="text/x-handlebars" data-template-name="newGallery">
   <div class='newGallery'>
-    <h1 class='itemTitle'>New Gallery: </h1>
     {{view Ember.TextField value=view.title}}
     <button type='button' {{action 'submit' target='view'}}>Submit</button><span class='added'>Added</span><br />
   </div>

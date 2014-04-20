@@ -1,10 +1,15 @@
 /* Map our routes, resource used for noun, route used for verb */
 App.Router.map(function() {
+	this.resource('slideshow', {path: '/'}, function(){
+		this.route('photo', {path: 'photo/:photo_id'});
+	});
 	this.resource('galleries', function(){
-        this.resource('gallery', { path: '/:gallery_id' }, function(){
-            this.resource('photo', { path: '/photo/:photo_id' });
-        });
-    });
+		this.route('photo', {path: 'photo/:photo_id'});
+	});
+  this.resource('gallery', { path: '/gallery/:gallery_id' }, function(){
+		this.route('photo', {path: 'photo/:photo_id'});
+	});
+	this.resource('about');
 
     /* if admin is set we'll enable these routes
      * if someone enables this in js console, will error because TWIG
@@ -12,11 +17,10 @@ App.Router.map(function() {
      * Maybe we should just display an error message on each of these routes
      * if not logged in */
     if (window.admin){
-        this.resource('admin');
+        this.resource('admin', function(){
+					this.route('photo', {path: 'photo/:photo_id'});
+				});
     }
-
-  	this.resource('prints'); /* Thumbnails page */
-  	this.resource('order', { path: '/order/:photo_id' }); /* Print large view and ordering */
   	this.resource('printDetails'); /* Product details */
     this.resource('login');
 });
@@ -35,6 +39,7 @@ App.ApplicationRoute = Ember.Route.extend({
 		controller.set('cartItem', this.store.find('cartItem'));
 		controller.set('admin', window.admin);
 		controller.set('galleries', this.store.find('gallery'));
+		controller.set('photos', this.store.find('photo'));
 	},
 	actions: {
 		removePhoto: function(id){
@@ -42,8 +47,20 @@ App.ApplicationRoute = Ember.Route.extend({
 				photo.deleteRecord();
 				photo.save();
 			});
-		}
+		},
+
+		saveSite: function(){
+			this.store.find('site', 1).then(function(site){
+				site.save();
+			});
+		},
 	},
+});
+
+App.SlideshowRoute = Ember.Route.extend({
+	model: function(){
+		return this.store.find('photo');
+	}
 });
 
 App.AdminRoute = Ember.Route.extend({
@@ -51,18 +68,8 @@ App.AdminRoute = Ember.Route.extend({
         controller.set('site', this.store.find('site', 1));
         controller.set('photos', this.store.find('photo'));
         controller.set('galleries', this.store.find('gallery'));
+				controller.set('orderTypes', this.store.find('orderType'));
     }
-});
-
-/* Route for large display of selected print and ordering options */
-App.OrderRoute = Ember.Route.extend({
-  model: function(params) {
-    return this.store.find('photo', params.photo_id);
-  },
-	setupController: function(controller, model){
-		controller.set('model', model);
-		$('title').text('Order a Print - ' + model.get('title'));
-	}
 });
 
 /* Preview of all the galleries */
@@ -78,48 +85,45 @@ App.GalleriesRoute = Ember.Route.extend({
 	},
     /* These all get handled when actions bubble up from nested controllers */
     actions: {
-        /* Hide the galleries preview */
-        hideGalleries: function(id){
-            $('.galleriesMain').fadeOut();
-        },
 
-        /* Reshow photos on gallery page */
-        showPhotos: function(){
-					imagesLoaded('.allPhotos', function(){
-						$('.allPhotos').fadeIn();
-					});
-        },
-
-        /* Hide other photos when on individual page */
-        hidePhotos: function(){
-            $('.allPhotos').fadeOut();
-        },
-
-        /* Reshow the galleries preview */
-        showGalleries: function(){
-					imagesLoaded('.galleriesMain', function(){
-            $('.galleriesMain').fadeIn();
-					});
-        },
         willTransition: function(transition) {
-            if (transition.targetName == 'galleries.index')
-                this.controller.send('showGalleries');
+					/* Set if we're trying to edit a link */
+						if (App.stop){
+							transition.abort();
+						}
         }
     },
 
 });
+
+App.GalleriesPhotoRoute = Ember.Route.extend({
+	model: function(params){
+		return this.store.find('photo', params.photo_id);
+	},
+
+	setupController: function(controller, model){
+		controller.set('model', model);
+		controller.set('site', this.store.find('site', 1));
+		controller.set('availableTypes', this.store.find('orderType'));
+	},
+});
+
+App.GalleryPhotoRoute = App.GalleriesPhotoRoute.extend();
+App.SlideshowPhotoRoute = App.GalleriesPhotoRoute.extend();
+App.AdminPhotoRoute = App.GalleriesPhotoRoute.extend();
 
 /* Individual gallery route */
 App.GalleryRoute = Ember.Route.extend({
 	model: function(params) {
 		return this.store.find('gallery', params.gallery_id);
 	},
-    actions: {
+
+  actions: {
          willTransition: function(transition) {
-            if (transition.targetName == 'gallery.index')
-                this.controller.send('showPhotos');
-            if (transition.targetName == 'galleries.index')
-                this.controller.send('showGalleries');
+					//	console.log('Gallery Will transition ' + transition.targetName);
+						if (App.stop){
+							transition.abort();
+						}
         }
     }
 });
@@ -127,16 +131,18 @@ App.GalleryRoute = Ember.Route.extend({
 App.PhotoRoute = Ember.Route.extend({
     model: function(params) {
         return this.store.find('photo', params.photo_id);
-    }
-});
-
-/* Route for the available prints thumbnail gallery */
-App.PrintsRoute = Ember.Route.extend({
-	model: function() {
-		return this.store.find('photo');
-	},
-	setupController: function(controller, model){
-		controller.set('model', model);
-		$('title').text('Available Prints');
-	}
+    },
+		setupController: function(controller, model){
+			controller.set('model', model);
+			controller.set('site', this.store.find('site', 1));
+			controller.set('availableTypes', this.store.find('orderType'));
+		},
+		actions: {
+			willTransition: function(transition){
+				//console.log('photo will transition ' + transition.targetName)
+				if (App.stop){
+					transition.abort();
+				}
+			}
+		}
 });
