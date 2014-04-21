@@ -16,14 +16,13 @@
 				<div class='galleryLinks'>
 					<ul>
 					{{#if view.hiddenLinks}}
-						<li {{action 'showGalleryLinks'}}>Galleries
-							<ul class='galleries'>
+						<li><a href='#'{{action 'showGalleryLinks'}}>Galleries</a></li>
+							<ul class='galleries' {{action 'showGalleryLinks'}}>
 								<li>{{#link-to 'galleries'}}View All{{/link-to}}</li>
 								{{#each galleries itemController='eachGallery'}}
 									<li>{{#link-to 'gallery' id}}{{title}}{{/link-to}}</li>
 								{{/each}}
 							</ul>
-						</li>
 						{{else}}
 							<li>{{#link-to 'galleries'}}View All{{/link-to}}</li>
 							{{#each galleries itemController='eachGallery'}}
