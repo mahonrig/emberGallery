@@ -100,7 +100,7 @@
 	));
 
   /* Initiate our prerender middleware */
-  $app->add(new \PrerenderMiddleware('http://service.prerender.io/', 'ddcyY6FNLL8zcA4F3Ynt'));
+  $app->add(new \PrerenderMiddleware('http://service.prerender.io/', 'YOUR TOKEN'));
 
   function renderApp($app, $pagetitle){
     $data = array(
