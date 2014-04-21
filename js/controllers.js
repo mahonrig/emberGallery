@@ -59,7 +59,6 @@ App.ApplicationController = Ember.ArrayController.extend({
       $('.galleries').fadeToggle();
     },
 
-
 	}
 });
 
@@ -242,10 +241,7 @@ App.GalleriesPhotoController = Ember.ObjectController.extend({
           price: price
         });
         record.save();
-        $('.added').fadeIn().delay(500).fadeOut(function(){
-          var height = $('.cart').height();
-          $('.cart').css('top', -height);
-        });
+        $('.added').fadeIn().delay(500).fadeOut();
 
         console.log('Added item: ' + title);
 

@@ -7,11 +7,13 @@
     } else {
         $messages = '';
     }
-	if (isset($_SESSION['admin'])){
+	   if (isset($_SESSION['admin'])){
         define('ADMIN', $_SESSION['admin']);
     } else {
         define('ADMIN', 0);
     }
+
+    $messages = '';
 
   /* Image sizes */
   define('XLARGE', 1280);
@@ -36,24 +38,83 @@
 		}
 	}
 
+  class PrerenderMiddleware extends \Slim\Middleware
+  {
+    protected $backendURL;
+    protected $token;
+    protected $render = false;
+
+    public function __construct($backendURL, $token)
+    {
+        $this->backendURL = $backendURL;
+        $this->token = $token;
+    }
+    public function call()
+    {
+        //The Slim application
+        $app = $this->app;
+
+        //The Environment object
+        $env = $app->environment;
+
+        //The Request object
+        $req = $app->request;
+
+        //The Response object
+        $res = $app->response;
+
+        $agent = $req->getUserAgent();
+        $bots = "!(Googlebot|bingbot|Googlebot-Mobile|Yahoo|YahooSeeker|FacebookExternalHit|Twitterbot|TweetmemeBot|BingPreview|developers.google.com/\+/web/snippet/)!i";
+
+        if (isset($_GET['_escaped_fragment_'])){
+          $init = $this->backendURL . $env['slim.url_scheme'] . '://' . $env['HTTP_HOST'] . '/?_escaped_fragment_=' . $_GET['_escaped_fragment_'];
+          $this->render = true;
+        } else if(preg_match($bots, $agent)){
+          $resourceUri = $req->getResourceUri();
+          $init = $this->backendURL . $env['slim.url_scheme'] . '://' . $env['HTTP_HOST'] . $resourceUri;
+          $this->render = true;
+        }
+
+        if ($this->render){
+          $ch = curl_init($init);
+          $xtoken = 'X-Prerender-Token: ' . $this->token;
+          curl_setopt($ch, CURLOPT_HTTPHEADER, array($xtoken));
+          curl_setopt($ch, CURLOPT_USERAGENT, $agent);
+          curl_setopt($ch, CURLOPT_HEADER, 0);            // No header in the result
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return, do not echo result
+
+          /* Fetch and return content, save it. */
+          $prerender = curl_exec($ch);
+          curl_close($ch);
+          $app->response->setBody($prerender);
+
+        } else { /* Not coming from a bot, render as usual */
+            $this->next->call();
+        }
+    }
+  }
+
 	// create the new slim app, set view to our twig class
 	$app = new \Slim\Slim(array(
 		'view' => new TwigView()
 	));
 
+  /* Initiate our prerender middleware */
+  $app->add(new \PrerenderMiddleware('http://service.prerender.io/', 'ddcyY6FNLL8zcA4F3Ynt'));
+
   function renderApp($app, $pagetitle){
     $data = array(
 	    'pageTitle' => $pagetitle,
       'admin' => ADMIN,
-      'messages' => $messages
+    //  'messages' => $messages
     );
     $app->render('app.phtml', $data);
   }
 
 	// load the homepage
 	$app->get('/', function() use ($app) {
-		renderApp($app, 'Welcome to Mahonri Gibson Photographic Works');
-	});
+      renderApp($app, 'Welcome to Mahonri Gibson Photographic Works');
+  });
 
   $app->get('/stylesheet/custom', function() use($app) {
       $data = array(
@@ -109,11 +170,11 @@
             $db = getConnection();
             $json = array();
             try {
-                $json[site] = get_site($db);
+                $json['site'] = get_site($db);
             } catch (PDOException $e) {
                 $messages .= $e->getMessage();
             }
-            $json[site]['admin'] = ADMIN;
+            $json['site']['admin'] = ADMIN;
             $app->response->headers->set('Content-Type', 'application/json');
 			$app->response->body(json_encode($json));
         } else {
@@ -260,8 +321,8 @@
               $data['photo'] = get_photos($db);
               foreach ($data['photo'] as &$photo){
                 $id = $photo['id'];
-                $photo[orderTypes] = get_photo_orderTypes($db, $id);
-                $photo[orderOptions] = get_photo_orderOptions($db, $id);
+                $photo['orderTypes'] = get_photo_orderTypes($db, $id);
+                $photo['orderOptions'] = get_photo_orderOptions($db, $id);
               }
             } catch (PDOException $err){
               $messages .= $err->getMessage();
