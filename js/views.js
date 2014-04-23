@@ -176,7 +176,7 @@ App.AvailablePhotosView = Ember.View.extend({
       }
     }
   },
-})
+});
 
 App.GalleryView = Ember.View.extend({
     templateName: 'gallery',
@@ -456,23 +456,20 @@ App.EditTitleView = Ember.View.extend({
     }
 });
 
-/* .shadowBox is located on main page, outside of any views
- * will probably use it for multiple purposes in the future */
+/* .shadowBox is located on main page */
  container = Ember.ContainerView.extend({
-   count: 0,
-   observeCount: function(){
-     if (this.get('count') > 0){
+   observeLength: function(){
+     if (this.get('length') > 0){
        $('.shadowBox').width($(window).width());
        $('.shadowBox').height($(window).height());
        $('.shadowBox').fadeIn();
      } else {
        $('.shadowBox').fadeOut();
      }
-     console.log(this.get('count'));
-   }.observes('count')
+   }.observes('length')
  });
 
- App.NewPhotosContainer = container.create();
+App.NewPhotosContainer = container.create();
 
 App.UploadPhotosView = Ember.View.extend({
 
@@ -497,8 +494,6 @@ App.UploadPhotosView = Ember.View.extend({
                   App.NewPhotosContainer.pushObject(App.NewPhotosView.create({
                     file: files[i],
                   }));
-                  var count = App.NewPhotosContainer.get('count');
-                  count++;
                   App.NewPhotosContainer.set('count', count);
                 }
             }
@@ -559,9 +554,6 @@ App.NewPhotosView = Ember.View.extend({
 
         /* fade out / remove photo, if lightbox is empty, fade it out */
         cancel: function(){
-          var count = App.NewPhotosContainer.get('count');
-          count--;
-          App.NewPhotosContainer.set('count', count);
           App.NewPhotosContainer.removeObject(this);
         },
 
@@ -596,10 +588,7 @@ App.NewPhotosView = Ember.View.extend({
               smallFile: response.smallFile,
               thumbFile: response.thumbFile
             });
-            /* Remove our view object, fade out shadow box if empty */
-            var count = App.NewPhotosContainer.get('count');
-            count--;
-            App.NewPhotosContainer.set('count', count);
+            /* Remove our view object */
             App.NewPhotosContainer.removeObject(that);
           }
 
@@ -610,6 +599,7 @@ App.NewPhotosView = Ember.View.extend({
     }
 
 });
+
 App.addedGallery = false;
 App.NewGalleryView = Ember.View.extend({
   templateName: 'newGallery',
